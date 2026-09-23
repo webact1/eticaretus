@@ -1,21 +1,28 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { X } from "lucide-react";
 import { CountdownTimer } from "./CountdownTimer";
 
 export function CampaignTopBar({ text, endsAt }: { text: string; endsAt: string }) {
   const dismissKey = `eticaretus-campaign-dismissed-${endsAt}`;
-  const [dismissed, setDismissed] = useState(() => {
-    if (typeof window === "undefined") return false;
-    try {
-      return sessionStorage.getItem(dismissKey) === "1";
-    } catch {
-      return false;
-    }
-  });
+  // Sunucu ve istemcinin ilk render'ı eşleşsin diye (hydration hatası
+  // yaşanmasın) başlangıçta hep "kapatılmamış" kabul edilir; gerçek durum
+  // mount sonrası effect'te sessionStorage'dan okunur.
+  const [dismissed, setDismissed] = useState(false);
   const [expired, setExpired] = useState(false);
+
+  useEffect(() => {
+    const readDismissed = () => {
+      try {
+        setDismissed(sessionStorage.getItem(dismissKey) === "1");
+      } catch {
+        // sessionStorage erişilemiyorsa göstermeye devam et
+      }
+    };
+    readDismissed();
+  }, [dismissKey]);
 
   if (dismissed || expired) return null;
 

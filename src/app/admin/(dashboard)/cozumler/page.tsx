@@ -20,7 +20,7 @@ export default async function ProvidersAdminPage() {
         }
       />
 
-      <div className="overflow-hidden rounded-2xl border border-border bg-white">
+      <div className="overflow-x-auto rounded-2xl border border-border bg-white">
         <table className="w-full text-sm">
           <thead className="bg-surface text-left text-xs font-bold uppercase tracking-wide text-muted">
             <tr>

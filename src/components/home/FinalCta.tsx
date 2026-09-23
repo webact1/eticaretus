@@ -16,7 +16,9 @@ export function FinalCta({
 
   return (
     <section className="bg-navy py-14">
-      <div className="container-page flex flex-col items-center justify-between gap-6 rounded-2xl bg-gradient-to-r from-brand to-brand-2 px-6 py-8 text-center sm:flex-row sm:text-left sm:px-10">
+      <div
+        className="animate-gradient-shift container-page flex flex-col items-center justify-between gap-6 rounded-2xl bg-gradient-to-r from-brand via-brand-2 to-brand px-6 py-8 text-center shadow-xl shadow-brand/20 sm:flex-row sm:text-left sm:px-10"
+      >
         <div>
           <h2 className="text-2xl font-extrabold text-white sm:text-3xl">{title}</h2>
           <p className="mt-2 max-w-xl text-white/85">{text}</p>

@@ -74,14 +74,27 @@ export function WhatsAppWidget({ number, message, avatarUrl }: Props) {
         <button
           onClick={() => setOpen((v) => !v)}
           aria-label="WhatsApp ile iletişime geç"
-          className={`group relative flex h-16 w-16 items-center justify-center rounded-full bg-whatsapp text-white shadow-xl shadow-whatsapp/30 transition-transform duration-300 hover:scale-105 ${
-            entered ? "scale-100 opacity-100" : "scale-75 opacity-0"
-          }`}
+          className={`group relative flex h-16 w-16 items-center justify-center rounded-full shadow-xl shadow-whatsapp/30 transition-transform duration-300 hover:scale-105 ${
+            avatarUrl && !open ? "bg-white p-0.5" : "bg-whatsapp text-white"
+          } ${entered ? "scale-100 opacity-100" : "scale-75 opacity-0"}`}
         >
           {!open && (
             <span className="absolute inset-0 -z-10 animate-ping rounded-full bg-whatsapp/50" />
           )}
-          {open ? <span className="text-2xl leading-none">✕</span> : <WhatsAppIcon className="h-8 w-8" />}
+          {open ? (
+            <span className="text-2xl leading-none">✕</span>
+          ) : avatarUrl ? (
+            <>
+              <span className="relative block h-full w-full overflow-hidden rounded-full">
+                <Image src={avatarUrl} alt="Danışman" fill className="object-cover" />
+              </span>
+              <span className="absolute -bottom-1 -right-1 flex h-6 w-6 items-center justify-center rounded-full border-2 border-white bg-whatsapp text-white">
+                <WhatsAppIcon className="h-3.5 w-3.5" />
+              </span>
+            </>
+          ) : (
+            <WhatsAppIcon className="h-8 w-8" />
+          )}
         </button>
       </div>
 

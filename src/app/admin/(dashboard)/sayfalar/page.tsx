@@ -11,7 +11,7 @@ export default async function PagesAdminPage() {
       <p className="mb-4 text-sm text-muted">
         Bu sayfaların yapısı sabittir; başlık, metin, görsel ve SEO alanlarını düzenleyebilirsiniz.
       </p>
-      <div className="overflow-hidden rounded-2xl border border-border bg-white">
+      <div className="overflow-x-auto rounded-2xl border border-border bg-white">
         <table className="w-full text-sm">
           <thead className="bg-surface text-left text-xs font-bold uppercase tracking-wide text-muted">
             <tr>

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { requireAdminSession } from "@/lib/session";
 import { logout } from "@/app/admin/login/actions";
+import { AdminMobileNav } from "./AdminMobileNav";
 
 export const metadata: Metadata = {
   title: { default: "Yönetim Paneli", template: "%s | eticaretus Panel" },
@@ -49,7 +50,10 @@ export default async function AdminDashboardLayout({ children }: LayoutProps<"/a
 
       <div className="flex min-w-0 flex-1 flex-col">
         <header className="flex h-16 items-center justify-between border-b border-border bg-white px-4 lg:px-8">
-          <p className="text-sm font-medium text-ink">Merhaba, {session.name}</p>
+          <div className="flex items-center gap-3">
+            <AdminMobileNav />
+            <p className="text-sm font-medium text-ink">Merhaba, {session.name}</p>
+          </div>
           <form action={logout}>
             <button type="submit" className="text-sm font-medium text-muted transition hover:text-brand">
               Çıkış Yap
