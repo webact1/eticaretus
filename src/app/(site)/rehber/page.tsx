@@ -4,6 +4,8 @@ import Image from "next/image";
 import { PageHero } from "@/components/site/PageHero";
 import { getPublishedBlogPosts } from "@/lib/queries";
 
+export const dynamic = "force-dynamic";
+
 export const metadata: Metadata = {
   title: "Rehber",
   description: "E-ticaret, SEO ve pazaryeri entegrasyonları hakkında rehber içerikleri.",

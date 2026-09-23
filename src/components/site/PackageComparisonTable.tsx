@@ -16,7 +16,16 @@ function cellFor(pkg: PackageItem, featureId: string) {
 }
 
 function Cell({ included, value }: { included: boolean; value: string | null }) {
-  if (!included) return <Minus className="h-4 w-4 text-border" aria-label="Dahil değil" />;
+  if (!included) {
+    return (
+      <span
+        className="flex h-5 w-5 items-center justify-center rounded-full bg-surface-2 text-muted"
+        aria-label="Dahil değil"
+      >
+        <Minus className="h-3 w-3" />
+      </span>
+    );
+  }
   if (value) return <span className="text-sm font-medium text-ink">{value}</span>;
   return (
     <span className="flex h-5 w-5 items-center justify-center rounded-full bg-brand/10 text-brand">

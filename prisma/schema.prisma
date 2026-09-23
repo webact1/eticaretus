@@ -44,6 +44,13 @@ model SiteSettings {
   metaPixelId       String?
   clarityId         String?
   gscVerification   String?
+
+  // Kampanya geri sayımı (top bar + /paketler). Gerçek bir kampanya koşuyorken
+  // doldurulur; campaignEndsAt boşsa veya geçmişse hiçbir yerde gösterilmez.
+  campaignEnabled   Boolean   @default(false)
+  campaignText      String    @default("Kampanya sona eriyor")
+  campaignEndsAt    DateTime?
+
   updatedAt         DateTime @updatedAt
 }
 

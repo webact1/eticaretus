@@ -3,6 +3,8 @@ import Image from "next/image";
 import { prisma } from "@/lib/prisma";
 import { DynamicIcon } from "@/components/site/DynamicIcon";
 
+export const dynamic = "force-dynamic";
+
 export const metadata: Metadata = {
   title: "Neden Biz?",
   description: "eticaretus'un işletmenize sağladığı gerçek değerler: altyapı seçimi, kurulum desteği, SEO uyumlu yapı ve satış sonrası destek.",

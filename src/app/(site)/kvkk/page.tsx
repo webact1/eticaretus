@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { LegalPageBody } from "@/components/site/LegalPageBody";
 import { getPageBySlug } from "@/lib/queries";
 
+export const dynamic = "force-dynamic";
+
 export async function generateMetadata(): Promise<Metadata> {
   const page = await getPageBySlug("kvkk");
   return { title: page?.seoTitle ?? "KVKK Aydınlatma Metni", robots: { index: false, follow: false } };

@@ -45,6 +45,24 @@ export async function updateSiteSettings(formData: FormData) {
   redirect("/admin/genel-ayarlar?saved=1");
 }
 
+export async function updateCampaign(formData: FormData) {
+  await requireAdminSession();
+
+  const endsAtRaw = str(formData, "campaignEndsAt");
+
+  await prisma.siteSettings.update({
+    where: { id: "main" },
+    data: {
+      campaignEnabled: formData.get("campaignEnabled") === "on",
+      campaignText: str(formData, "campaignText") ?? "Kampanya sona eriyor",
+      campaignEndsAt: endsAtRaw ? new Date(endsAtRaw) : null,
+    },
+  });
+
+  revalidatePath("/", "layout");
+  redirect("/admin/genel-ayarlar?saved=1");
+}
+
 export async function updateHomeContent(formData: FormData) {
   await requireAdminSession();
 

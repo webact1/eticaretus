@@ -5,6 +5,8 @@ import { ArrowRight } from "lucide-react";
 import { DynamicIcon } from "@/components/site/DynamicIcon";
 import { getActiveServices } from "@/lib/queries";
 
+export const dynamic = "force-dynamic";
+
 export const metadata: Metadata = {
   title: "Hizmetler",
   description: "E-ticaret danışmanlığı, kurulum, SEO, pazaryeri ve kargo entegrasyonları ile büyüme hizmetleri.",

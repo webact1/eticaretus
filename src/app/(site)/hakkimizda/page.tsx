@@ -4,6 +4,8 @@ import { notFound } from "next/navigation";
 import { PageHero } from "@/components/site/PageHero";
 import { getPageBySlug } from "@/lib/queries";
 
+export const dynamic = "force-dynamic";
+
 export async function generateMetadata(): Promise<Metadata> {
   const page = await getPageBySlug("hakkimizda");
   if (!page) return {};

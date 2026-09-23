@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { PageHero } from "@/components/site/PageHero";
 import { prisma } from "@/lib/prisma";
 
+export const dynamic = "force-dynamic";
+
 export const metadata: Metadata = {
   title: "Nasıl Çalışıyoruz?",
   description: "İhtiyacınızı dinlemekten yayına alma ve destek sürecine kadar eticaretus ile çalışma sürecimiz.",

@@ -4,9 +4,14 @@ import { PageHero } from "@/components/site/PageHero";
 import { PackagesPreview } from "@/components/home/PackagesPreview";
 import { LogoCarousel } from "@/components/home/LogoCarousel";
 import { PackageComparisonTable } from "@/components/site/PackageComparisonTable";
+import { CampaignBanner } from "@/components/site/CampaignBanner";
 import { prisma } from "@/lib/prisma";
 import { getPackageComparison } from "@/lib/queries";
+import { getSiteSettings } from "@/lib/settings";
+import { isCampaignActive } from "@/lib/campaign";
 import { PREVIEW_FEATURE_NAMES } from "@/lib/constants";
+
+export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
   title: "Paketler",
@@ -26,12 +31,14 @@ export default async function PackagesPage() {
     );
   }
 
-  const [{ categories, packages }, referenceLogos] = await Promise.all([
+  const [{ categories, packages }, referenceLogos, settings] = await Promise.all([
     getPackageComparison(provider.id),
     prisma.referenceLogo.findMany({ where: { active: true }, orderBy: { order: "asc" } }),
+    getSiteSettings(),
   ]);
   const featureById = new Map(categories.flatMap((c) => c.features.map((f) => [f.id, f] as const)));
   const advantages: string[] = JSON.parse(provider.advantages || "[]");
+  const showCampaign = isCampaignActive(settings);
 
   return (
     <>
@@ -40,6 +47,14 @@ export default async function PackagesPage() {
         title={`${provider.name} Paketlerini Karşılaştırın`}
         subtitle="İhtiyacınıza ve hedeflerinize uygun paketi seçin, e-ticaret yolculuğunuza güçlü bir başlangıç yapın."
       />
+
+      {showCampaign && (
+        <section className="bg-white py-10">
+          <div className="container-page">
+            <CampaignBanner text={settings.campaignText} endsAt={settings.campaignEndsAt!.toISOString()} />
+          </div>
+        </section>
+      )}
 
       <section className="border-b border-border bg-white py-14">
         <div className="container-page grid gap-8 lg:grid-cols-[auto_1fr] lg:items-center">

@@ -10,6 +10,8 @@ import { FinalCta } from "@/components/home/FinalCta";
 import { getHomeContent, getSiteSettings } from "@/lib/settings";
 import { getHomePageData } from "@/lib/home-data";
 
+export const dynamic = "force-dynamic";
+
 export default async function HomePage() {
   const [home, settings, data] = await Promise.all([getHomeContent(), getSiteSettings(), getHomePageData()]);
 

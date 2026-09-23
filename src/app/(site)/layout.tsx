@@ -1,13 +1,19 @@
 import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
 import { WhatsAppWidget } from "@/components/site/WhatsAppWidget";
+import { CampaignTopBar } from "@/components/site/CampaignTopBar";
 import { getSiteSettings } from "@/lib/settings";
+import { isCampaignActive } from "@/lib/campaign";
 
 export default async function SiteLayout({ children }: LayoutProps<"/">) {
   const settings = await getSiteSettings();
+  const showCampaignBar = isCampaignActive(settings);
 
   return (
     <>
+      {showCampaignBar && (
+        <CampaignTopBar text={settings.campaignText} endsAt={settings.campaignEndsAt!.toISOString()} />
+      )}
       <Header
         logoUrl={settings.logoUrl}
         whatsappNumber={settings.whatsappNumber}

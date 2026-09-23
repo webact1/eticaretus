@@ -1,6 +1,12 @@
-import { AdminCard, AdminPageHeader, Field, ImageField, SubmitButton, TextareaField } from "@/components/admin/fields";
+import { AdminCard, AdminPageHeader, CheckboxField, Field, ImageField, SubmitButton, TextareaField } from "@/components/admin/fields";
 import { getSiteSettings, getHomeContent } from "@/lib/settings";
-import { updateSiteSettings, updateHomeContent } from "./actions";
+import { updateSiteSettings, updateHomeContent, updateCampaign } from "./actions";
+
+function toDateTimeLocal(date: Date | null) {
+  if (!date) return "";
+  const pad = (n: number) => String(n).padStart(2, "0");
+  return `${date.getFullYear()}-${pad(date.getMonth() + 1)}-${pad(date.getDate())}T${pad(date.getHours())}:${pad(date.getMinutes())}`;
+}
 
 export default async function GeneralSettingsPage({
   searchParams,
@@ -46,6 +52,30 @@ export default async function GeneralSettingsPage({
             <Field label="Google Search Console Doğrulama Kodu" name="gscVerification" defaultValue={settings.gscVerification} />
           </div>
 
+          <div className="mt-5">
+            <SubmitButton />
+          </div>
+        </AdminCard>
+      </form>
+
+      <form action={updateCampaign}>
+        <AdminCard title="Kampanya Geri Sayımı">
+          <p className="mb-4 text-sm text-muted">
+            Gerçek bir indirim kampanyası koştururken doldurun; bitiş tarihi geçince site genelinde otomatik
+            olarak kaybolur. Sahte/asılsız geri sayım kullanmayın.
+          </p>
+          <div className="grid gap-4 sm:grid-cols-2">
+            <Field label="Kampanya Metni" name="campaignText" defaultValue={settings.campaignText} />
+            <Field
+              label="Bitiş Tarihi ve Saati"
+              name="campaignEndsAt"
+              type="datetime-local"
+              defaultValue={toDateTimeLocal(settings.campaignEndsAt)}
+            />
+          </div>
+          <div className="mt-4">
+            <CheckboxField label="Site genelinde göster (top bar + Paketler sayfası)" name="campaignEnabled" defaultChecked={settings.campaignEnabled} />
+          </div>
           <div className="mt-5">
             <SubmitButton />
           </div>
