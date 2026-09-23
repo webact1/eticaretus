@@ -13,12 +13,12 @@ export async function login(_prev: LoginState, formData: FormData): Promise<Logi
   const next = String(formData.get("next") ?? "/admin");
 
   if (!email || !password) {
-    return { error: "E-posta ve şifre gerekli." };
+    return { error: "Kullanıcı adı ve şifre gerekli." };
   }
 
   const user = await prisma.adminUser.findUnique({ where: { email } });
   if (!user || !(await verifyPassword(password, user.passwordHash))) {
-    return { error: "E-posta veya şifre hatalı." };
+    return { error: "Kullanıcı adı veya şifre hatalı." };
   }
 
   const token = await createSessionToken({ sub: user.id, email: user.email, name: user.name });

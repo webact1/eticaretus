@@ -13,10 +13,10 @@ export function LoginForm({ next }: { next: string }) {
       <input type="hidden" name="next" value={next} />
       {state.error && <div className="rounded-lg bg-red-50 px-3.5 py-2.5 text-sm text-red-700">{state.error}</div>}
       <div>
-        <label className="mb-1.5 block text-sm font-medium text-ink">E-posta</label>
+        <label className="mb-1.5 block text-sm font-medium text-ink">Kullanıcı Adı</label>
         <input
           name="email"
-          type="email"
+          type="text"
           required
           autoFocus
           className="w-full rounded-lg border border-border bg-white px-3.5 py-2.5 text-sm text-ink outline-none focus:border-brand"
