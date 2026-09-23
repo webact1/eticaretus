@@ -48,18 +48,18 @@ export function PackagesPreview({
           </div>
         )}
 
-        <div className={`grid gap-6 lg:grid-cols-3 ${showIntro ? "mt-14" : ""}`}>
+        <div className={`grid gap-5 sm:grid-cols-2 lg:grid-cols-4 ${showIntro ? "mt-14" : ""}`}>
           {packages.map((pkg) => (
             <div
               key={pkg.slug}
-              className={`relative flex flex-col rounded-2xl border p-7 ${
+              className={`relative flex flex-col rounded-2xl border p-6 ${
                 pkg.featured
                   ? "border-brand bg-navy text-white shadow-2xl shadow-brand/20 lg:-translate-y-3"
                   : "border-border bg-white"
               }`}
             >
               {pkg.featured && (
-                <span className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-brand px-4 py-1 text-xs font-bold text-white">
+                <span className="absolute -top-3 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-full bg-brand px-4 py-1 text-xs font-bold text-white">
                   En Çok Tercih Edilen
                 </span>
               )}
@@ -70,13 +70,13 @@ export function PackagesPreview({
                 </p>
               )}
 
-              <div className="mt-5 flex items-baseline gap-2">
+              <div className="mt-5 flex flex-wrap items-baseline gap-1.5">
                 {pkg.oldPrice && (
                   <span className={`text-sm line-through ${pkg.featured ? "text-white/50" : "text-muted"}`}>
                     {formatPrice(pkg.oldPrice)}
                   </span>
                 )}
-                <span className="text-2xl font-extrabold">{formatPrice(pkg.price)}</span>
+                <span className="text-xl font-extrabold sm:text-2xl">{formatPrice(pkg.price)}</span>
                 {pkg.billingNote && (
                   <span className={`text-xs ${pkg.featured ? "text-white/60" : "text-muted"}`}>
                     {pkg.billingNote}
@@ -89,19 +89,27 @@ export function PackagesPreview({
                 </span>
               )}
 
-              <ul className="mt-6 flex-1 space-y-2.5">
+              <ul className="mt-6 flex-1 space-y-3">
                 {pkg.features.map((f) => (
                   <li
                     key={f.name}
-                    className={`flex items-start gap-2 text-sm ${
+                    className={`flex items-start gap-2 text-sm leading-snug ${
                       pkg.featured ? "text-white/85" : "text-ink/80"
                     } ${!f.included ? "opacity-50" : ""}`}
                   >
-                    <span className={pkg.featured ? "text-brand-2" : "text-brand"}>
+                    <span
+                      className={`mt-0.5 flex h-4 w-4 shrink-0 items-center justify-center rounded-full text-[10px] ${
+                        pkg.featured ? "bg-white/15 text-brand-2" : "bg-brand/10 text-brand"
+                      }`}
+                    >
                       {f.included ? "✓" : "–"}
                     </span>
-                    {f.name}
-                    {f.value && <span className="font-semibold">— {f.value}</span>}
+                    <span>
+                      {f.name}
+                      {f.value && (
+                        <span className="block font-semibold sm:inline sm:before:content-['—_']">{f.value}</span>
+                      )}
+                    </span>
                   </li>
                 ))}
               </ul>

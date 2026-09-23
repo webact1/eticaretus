@@ -17,7 +17,10 @@ export function AboutCta({
 }) {
   return (
     <section className="relative overflow-hidden bg-navy py-20 text-white">
-      <div className="pointer-events-none absolute -left-24 top-1/2 h-72 w-72 -translate-y-1/2 rounded-full bg-brand/20 blur-3xl" />
+      <div className="pointer-events-none absolute inset-0 overflow-hidden">
+        <div className="animate-blob absolute -left-24 top-1/2 h-72 w-72 -translate-y-1/2 rounded-full bg-brand/20 blur-3xl" />
+        <div className="animate-blob animation-delay-2000 absolute -right-16 bottom-0 h-64 w-64 rounded-full bg-brand-2/15 blur-3xl" />
+      </div>
       <div className="container-page relative grid gap-12 lg:grid-cols-2 lg:items-center">
         <div className="relative">
           {imageUrl ? (
@@ -45,11 +48,11 @@ export function AboutCta({
               </div>
             </div>
           )}
-          <div className="absolute -bottom-5 -right-5 flex items-center gap-2 rounded-xl bg-white px-4 py-3 text-navy shadow-xl">
-            <span className="flex h-8 w-8 items-center justify-center rounded-full bg-brand/10 text-brand">
+          <div className="glass-panel absolute -bottom-5 -right-5 flex items-center gap-2 rounded-xl px-4 py-3 shadow-xl">
+            <span className="flex h-8 w-8 items-center justify-center rounded-full bg-brand-2/20 text-brand-2">
               ↗
             </span>
-            <span className="text-xs font-semibold leading-tight">
+            <span className="text-xs font-semibold leading-tight text-white">
               Doğru adım,
               <br />
               büyük başarılar!

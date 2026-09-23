@@ -59,6 +59,38 @@ body {
   .no-scrollbar::-webkit-scrollbar {
     display: none;
   }
+
+  /* Hero ve dekoratif alanlarda kullanılan hareketli gradient blob'lar */
+  .animate-blob {
+    animation: blob-move 16s ease-in-out infinite;
+  }
+  .animation-delay-2000 {
+    animation-delay: 2s;
+  }
+  .animation-delay-4000 {
+    animation-delay: 4s;
+  }
+
+  /* Hybrid glass (frosted) yüzeyler için ortak taban */
+  .glass-panel {
+    background: color-mix(in srgb, var(--navy) 70%, transparent);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid color-mix(in srgb, white 12%, transparent);
+  }
+}
+
+@keyframes blob-move {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+  33% {
+    transform: translate(24px, -32px) scale(1.12);
+  }
+  66% {
+    transform: translate(-20px, 18px) scale(0.94);
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

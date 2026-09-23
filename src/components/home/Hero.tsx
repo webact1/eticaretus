@@ -17,7 +17,11 @@ const trustItems = [
 export function Hero({ badge, title, subtitle, imageUrl }: Props) {
   return (
     <section className="relative overflow-hidden bg-white">
-      <div className="pointer-events-none absolute -top-40 right-0 h-96 w-96 rounded-full bg-brand/10 blur-3xl" />
+      <div className="pointer-events-none absolute inset-0 overflow-hidden">
+        <div className="animate-blob absolute -top-40 right-0 h-96 w-96 rounded-full bg-brand/15 blur-3xl" />
+        <div className="animate-blob animation-delay-2000 absolute top-1/3 -left-24 h-80 w-80 rounded-full bg-brand-2/15 blur-3xl" />
+        <div className="animate-blob animation-delay-4000 absolute -bottom-32 right-1/4 h-72 w-72 rounded-full bg-whatsapp/10 blur-3xl" />
+      </div>
       <div className="container-page relative grid gap-12 py-16 lg:grid-cols-2 lg:items-center lg:py-24">
         <div>
           <span className="inline-flex items-center gap-2 rounded-full border border-brand/20 bg-brand/5 px-3.5 py-1.5 text-xs font-semibold text-brand">
@@ -55,6 +59,15 @@ export function Hero({ badge, title, subtitle, imageUrl }: Props) {
         </div>
         <div className="relative">
           <StoreDeviceMockup imageUrl={imageUrl} />
+          <div className="glass-panel absolute -left-4 bottom-10 z-10 hidden items-center gap-3 rounded-2xl px-4 py-3 shadow-2xl sm:-left-8 sm:flex">
+            <span className="flex h-9 w-9 items-center justify-center rounded-full bg-whatsapp/20 text-whatsapp">
+              🎧
+            </span>
+            <div>
+              <p className="text-xs font-semibold text-white">7/24 Canlı Destek</p>
+              <p className="text-[11px] text-white/60">Her zaman yanınızdayız</p>
+            </div>
+          </div>
         </div>
       </div>
     </section>

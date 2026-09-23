@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import { getPackageBySlug } from "@/lib/queries";
 import { getSiteSettings } from "@/lib/settings";
 import { buildWhatsAppUrl } from "@/lib/whatsapp";
+import { FEATURE_CATEGORY_DESCRIPTIONS } from "@/lib/constants";
 
 function formatPrice(price?: number | null) {
   if (price == null) return "Teklif Al";
@@ -60,7 +61,10 @@ export default async function PackageDetailPage({
           <div>
             {Array.from(grouped.values()).map((cat) => (
               <div key={cat.name} className="mb-8">
-                <h2 className="text-sm font-bold uppercase tracking-wide text-muted">{cat.name}</h2>
+                <h2 className="text-sm font-bold uppercase tracking-wide text-brand">{cat.name}</h2>
+                {FEATURE_CATEGORY_DESCRIPTIONS[cat.name] && (
+                  <p className="mt-1 text-sm text-muted">{FEATURE_CATEGORY_DESCRIPTIONS[cat.name]}</p>
+                )}
                 <ul className="mt-4 space-y-3">
                   {cat.items.map((pf) => (
                     <li key={pf.id} className="flex items-start gap-3 text-sm">

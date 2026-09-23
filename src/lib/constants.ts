@@ -51,5 +51,18 @@ export const PREVIEW_FEATURE_NAMES = [
   "7/24 Teknik Destek",
 ] as const;
 
+// Karşılaştırma tablosunda ve paket detay sayfasında her kategori başlığının
+// altında gösterilen kısa açıklama — özellikler yalın liste değil, bağlamıyla
+// anlatılmış olsun diye eklendi.
+export const FEATURE_CATEGORY_DESCRIPTIONS: Record<string, string> = {
+  "Satışa Hazır Altyapı": "Mağazanızı hızlıca kurup satışa başlamanız için gereken temel altyapı ve tasarım imkanları.",
+  "Ürün & Sipariş Operasyonları": "Ürün ve sipariş yönetiminizi kolaylaştıran, günlük operasyonu hızlandıran araçlar.",
+  "Satışlarınızı Büyütün": "Kampanya, SEO ve yapay zekâ destekli araçlarla satışlarınızı büyütmenize yardımcı olan özellikler.",
+  "Satıştan Ödemeye": "Ödeme altyapısı, kargo avantajları ve faturalama süreçlerini kapsayan özellikler.",
+  "Kullanıcı Deneyimini Güçlendirin": "Müşterilerinizin alışveriş deneyimini güçlendiren modüller ve destek kanalları.",
+  "Güçlü Mağaza Altyapısı": "Mağazanızın teknik kapasitesini ve güvenliğini belirleyen altyapı özellikleri.",
+  "Uzman Desteği": "Kurulum, danışmanlık ve teknik destek süreçlerinde yanınızda olduğumuz alanlar.",
+};
+
 export const SITE_NAME = "eticaretus";
 export const SITE_DOMAIN = "eticaretus.com.tr";

@@ -1,6 +1,7 @@
 "use client";
 
 import { Fragment, useState } from "react";
+import { FEATURE_CATEGORY_DESCRIPTIONS } from "@/lib/constants";
 
 type Feature = { id: string; name: string; order: number };
 type Category = { id: string; name: string; order: number; features: Feature[] };
@@ -48,8 +49,13 @@ export function PackageComparisonTable({
             {categories.map((cat) => (
               <Fragment key={cat.id}>
                 <tr className="border-t border-border bg-surface/60">
-                  <td colSpan={packages.length + 1} className="px-4 py-2 text-xs font-bold uppercase tracking-wide text-muted">
-                    {cat.name}
+                  <td colSpan={packages.length + 1} className="px-4 py-3">
+                    <p className="text-xs font-bold uppercase tracking-wide text-brand">{cat.name}</p>
+                    {FEATURE_CATEGORY_DESCRIPTIONS[cat.name] && (
+                      <p className="mt-0.5 text-xs font-normal normal-case text-muted">
+                        {FEATURE_CATEGORY_DESCRIPTIONS[cat.name]}
+                      </p>
+                    )}
                   </td>
                 </tr>
                 {cat.features.map((feature) => (
@@ -90,7 +96,10 @@ export function PackageComparisonTable({
         <div className="mt-4 divide-y divide-border rounded-2xl border border-border">
           {categories.map((cat) => (
             <div key={cat.id} className="p-4">
-              <p className="text-xs font-bold uppercase tracking-wide text-muted">{cat.name}</p>
+              <p className="text-xs font-bold uppercase tracking-wide text-brand">{cat.name}</p>
+              {FEATURE_CATEGORY_DESCRIPTIONS[cat.name] && (
+                <p className="mt-0.5 text-xs text-muted">{FEATURE_CATEGORY_DESCRIPTIONS[cat.name]}</p>
+              )}
               <ul className="mt-3 space-y-2.5">
                 {cat.features.map((feature) => {
                   const { included, value } = cellFor(activePkg, feature.id);
