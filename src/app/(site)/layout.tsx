@@ -5,6 +5,9 @@ import { CampaignTopBar } from "@/components/site/CampaignTopBar";
 import { getSiteSettings } from "@/lib/settings";
 import { isCampaignActive } from "@/lib/campaign";
 
+// Site içeriği veritabanından okunuyor; build sırasında DB olmayabilir, bu yüzden hiçbir sayfa statik üretilmemeli.
+export const dynamic = "force-dynamic";
+
 export default async function SiteLayout({ children }: LayoutProps<"/">) {
   const settings = await getSiteSettings();
   const showCampaignBar = isCampaignActive(settings);
