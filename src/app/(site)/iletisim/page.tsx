@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import { PageHero } from "@/components/site/PageHero";
 import { ContactForm } from "@/components/site/ContactForm";
 import { prisma } from "@/lib/prisma";
@@ -44,6 +45,14 @@ export default async function ContactPage({
           </div>
 
           <aside className="space-y-4">
+            <div className="relative aspect-[4/3] w-full overflow-hidden rounded-2xl shadow-lg shadow-navy/10">
+              <Image
+                src="/images/iletisim-destek.jpg"
+                alt="eticaretus destek ekibi"
+                fill
+                className="object-cover"
+              />
+            </div>
             <div className="rounded-2xl border border-border bg-surface p-6">
               <p className="text-sm font-semibold text-ink">İletişim Bilgileri</p>
               <ul className="mt-3 space-y-2 text-sm text-muted">

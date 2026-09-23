@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { PageHero } from "@/components/site/PageHero";
+import Image from "next/image";
 import { prisma } from "@/lib/prisma";
 
 export const metadata: Metadata = {
@@ -12,11 +12,29 @@ export default async function WhyUsPage() {
 
   return (
     <>
-      <PageHero
-        eyebrow="Neden Biz?"
-        title="eticaretus ile Çalışmanın Getirdiği Değer"
-        subtitle="Yalnızca bir altyapı satmıyoruz; işletmenizin e-ticaret yolculuğunda her adımda yanınızda oluyoruz."
-      />
+      <section className="border-b border-border bg-surface py-14 sm:py-20">
+        <div className="container-page grid gap-10 lg:grid-cols-[1.1fr_1fr] lg:items-center">
+          <div>
+            <p className="text-xs font-bold uppercase tracking-widest text-brand">Neden Biz?</p>
+            <h1 className="mt-3 text-balance text-3xl font-extrabold tracking-tight text-ink sm:text-4xl">
+              eticaretus ile Çalışmanın Getirdiği Değer
+            </h1>
+            <p className="mt-4 text-balance text-muted sm:text-lg">
+              Yalnızca bir altyapı satmıyoruz; işletmenizin e-ticaret yolculuğunda her adımda
+              yanınızda oluyoruz.
+            </p>
+          </div>
+          <div className="relative aspect-[4/3] w-full overflow-hidden rounded-2xl shadow-xl shadow-navy/10">
+            <Image
+              src="/images/neden-biz-basari.jpg"
+              alt="eticaretus ile büyüyen işletmeler"
+              fill
+              className="object-cover"
+              priority
+            />
+          </div>
+        </div>
+      </section>
       <section className="bg-white py-16">
         <div className="container-page grid gap-6 sm:grid-cols-2">
           {points.map((point) => (

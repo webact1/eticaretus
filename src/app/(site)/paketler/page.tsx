@@ -26,6 +26,7 @@ export default async function PackagesPage() {
 
   const { categories, packages } = await getPackageComparison(provider.id);
   const featureById = new Map(categories.flatMap((c) => c.features.map((f) => [f.id, f] as const)));
+  const advantages: string[] = JSON.parse(provider.advantages || "[]");
 
   return (
     <>
@@ -34,6 +35,30 @@ export default async function PackagesPage() {
         title={`${provider.name} Paketlerini Karşılaştırın`}
         subtitle="İhtiyacınıza ve hedeflerinize uygun paketi seçin, e-ticaret yolculuğunuza güçlü bir başlangıç yapın."
       />
+
+      <section className="border-b border-border bg-white py-14">
+        <div className="container-page grid gap-8 lg:grid-cols-[auto_1fr] lg:items-center">
+          <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-brand/10 text-xl font-bold text-brand">
+            {provider.name[0]}
+          </div>
+          <div>
+            <h2 className="text-lg font-bold text-ink">{provider.name}</h2>
+            <p className="mt-1.5 max-w-2xl text-sm leading-relaxed text-muted">{provider.description}</p>
+            {advantages.length > 0 && (
+              <div className="mt-4 flex flex-wrap gap-2">
+                {advantages.map((a) => (
+                  <span
+                    key={a}
+                    className="rounded-full border border-border bg-surface px-3 py-1.5 text-xs font-medium text-ink/80"
+                  >
+                    ✓ {a}
+                  </span>
+                ))}
+              </div>
+            )}
+          </div>
+        </div>
+      </section>
 
       <PackagesPreview
         providerSlug={provider.slug}

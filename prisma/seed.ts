@@ -393,7 +393,7 @@ const WHY_US_POINTS = [
   {
     title: "İşletmenize Uygun Altyapı Seçimi",
     description:
-      "Ölçeğinize ve hedeflerinize göre IdeaSoft, Ticimax veya WooCommerce arasından size en uygun altyapıyı birlikte belirliyoruz.",
+      "Ölçeğinize ve hedeflerinize göre IdeaSoft paketleri arasından size en uygun altyapıyı birlikte belirliyoruz.",
     icon: "🧭",
     order: 0,
   },
@@ -594,7 +594,9 @@ async function main() {
       shortDescription: "Yakında eticaretus çözümleri arasında.",
       description: "Ticimax altyapısı için detaylı içerik yakında eklenecektir.",
       advantages: JSON.stringify([]),
-      status: "coming_soon",
+      // Şimdilik yalnızca IdeaSoft aktif olarak gösteriliyor; Ticimax/WooCommerce
+      // ileride eklendiğinde panelden "active" yapılabilir.
+      status: "hidden",
       order: 1,
     },
   });
@@ -608,7 +610,7 @@ async function main() {
       shortDescription: "Yakında eticaretus çözümleri arasında.",
       description: "WooCommerce altyapısı için detaylı içerik yakında eklenecektir.",
       advantages: JSON.stringify([]),
-      status: "coming_soon",
+      status: "hidden",
       order: 2,
     },
   });

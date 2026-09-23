@@ -24,9 +24,7 @@ const columns = [
   {
     title: "Çözümler",
     links: [
-      { label: "E-Ticaret Çözümleri", href: "/e-ticaret-cozumleri" },
-      { label: "IdeaSoft", href: "/e-ticaret-cozumleri/ideasoft" },
-      { label: "Paketler", href: "/paketler" },
+      { label: "IdeaSoft Paketleri", href: "/paketler" },
       { label: "Hizmetler", href: "/hizmetler" },
       { label: "Rehber", href: "/rehber" },
     ],

@@ -5,7 +5,6 @@ const BASE_URL = "https://eticaretus.com.tr";
 
 const staticPaths = [
   "",
-  "/e-ticaret-cozumleri",
   "/paketler",
   "/hizmetler",
   "/neden-biz",
@@ -20,8 +19,7 @@ const staticPaths = [
 ];
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const [providers, packages, services, posts] = await Promise.all([
-    prisma.provider.findMany({ where: { status: { in: ["active", "coming_soon"] }, noindex: false } }),
+  const [packages, services, posts] = await Promise.all([
     prisma.package.findMany({ where: { active: true }, include: { provider: true } }),
     prisma.service.findMany({ where: { active: true } }),
     prisma.blogPost.findMany({ where: { published: true } }),
@@ -32,9 +30,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     lastModified: new Date(),
   }));
 
-  for (const p of providers) {
-    if (p.status === "active") entries.push({ url: `${BASE_URL}/e-ticaret-cozumleri/${p.slug}`, lastModified: p.updatedAt });
-  }
   for (const pkg of packages) {
     entries.push({ url: `${BASE_URL}/paketler/${pkg.provider.slug}/${pkg.slug}`, lastModified: pkg.updatedAt });
   }

@@ -32,10 +32,10 @@ export function Hero({ badge, title, subtitle, imageUrl }: Props) {
           </p>
           <div className="mt-8 flex flex-col gap-3 sm:flex-row">
             <Link
-              href="/e-ticaret-cozumleri"
+              href="/paketler"
               className="inline-flex items-center justify-center rounded-full bg-brand px-6 py-3.5 text-sm font-semibold text-white shadow-lg shadow-brand/25 transition hover:bg-brand-dark"
             >
-              E-Ticaret Çözümlerini İncele →
+              Paketleri İncele →
             </Link>
             <Link
               href="/iletisim"

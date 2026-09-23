@@ -22,11 +22,13 @@ function formatPrice(price?: number | null) {
 export function PackagesPreview({
   providerSlug,
   providerName,
+  providerDescription,
   packages,
   showIntro = true,
 }: {
   providerSlug: string;
   providerName: string;
+  providerDescription?: string | null;
   packages: PackageItem[];
   showIntro?: boolean;
 }) {
@@ -40,8 +42,8 @@ export function PackagesPreview({
               İşletmenize Uygun {providerName} Paketleri
             </h2>
             <p className="mt-4 text-muted">
-              İhtiyacınıza ve hedeflerinize uygun paketi seçin, e-ticaret yolculuğunuza güçlü bir
-              başlangıç yapın.
+              {providerDescription ??
+                "İhtiyacınıza ve hedeflerinize uygun paketi seçin, e-ticaret yolculuğunuza güçlü bir başlangıç yapın."}
             </p>
           </div>
         )}

@@ -1,6 +1,5 @@
 import { Hero } from "@/components/home/Hero";
 import { ValueProps } from "@/components/home/ValueProps";
-import { ProviderShowcase } from "@/components/home/ProviderShowcase";
 import { PackagesPreview } from "@/components/home/PackagesPreview";
 import { LogoCarousel } from "@/components/home/LogoCarousel";
 import { AboutCta } from "@/components/home/AboutCta";
@@ -15,7 +14,6 @@ export default async function HomePage() {
   const [home, settings, data] = await Promise.all([getHomeContent(), getSiteSettings(), getHomePageData()]);
 
   const {
-    providers,
     whyUsPoints,
     referenceLogos,
     testimonials,
@@ -38,12 +36,11 @@ export default async function HomePage() {
         />
       )}
 
-      {providers.length > 0 && <ProviderShowcase providers={providers} />}
-
       {featuredProvider && featuredPackages.length > 0 && (
         <PackagesPreview
           providerSlug={featuredProvider.slug}
           providerName={featuredProvider.name}
+          providerDescription={featuredProvider.shortDescription}
           packages={featuredPackages.map((pkg) => ({
             slug: pkg.slug,
             name: pkg.name,

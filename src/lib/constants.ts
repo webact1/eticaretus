@@ -31,7 +31,6 @@ export const PROVIDER_STATUS_LABELS: Record<ProviderStatus, string> = {
 
 export const MAIN_NAV = [
   { label: "Ana Sayfa", href: "/" },
-  { label: "E-Ticaret Çözümleri", href: "/e-ticaret-cozumleri" },
   { label: "Paketler", href: "/paketler" },
   { label: "Hizmetler", href: "/hizmetler" },
   { label: "Neden Biz?", href: "/neden-biz" },
