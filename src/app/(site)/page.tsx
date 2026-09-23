@@ -84,35 +84,37 @@ export default async function HomePage() {
         />
       )}
 
-      {(testimonials.length > 0 || faqs.length > 0) && (
+      {testimonials.length > 0 && (
         <section className="bg-surface py-20">
-          <div className="container-page grid gap-14 lg:grid-cols-[1.4fr_1fr]">
-            {testimonials.length > 0 && (
-              <div className="min-w-0">
-                <p className="text-xs font-bold uppercase tracking-widest text-brand">Müşteri Deneyimleri</p>
-                <h2 className="mt-3 text-balance text-2xl font-extrabold tracking-tight text-ink sm:text-3xl">
-                  IdeaSoft Kullanan İşletmelerin Deneyimleri
-                </h2>
-                <p className="mt-3 max-w-lg text-sm text-muted">
-                  IdeaSoft&apos;un resmi müşteri deneyimleri ve başarı hikâyelerinden seçilmiş örnekler.
-                </p>
-                <div className="mt-8">
-                  <TestimonialCarousel items={testimonials} />
-                </div>
-              </div>
-            )}
+          <div className="container-page">
+            <div className="mx-auto max-w-2xl text-center">
+              <p className="text-xs font-bold uppercase tracking-widest text-brand">Müşteri Deneyimleri</p>
+              <h2 className="mt-3 text-balance text-2xl font-extrabold tracking-tight text-ink sm:text-3xl">
+                IdeaSoft Kullanan İşletmelerin Deneyimleri
+              </h2>
+              <p className="mt-3 text-sm text-muted">
+                IdeaSoft&apos;un resmi müşteri deneyimleri ve başarı hikâyelerinden seçilmiş örnekler.
+              </p>
+            </div>
+            <div className="mt-12">
+              <TestimonialCarousel items={testimonials} />
+            </div>
+          </div>
+        </section>
+      )}
 
-            {faqs.length > 0 && (
-              <div>
-                <p className="text-xs font-bold uppercase tracking-widest text-brand">Sıkça Sorulan Sorular</p>
-                <h2 className="mt-3 text-balance text-2xl font-extrabold tracking-tight text-ink sm:text-3xl">
-                  Merak Ettikleriniz
-                </h2>
-                <div className="mt-6">
-                  <FaqAccordion items={faqs} />
-                </div>
-              </div>
-            )}
+      {faqs.length > 0 && (
+        <section className="bg-white py-20">
+          <div className="container-page max-w-2xl">
+            <div className="text-center">
+              <p className="text-xs font-bold uppercase tracking-widest text-brand">Sıkça Sorulan Sorular</p>
+              <h2 className="mt-3 text-balance text-2xl font-extrabold tracking-tight text-ink sm:text-3xl">
+                Merak Ettikleriniz
+              </h2>
+            </div>
+            <div className="mt-8">
+              <FaqAccordion items={faqs} />
+            </div>
           </div>
         </section>
       )}

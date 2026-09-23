@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { ArrowRight, Check, Minus } from "lucide-react";
 
 type Feature = { name: string; included: boolean; value?: string | null };
 
@@ -98,11 +99,11 @@ export function PackagesPreview({
                     } ${!f.included ? "opacity-50" : ""}`}
                   >
                     <span
-                      className={`mt-0.5 flex h-4 w-4 shrink-0 items-center justify-center rounded-full text-[10px] ${
+                      className={`mt-0.5 flex h-4 w-4 shrink-0 items-center justify-center rounded-full ${
                         pkg.featured ? "bg-white/15 text-brand-2" : "bg-brand/10 text-brand"
                       }`}
                     >
-                      {f.included ? "✓" : "–"}
+                      {f.included ? <Check className="h-2.5 w-2.5" /> : <Minus className="h-2.5 w-2.5" />}
                     </span>
                     <span>
                       {f.name}
@@ -122,15 +123,20 @@ export function PackagesPreview({
                     : "bg-brand text-white hover:bg-brand-dark"
                 }`}
               >
-                Paket Detaylarını Gör →
+                Paket Detaylarını Gör
+                <ArrowRight className="ml-1.5 h-4 w-4" />
               </Link>
             </div>
           ))}
         </div>
 
         <div className="mt-10 text-center">
-          <Link href="/paketler" className="text-sm font-semibold text-brand hover:text-brand-dark">
-            Tüm paketleri ve karşılaştırmayı gör →
+          <Link
+            href="/paketler"
+            className="inline-flex items-center text-sm font-semibold text-brand hover:text-brand-dark"
+          >
+            Tüm paketleri ve karşılaştırmayı gör
+            <ArrowRight className="ml-1.5 h-4 w-4" />
           </Link>
         </div>
       </div>

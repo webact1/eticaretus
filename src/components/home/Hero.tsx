@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { ArrowRight, Headset, Shield, Zap } from "lucide-react";
 import { StoreDeviceMockup } from "./StoreDeviceMockup";
 
 type Props = {
@@ -9,9 +10,9 @@ type Props = {
 };
 
 const trustItems = [
-  { icon: "🛡️", label: "Güvenli Altyapı" },
-  { icon: "🎧", label: "Uzman Destek" },
-  { icon: "⚡", label: "Hızlı Kurulum" },
+  { icon: Shield, label: "Güvenli Altyapı" },
+  { icon: Headset, label: "Uzman Destek" },
+  { icon: Zap, label: "Hızlı Kurulum" },
 ];
 
 export function Hero({ badge, title, subtitle, imageUrl }: Props) {
@@ -39,7 +40,8 @@ export function Hero({ badge, title, subtitle, imageUrl }: Props) {
               href="/paketler"
               className="inline-flex items-center justify-center rounded-full bg-brand px-6 py-3.5 text-sm font-semibold text-white shadow-lg shadow-brand/25 transition hover:bg-brand-dark"
             >
-              Paketleri İncele →
+              Paketleri İncele
+              <ArrowRight className="ml-1.5 h-4 w-4" />
             </Link>
             <Link
               href="/iletisim"
@@ -51,7 +53,7 @@ export function Hero({ badge, title, subtitle, imageUrl }: Props) {
           <div className="mt-10 flex flex-wrap gap-x-8 gap-y-3">
             {trustItems.map((item) => (
               <div key={item.label} className="flex items-center gap-2 text-sm font-medium text-ink/70">
-                <span aria-hidden>{item.icon}</span>
+                <item.icon className="h-4 w-4 text-brand" aria-hidden />
                 {item.label}
               </div>
             ))}
@@ -61,7 +63,7 @@ export function Hero({ badge, title, subtitle, imageUrl }: Props) {
           <StoreDeviceMockup imageUrl={imageUrl} />
           <div className="glass-panel absolute -left-4 bottom-10 z-10 hidden items-center gap-3 rounded-2xl px-4 py-3 shadow-2xl sm:-left-8 sm:flex">
             <span className="flex h-9 w-9 items-center justify-center rounded-full bg-whatsapp/20 text-whatsapp">
-              🎧
+              <Headset className="h-5 w-5" />
             </span>
             <div>
               <p className="text-xs font-semibold text-white">7/24 Canlı Destek</p>

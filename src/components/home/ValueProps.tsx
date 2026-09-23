@@ -1,3 +1,5 @@
+import { DynamicIcon } from "@/components/site/DynamicIcon";
+
 type Item = { title: string; description: string; icon?: string | null };
 
 type Props = {
@@ -25,8 +27,8 @@ export function ValueProps({ eyebrow, title, subtitle, items }: Props) {
               key={item.title}
               className="group rounded-2xl border border-border bg-white p-6 transition-shadow hover:shadow-xl hover:shadow-navy/5"
             >
-              <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-brand/10 text-xl transition-colors group-hover:bg-brand group-hover:text-white">
-                {item.icon ?? "✦"}
+              <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-brand/10 text-brand transition-colors group-hover:bg-brand group-hover:text-white">
+                <DynamicIcon iconName={item.icon} className="h-6 w-6" />
               </span>
               <h3 className="mt-4 text-base font-bold text-ink">{item.title}</h3>
               <p className="mt-2 text-sm leading-relaxed text-muted">{item.description}</p>

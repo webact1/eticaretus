@@ -1,3 +1,4 @@
+import { ArrowRight } from "lucide-react";
 import { buildWhatsAppUrl } from "@/lib/whatsapp";
 
 export function FinalCta({
@@ -26,7 +27,8 @@ export function FinalCta({
           rel="noopener noreferrer"
           className="inline-flex shrink-0 items-center gap-2 rounded-full bg-white px-6 py-3.5 text-sm font-semibold text-brand shadow-lg transition hover:bg-white/90"
         >
-          WhatsApp&apos;tan Ulaş →
+          WhatsApp&apos;tan Ulaş
+          <ArrowRight className="h-4 w-4" />
         </a>
       </div>
     </section>

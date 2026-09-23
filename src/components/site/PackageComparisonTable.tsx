@@ -1,6 +1,7 @@
 "use client";
 
 import { Fragment, useState } from "react";
+import { Check, Minus } from "lucide-react";
 import { FEATURE_CATEGORY_DESCRIPTIONS } from "@/lib/constants";
 
 type Feature = { id: string; name: string; order: number };
@@ -15,9 +16,13 @@ function cellFor(pkg: PackageItem, featureId: string) {
 }
 
 function Cell({ included, value }: { included: boolean; value: string | null }) {
-  if (!included) return <span className="text-border">–</span>;
+  if (!included) return <Minus className="h-4 w-4 text-border" aria-label="Dahil değil" />;
   if (value) return <span className="text-sm font-medium text-ink">{value}</span>;
-  return <span className="text-brand">✓</span>;
+  return (
+    <span className="flex h-5 w-5 items-center justify-center rounded-full bg-brand/10 text-brand">
+      <Check className="h-3 w-3" />
+    </span>
+  );
 }
 
 export function PackageComparisonTable({

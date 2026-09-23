@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
+import { Check } from "lucide-react";
 import { PageHero } from "@/components/site/PageHero";
 import { PackagesPreview } from "@/components/home/PackagesPreview";
+import { LogoCarousel } from "@/components/home/LogoCarousel";
 import { PackageComparisonTable } from "@/components/site/PackageComparisonTable";
 import { prisma } from "@/lib/prisma";
 import { getPackageComparison } from "@/lib/queries";
@@ -24,7 +26,10 @@ export default async function PackagesPage() {
     );
   }
 
-  const { categories, packages } = await getPackageComparison(provider.id);
+  const [{ categories, packages }, referenceLogos] = await Promise.all([
+    getPackageComparison(provider.id),
+    prisma.referenceLogo.findMany({ where: { active: true }, orderBy: { order: "asc" } }),
+  ]);
   const featureById = new Map(categories.flatMap((c) => c.features.map((f) => [f.id, f] as const)));
   const advantages: string[] = JSON.parse(provider.advantages || "[]");
 
@@ -49,9 +54,10 @@ export default async function PackagesPage() {
                 {advantages.map((a) => (
                   <span
                     key={a}
-                    className="rounded-full border border-border bg-surface px-3 py-1.5 text-xs font-medium text-ink/80"
+                    className="inline-flex items-center gap-1.5 rounded-full border border-border bg-surface px-3 py-1.5 text-xs font-medium text-ink/80"
                   >
-                    ✓ {a}
+                    <Check className="h-3.5 w-3.5 text-brand" />
+                    {a}
                   </span>
                 ))}
               </div>
@@ -80,7 +86,20 @@ export default async function PackagesPage() {
         }))}
       />
 
-      <section className="bg-white py-16">
+      {referenceLogos.length > 0 && (
+        <section className="border-y border-border bg-white py-14">
+          <div className="container-page">
+            <p className="text-center text-sm font-semibold text-muted">
+              IdeaSoft Altyapısını Tercih Eden Markalardan Bazıları
+            </p>
+          </div>
+          <div className="mt-8">
+            <LogoCarousel logos={referenceLogos} />
+          </div>
+        </section>
+      )}
+
+      <section className="bg-surface py-16">
         <div className="container-page">
           <h2 className="text-2xl font-extrabold tracking-tight text-ink">Detaylı Özellik Karşılaştırması</h2>
           <div className="mt-8">

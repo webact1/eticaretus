@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { ArrowRight, Check, Minus } from "lucide-react";
 import { notFound } from "next/navigation";
 import { getPackageBySlug } from "@/lib/queries";
 import { getSiteSettings } from "@/lib/settings";
@@ -69,11 +70,11 @@ export default async function PackageDetailPage({
                   {cat.items.map((pf) => (
                     <li key={pf.id} className="flex items-start gap-3 text-sm">
                       <span
-                        className={`mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full text-xs ${
+                        className={`mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full ${
                           pf.included ? "bg-brand/10 text-brand" : "bg-surface-2 text-muted"
                         }`}
                       >
-                        {pf.included ? "✓" : "–"}
+                        {pf.included ? <Check className="h-3 w-3" /> : <Minus className="h-3 w-3" />}
                       </span>
                       <span className="text-ink/80">
                         {pf.feature.name}
@@ -113,6 +114,7 @@ export default async function PackageDetailPage({
               className="mt-3 flex items-center justify-center gap-2 rounded-full bg-brand py-3 text-sm font-semibold text-white transition hover:bg-brand-dark"
             >
               Teklif Al
+              <ArrowRight className="h-4 w-4" />
             </Link>
           </aside>
         </div>

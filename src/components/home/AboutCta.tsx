@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
+import { ArrowRight, ArrowUpRight, Check } from "lucide-react";
 
 const checks = [
   "Yeni bir e-ticaret sitesi mi kuruyorsunuz?",
@@ -50,7 +51,7 @@ export function AboutCta({
           )}
           <div className="glass-panel absolute -bottom-5 -right-5 flex items-center gap-2 rounded-xl px-4 py-3 shadow-xl">
             <span className="flex h-8 w-8 items-center justify-center rounded-full bg-brand-2/20 text-brand-2">
-              ↗
+              <ArrowUpRight className="h-4 w-4" />
             </span>
             <span className="text-xs font-semibold leading-tight text-white">
               Doğru adım,
@@ -69,7 +70,7 @@ export function AboutCta({
             {checks.map((c) => (
               <div key={c} className="flex items-center gap-3">
                 <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-brand/20 text-brand-2">
-                  ✓
+                  <Check className="h-3.5 w-3.5" />
                 </span>
                 <span className="text-sm font-medium text-white/90">{c}</span>
               </div>
@@ -80,7 +81,8 @@ export function AboutCta({
             href="/iletisim"
             className="mt-8 inline-flex items-center justify-center rounded-full bg-white px-6 py-3.5 text-sm font-semibold text-navy transition hover:bg-white/90"
           >
-            Ücretsiz Danışmanlık Al →
+            Ücretsiz Danışmanlık Al
+            <ArrowRight className="ml-1.5 h-4 w-4" />
           </Link>
         </div>
       </div>

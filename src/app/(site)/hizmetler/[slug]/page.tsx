@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { ArrowRight } from "lucide-react";
 import { notFound } from "next/navigation";
 import { DynamicIcon } from "@/components/site/DynamicIcon";
 import { getServiceBySlug } from "@/lib/queries";
@@ -43,7 +44,8 @@ export default async function ServiceDetailPage({ params }: PageProps<"/hizmetle
           rel="noopener noreferrer"
           className="mt-8 inline-flex items-center gap-2 rounded-full bg-whatsapp px-6 py-3.5 text-sm font-semibold text-white transition hover:bg-whatsapp-dark"
         >
-          WhatsApp&apos;tan Bilgi Al →
+          WhatsApp&apos;tan Bilgi Al
+          <ArrowRight className="h-4 w-4" />
         </a>
       </div>
     </section>

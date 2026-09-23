@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import { prisma } from "@/lib/prisma";
+import { DynamicIcon } from "@/components/site/DynamicIcon";
 
 export const metadata: Metadata = {
   title: "Neden Biz?",
@@ -39,8 +40,8 @@ export default async function WhyUsPage() {
         <div className="container-page grid gap-6 sm:grid-cols-2">
           {points.map((point) => (
             <div key={point.id} className="rounded-2xl border border-border bg-white p-7">
-              <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-brand/10 text-xl">
-                {point.icon ?? "✦"}
+              <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-brand/10 text-brand">
+                <DynamicIcon iconName={point.icon} className="h-6 w-6" />
               </span>
               <h3 className="mt-4 text-base font-bold text-ink">{point.title}</h3>
               <p className="mt-2 text-sm leading-relaxed text-muted">{point.description}</p>

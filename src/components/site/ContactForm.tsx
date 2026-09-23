@@ -1,6 +1,7 @@
 "use client";
 
 import { useActionState, useEffect, useRef, useState } from "react";
+import { CheckCircle2 } from "lucide-react";
 import { submitLead, type LeadFormState } from "@/app/(site)/iletisim/actions";
 
 type ProviderOption = { slug: string; name: string };
@@ -35,7 +36,8 @@ export function ContactForm({
   if (state.status === "success") {
     return (
       <div className="rounded-2xl border border-emerald-200 bg-emerald-50 p-6 text-center">
-        <p className="text-lg font-bold text-emerald-800">Talebiniz alındı ✓</p>
+        <CheckCircle2 className="mx-auto h-8 w-8 text-emerald-600" />
+        <p className="mt-2 text-lg font-bold text-emerald-800">Talebiniz alındı</p>
         <p className="mt-2 text-sm text-emerald-700">
           WhatsApp sohbet penceresi açılıyor. Açılmadıysa aşağıdaki butona tıklayın.
         </p>

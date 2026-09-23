@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { Check } from "lucide-react";
 
 // Gerçek stok görsel yerine, panelden bir hero görseli tanımlanana kadar
 // kod içinde üretilmiş bir "mağaza ekranı" kompozisyonu gösterilir. Bu sayede
@@ -79,7 +80,7 @@ export function StoreDeviceMockup({ imageUrl }: { imageUrl?: string | null }) {
       {/* Floating badge */}
       <div className="absolute -left-4 top-6 flex items-center gap-2 rounded-xl bg-white px-3 py-2 shadow-lg shadow-navy/10 animate-[float_5s_ease-in-out_infinite] sm:-left-10">
         <span className="flex h-8 w-8 items-center justify-center rounded-full bg-emerald-100 text-emerald-600">
-          ✓
+          <Check className="h-4 w-4" />
         </span>
         <div>
           <p className="text-[11px] font-semibold text-ink">Sipariş Alındı</p>

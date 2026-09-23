@@ -1,3 +1,5 @@
+import { ArrowRight } from "lucide-react";
+
 type Step = { stepNumber: number; title: string; description: string };
 
 export function ProcessSteps({ steps }: { steps: Step[] }) {
@@ -20,8 +22,8 @@ export function ProcessSteps({ steps }: { steps: Step[] }) {
               <h3 className="mt-4 text-base font-bold text-ink">{step.title}</h3>
               <p className="mt-2 text-sm leading-relaxed text-muted">{step.description}</p>
               {i < steps.length - 1 && (
-                <span className="absolute right-[-18px] top-6 hidden text-2xl text-border lg:block" aria-hidden>
-                  →
+                <span className="absolute right-[-18px] top-6 hidden lg:block" aria-hidden>
+                  <ArrowRight className="h-5 w-5 text-border" />
                 </span>
               )}
             </div>

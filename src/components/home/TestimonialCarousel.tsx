@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useState } from "react";
 import Image from "next/image";
+import { ChevronLeft, ChevronRight, Quote } from "lucide-react";
 import useEmblaCarousel from "embla-carousel-react";
 import Autoplay from "embla-carousel-autoplay";
 
@@ -49,13 +50,23 @@ export function TestimonialCarousel({ items }: { items: TestimonialItem[] }) {
 
   return (
     <div className="min-w-0">
-      <div ref={emblaRef} className="min-w-0 overflow-hidden">
-        <div className="flex gap-5">
-          {items.map((t) => (
-            <div key={t.id} className="min-w-0 shrink-0 basis-full px-1 sm:basis-1/2 lg:basis-1/3">
-              <TestimonialCard item={t} />
-            </div>
-          ))}
+      <div className="relative">
+        <div
+          className="pointer-events-none absolute inset-y-0 left-0 z-10 hidden w-10 bg-gradient-to-r from-surface to-transparent sm:block"
+          aria-hidden
+        />
+        <div
+          className="pointer-events-none absolute inset-y-0 right-0 z-10 hidden w-10 bg-gradient-to-l from-surface to-transparent sm:block"
+          aria-hidden
+        />
+        <div ref={emblaRef} className="min-w-0 overflow-hidden">
+          <div className="flex gap-5">
+            {items.map((t) => (
+              <div key={t.id} className="min-w-0 shrink-0 basis-full px-1 sm:basis-1/2 lg:basis-1/3">
+                <TestimonialCard item={t} />
+              </div>
+            ))}
+          </div>
         </div>
       </div>
 
@@ -65,7 +76,7 @@ export function TestimonialCarousel({ items }: { items: TestimonialItem[] }) {
           aria-label="Önceki"
           className="flex h-10 w-10 items-center justify-center rounded-full border border-border text-ink transition hover:border-brand hover:text-brand"
         >
-          ←
+          <ChevronLeft className="h-5 w-5" />
         </button>
         <div className="flex gap-1.5">
           {items.map((_, i) => (
@@ -84,7 +95,7 @@ export function TestimonialCarousel({ items }: { items: TestimonialItem[] }) {
           aria-label="Sonraki"
           className="flex h-10 w-10 items-center justify-center rounded-full border border-border text-ink transition hover:border-brand hover:text-brand"
         >
-          →
+          <ChevronRight className="h-5 w-5" />
         </button>
       </div>
     </div>
@@ -94,7 +105,7 @@ export function TestimonialCarousel({ items }: { items: TestimonialItem[] }) {
 function TestimonialCard({ item }: { item: TestimonialItem }) {
   return (
     <figure className="flex h-full flex-col rounded-2xl border border-border bg-white p-6">
-      <span className="text-4xl leading-none text-brand/25">&ldquo;</span>
+      <Quote className="h-8 w-8 fill-brand/10 text-brand/30" />
       <blockquote className="mt-2 flex-1 text-sm leading-relaxed text-ink/85">{item.quote}</blockquote>
       <figcaption className="mt-5 flex items-center gap-3 border-t border-border pt-4">
         <div className="relative flex h-10 w-10 shrink-0 items-center justify-center overflow-hidden rounded-full bg-brand/10 text-sm font-bold text-brand">

@@ -31,11 +31,11 @@ export function LogoCarousel({ logos }: { logos: LogoItem[] }) {
   return (
     <div className="relative min-w-0">
       <div
-        className="pointer-events-none absolute inset-y-0 left-0 z-10 w-16 bg-gradient-to-r from-white to-transparent sm:w-28"
+        className="pointer-events-none absolute inset-y-0 left-0 z-10 w-16 bg-gradient-to-r from-white to-transparent sm:w-32"
         aria-hidden
       />
       <div
-        className="pointer-events-none absolute inset-y-0 right-0 z-10 w-16 bg-gradient-to-l from-white to-transparent sm:w-28"
+        className="pointer-events-none absolute inset-y-0 right-0 z-10 w-16 bg-gradient-to-l from-white to-transparent sm:w-32"
         aria-hidden
       />
 
@@ -46,8 +46,8 @@ export function LogoCarousel({ logos }: { logos: LogoItem[] }) {
               key={`${logo.id}-${i}`}
               role="listitem"
               aria-hidden={i >= logos.length}
-              className="flex shrink-0 items-center justify-center px-8 sm:px-12"
-              style={{ width: "clamp(140px, 20vw, 200px)", height: "72px" }}
+              className="flex shrink-0 items-center justify-center px-3"
+              style={{ width: "clamp(160px, 18vw, 210px)", height: "128px" }}
             >
               <LogoMark logo={logo} tabbable={i < logos.length} />
             </div>
@@ -60,13 +60,17 @@ export function LogoCarousel({ logos }: { logos: LogoItem[] }) {
 
 function LogoMark({ logo, tabbable }: { logo: LogoItem; tabbable: boolean }) {
   const content = logo.logoUrl ? (
-    <span className="relative block h-9 w-full opacity-60 grayscale transition duration-200 group-hover:opacity-100 group-hover:grayscale-0 group-focus-visible:opacity-100 group-focus-visible:grayscale-0">
+    <span className="relative block h-12 w-full sm:h-14">
       <Image src={logo.logoUrl} alt={logo.altText} fill className="object-contain" />
     </span>
   ) : (
-    <span className="text-lg font-extrabold tracking-tight text-ink/40 transition duration-200 group-hover:text-ink group-focus-visible:text-ink">
-      {logo.brandName}
-    </span>
+    <span className="text-lg font-extrabold tracking-tight text-ink/70">{logo.brandName}</span>
+  );
+
+  const card = (
+    <div className="flex h-full w-full items-center justify-center rounded-2xl border border-border bg-white p-6 shadow-sm transition-all duration-200 group-hover:-translate-y-1 group-hover:border-brand/30 group-hover:shadow-lg group-hover:shadow-navy/10">
+      {content}
+    </div>
   );
 
   if (logo.link) {
@@ -76,16 +80,16 @@ function LogoMark({ logo, tabbable }: { logo: LogoItem; tabbable: boolean }) {
         target="_blank"
         rel="noopener noreferrer"
         tabIndex={tabbable ? 0 : -1}
-        className="group flex h-full w-full items-center justify-center rounded-lg outline-none focus-visible:ring-2 focus-visible:ring-brand"
+        className="group block h-full w-full outline-none focus-visible:ring-2 focus-visible:ring-brand"
       >
-        {content}
+        {card}
       </a>
     );
   }
 
   return (
-    <div tabIndex={tabbable ? 0 : -1} className="group flex h-full w-full items-center justify-center outline-none">
-      {content}
+    <div tabIndex={tabbable ? 0 : -1} className="group block h-full w-full outline-none">
+      {card}
     </div>
   );
 }

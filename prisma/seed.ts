@@ -394,28 +394,28 @@ const WHY_US_POINTS = [
     title: "İşletmenize Uygun Altyapı Seçimi",
     description:
       "Ölçeğinize ve hedeflerinize göre IdeaSoft paketleri arasından size en uygun altyapıyı birlikte belirliyoruz.",
-    icon: "🧭",
+    icon: "Compass",
     order: 0,
   },
   {
     title: "Kurulum ve Teknik Yapılandırma",
     description:
       "Ödeme sistemleri, kargo entegrasyonları ve temel yapılandırmaları sizin için uçtan uca kuruyoruz.",
-    icon: "⚙️",
+    icon: "Settings2",
     order: 1,
   },
   {
     title: "SEO Uyumlu Altyapı",
     description:
       "Site yapısını Google standartlarına uygun şekilde kurarak arama motorlarındaki görünürlüğünüzü güçlendiriyoruz.",
-    icon: "🔍",
+    icon: "Search",
     order: 2,
   },
   {
     title: "Satış Öncesi ve Sonrası Destek",
     description:
       "Karar aşamasından yayına almaya, sonrasındaki teknik destek süreçlerine kadar yanınızda oluyoruz.",
-    icon: "🤝",
+    icon: "Handshake",
     order: 3,
   },
 ];
@@ -450,7 +450,23 @@ const FAQS = [
 
 // Kaynak: https://www.ideasoft.com.tr/e-ticaret-paketleri/ ve /referanslar/ (kontrol tarihi: 2026-09-23)
 // Bunlar eticaretus müşterisi değil, IdeaSoft'un resmi referanslarıdır — bu ayrım korunmalıdır.
-const REFERENCE_LOGOS = ["Bosch", "İstikbal", "Petlas", "Koleksiyon", "Haribo", "Polisan", "Koska", "Doğuş", "Bilfen"];
+// Logo dosyaları ideasoft.com.tr'nin ilgili sayfalarından indirilip public/images/logos
+// altına eklendi (hotlink edilmiyor).
+const REFERENCE_LOGOS = [
+  { brandName: "Bosch", file: "bosch.png" },
+  { brandName: "İstikbal", file: "istikbal.png" },
+  { brandName: "Petlas", file: "petlas.png" },
+  { brandName: "Koleksiyon", file: "koleksiyon.png" },
+  { brandName: "Haribo", file: "haribo.png" },
+  { brandName: "Polisan", file: "polisan.png" },
+  { brandName: "Koska", file: "koska.png" },
+  { brandName: "Doğuş", file: "dogus.png" },
+  { brandName: "Bilfen", file: "bilfen.png" },
+  { brandName: "TFF", file: "tff.png" },
+  { brandName: "Bernardo", file: "bernardo.png" },
+  { brandName: "Toys'R'Us", file: "toysrus.png" },
+  { brandName: "Koroplast", file: "koroplast.png" },
+];
 
 // Kaynak: https://www.ideasoft.com.tr/referanslar/ ve /sayfa/musteri-yorumlari/ (kontrol tarihi: 2026-09-23)
 // Orijinal alıntılar parafraze edilmiştir; birebir kopya değildir.
@@ -536,10 +552,11 @@ async function main() {
 
   // --- Referans logolar ---
   for (let i = 0; i < REFERENCE_LOGOS.length; i++) {
-    const brandName = REFERENCE_LOGOS[i];
+    const { brandName, file } = REFERENCE_LOGOS[i];
+    const logoUrl = `/images/logos/${file}`;
     await prisma.referenceLogo.upsert({
       where: { id: `seed-logo-${i}` },
-      update: { brandName, order: i },
+      update: { brandName, order: i, logoUrl },
       create: {
         id: `seed-logo-${i}`,
         brandName,
@@ -547,6 +564,7 @@ async function main() {
         order: i,
         sourceType: "ideasoft_reference",
         sourceUrl: "https://www.ideasoft.com.tr/e-ticaret-paketleri/",
+        logoUrl,
       },
     });
   }

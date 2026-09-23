@@ -21,6 +21,8 @@ export default async function SiteLayout({ children }: LayoutProps<"/">) {
         instagramUrl={settings.instagramUrl}
         linkedinUrl={settings.linkedinUrl}
         facebookUrl={settings.facebookUrl}
+        whatsappNumber={settings.whatsappNumber}
+        whatsappMessage={settings.whatsappMessage}
       />
       <WhatsAppWidget
         number={settings.whatsappNumber}
