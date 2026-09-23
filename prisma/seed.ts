@@ -529,7 +529,11 @@ async function main() {
   }
 
   // --- Site ayarları & ana sayfa içerikleri (varsayılanlar şemada tanımlı) ---
-  await prisma.siteSettings.upsert({ where: { id: "main" }, update: {}, create: { id: "main" } });
+  await prisma.siteSettings.upsert({
+    where: { id: "main" },
+    update: {},
+    create: { id: "main", whatsappAvatarUrl: "/images/whatsapp-danisman.webp" },
+  });
   await prisma.homeContent.upsert({ where: { id: "main" }, update: {}, create: { id: "main" } });
 
   // --- Neden Biz / Süreç / Hizmetler / SSS ---
