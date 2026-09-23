@@ -4,6 +4,7 @@ import { PackagesPreview } from "@/components/home/PackagesPreview";
 import { PackageComparisonTable } from "@/components/site/PackageComparisonTable";
 import { prisma } from "@/lib/prisma";
 import { getPackageComparison } from "@/lib/queries";
+import { PREVIEW_FEATURE_NAMES } from "@/lib/constants";
 
 export const metadata: Metadata = {
   title: "Paketler",
@@ -24,9 +25,7 @@ export default async function PackagesPage() {
   }
 
   const { categories, packages } = await getPackageComparison(provider.id);
-  const featureNameById = new Map(
-    categories.flatMap((c) => c.features.map((f) => [f.id, f.name] as const)),
-  );
+  const featureById = new Map(categories.flatMap((c) => c.features.map((f) => [f.id, f] as const)));
 
   return (
     <>
@@ -49,11 +48,10 @@ export default async function PackagesPage() {
           billingNote: pkg.billingNote,
           campaignLabel: pkg.campaignLabel,
           featured: pkg.featured,
-          features: pkg.packageFeatures.slice(0, 6).map((pf) => ({
-            name: featureNameById.get(pf.featureId) ?? "",
-            included: pf.included,
-            value: pf.value,
-          })),
+          features: PREVIEW_FEATURE_NAMES.map((name) => {
+            const pf = pkg.packageFeatures.find((f) => featureById.get(f.featureId)?.name === name);
+            return pf ? { name, included: pf.included, value: pf.value } : null;
+          }).filter((f): f is NonNullable<typeof f> => Boolean(f)),
         }))}
       />
 

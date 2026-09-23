@@ -40,5 +40,17 @@ export const MAIN_NAV = [
   { label: "İletişim", href: "/iletisim" },
 ] as const;
 
+// Paket kartı önizlemesinde (ana sayfa + /paketler üst kartlar) gösterilecek
+// öne çıkan, ayırt edici özellikler — tam karşılaştırma tablosundaki 50
+// özelliğin tamamı yerine pazarlama açısından en anlamlı olanlar seçildi.
+export const PREVIEW_FEATURE_NAMES = [
+  "Pazaryeri Entegrasyonları",
+  "Ürün Ekleme Hakkı",
+  "Profesyonel Tema & Tasarım",
+  "Kargo Bakiyesi Hediyesi",
+  "ideasoft AdPilot Reklam Desteği",
+  "7/24 Teknik Destek",
+] as const;
+
 export const SITE_NAME = "eticaretus";
 export const SITE_DOMAIN = "eticaretus.com.tr";

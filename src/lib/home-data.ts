@@ -1,4 +1,5 @@
 import { prisma } from "@/lib/prisma";
+import { PREVIEW_FEATURE_NAMES } from "@/lib/constants";
 
 export async function getHomePageData() {
   const [providers, whyUsPoints, referenceLogos, testimonials, processSteps, faqs] = await Promise.all([
@@ -15,19 +16,22 @@ export async function getHomePageData() {
 
   const featuredProvider = providers.find((p) => p.status === "active");
 
-  const featuredPackages = featuredProvider
+  const featuredPackagesRaw = featuredProvider
     ? await prisma.package.findMany({
         where: { providerId: featuredProvider.id, active: true },
         orderBy: { order: "asc" },
-        include: {
-          packageFeatures: {
-            orderBy: { feature: { order: "asc" } },
-            take: 5,
-            include: { feature: true },
-          },
-        },
+        include: { packageFeatures: { include: { feature: true } } },
       })
     : [];
+
+  // Kart önizlemesinde tüm özellikler yerine pazarlama açısından en anlamlı
+  // olanlar (PREVIEW_FEATURE_NAMES) gösterilir; sıralama o listeye göre olur.
+  const featuredPackages = featuredPackagesRaw.map((pkg) => ({
+    ...pkg,
+    packageFeatures: PREVIEW_FEATURE_NAMES.map((name) =>
+      pkg.packageFeatures.find((pf) => pf.feature.name === name),
+    ).filter((pf): pf is NonNullable<typeof pf> => Boolean(pf)),
+  }));
 
   return {
     providers,

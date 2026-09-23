@@ -29,7 +29,11 @@ export async function getPackageComparison(providerId: string) {
     prisma.package.findMany({
       where: { providerId, active: true },
       orderBy: { order: "asc" },
-      include: { packageFeatures: true },
+      include: {
+        packageFeatures: {
+          orderBy: [{ feature: { category: { order: "asc" } } }, { feature: { order: "asc" } }],
+        },
+      },
     }),
   ]);
 
