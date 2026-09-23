@@ -1,0 +1,129 @@
+import Link from "next/link";
+
+type Feature = { name: string; included: boolean; value?: string | null };
+
+type PackageItem = {
+  slug: string;
+  name: string;
+  shortDescription?: string | null;
+  price?: number | null;
+  oldPrice?: number | null;
+  billingNote?: string | null;
+  campaignLabel?: string | null;
+  featured: boolean;
+  features: Feature[];
+};
+
+function formatPrice(price?: number | null) {
+  if (price == null) return "Teklif Al";
+  return new Intl.NumberFormat("tr-TR", { maximumFractionDigits: 0 }).format(price) + " ₺";
+}
+
+export function PackagesPreview({
+  providerSlug,
+  providerName,
+  packages,
+  showIntro = true,
+}: {
+  providerSlug: string;
+  providerName: string;
+  packages: PackageItem[];
+  showIntro?: boolean;
+}) {
+  return (
+    <section className="bg-surface py-20">
+      <div className="container-page">
+        {showIntro && (
+          <div className="mx-auto max-w-2xl text-center">
+            <p className="text-xs font-bold uppercase tracking-widest text-brand">Paketlerimiz</p>
+            <h2 className="mt-3 text-balance text-3xl font-extrabold tracking-tight text-ink sm:text-4xl">
+              İşletmenize Uygun {providerName} Paketleri
+            </h2>
+            <p className="mt-4 text-muted">
+              İhtiyacınıza ve hedeflerinize uygun paketi seçin, e-ticaret yolculuğunuza güçlü bir
+              başlangıç yapın.
+            </p>
+          </div>
+        )}
+
+        <div className={`grid gap-6 lg:grid-cols-3 ${showIntro ? "mt-14" : ""}`}>
+          {packages.map((pkg) => (
+            <div
+              key={pkg.slug}
+              className={`relative flex flex-col rounded-2xl border p-7 ${
+                pkg.featured
+                  ? "border-brand bg-navy text-white shadow-2xl shadow-brand/20 lg:-translate-y-3"
+                  : "border-border bg-white"
+              }`}
+            >
+              {pkg.featured && (
+                <span className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-brand px-4 py-1 text-xs font-bold text-white">
+                  En Çok Tercih Edilen
+                </span>
+              )}
+              <h3 className={`text-lg font-bold ${pkg.featured ? "text-white" : "text-ink"}`}>{pkg.name}</h3>
+              {pkg.shortDescription && (
+                <p className={`mt-1.5 text-sm ${pkg.featured ? "text-white/70" : "text-muted"}`}>
+                  {pkg.shortDescription}
+                </p>
+              )}
+
+              <div className="mt-5 flex items-baseline gap-2">
+                {pkg.oldPrice && (
+                  <span className={`text-sm line-through ${pkg.featured ? "text-white/50" : "text-muted"}`}>
+                    {formatPrice(pkg.oldPrice)}
+                  </span>
+                )}
+                <span className="text-2xl font-extrabold">{formatPrice(pkg.price)}</span>
+                {pkg.billingNote && (
+                  <span className={`text-xs ${pkg.featured ? "text-white/60" : "text-muted"}`}>
+                    {pkg.billingNote}
+                  </span>
+                )}
+              </div>
+              {pkg.campaignLabel && (
+                <span className="mt-2 inline-flex w-fit rounded-full bg-emerald-100 px-2.5 py-1 text-[11px] font-semibold text-emerald-700">
+                  {pkg.campaignLabel}
+                </span>
+              )}
+
+              <ul className="mt-6 flex-1 space-y-2.5">
+                {pkg.features.map((f) => (
+                  <li
+                    key={f.name}
+                    className={`flex items-start gap-2 text-sm ${
+                      pkg.featured ? "text-white/85" : "text-ink/80"
+                    } ${!f.included ? "opacity-50" : ""}`}
+                  >
+                    <span className={pkg.featured ? "text-brand-2" : "text-brand"}>
+                      {f.included ? "✓" : "–"}
+                    </span>
+                    {f.name}
+                    {f.value && <span className="font-semibold">— {f.value}</span>}
+                  </li>
+                ))}
+              </ul>
+
+              <Link
+                href={`/paketler/${providerSlug}/${pkg.slug}`}
+                className={`mt-7 inline-flex items-center justify-center rounded-full px-5 py-3 text-sm font-semibold transition ${
+                  pkg.featured
+                    ? "bg-white text-navy hover:bg-white/90"
+                    : "bg-brand text-white hover:bg-brand-dark"
+                }`}
+              >
+                Paket Detaylarını Gör →
+              </Link>
+            </div>
+          ))}
+        </div>
+
+        <div className="mt-10 text-center">
+          <Link href="/paketler" className="text-sm font-semibold text-brand hover:text-brand-dark">
+            Tüm paketleri ve karşılaştırmayı gör →
+          </Link>
+        </div>
+      </div>
+    </section>
+  );
+}

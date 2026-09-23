@@ -1,0 +1,267 @@
+// eticaretus.com.tr — Prisma schema
+// Dev: SQLite (file:./dev.db). Production: PostgreSQL (bkz. README "Production'a Geçiş").
+// Not: Enum yerine string + sabit değer seti kullanılıyor; SQLite'ta enum desteklenmiyor
+// ve bu yaklaşım Postgres'e geçişte şema değişikliği gerektirmiyor. Geçerli değerler
+// src/lib/constants.ts içinde tanımlı ve Server Action'larda zod ile doğrulanıyor.
+
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "sqlite"
+}
+
+model AdminUser {
+  id           String   @id @default(cuid())
+  email        String   @unique
+  passwordHash String
+  name         String
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
+
+// Tekil satır (id = "main"). Genel Ayarlar formu bunu düzenler.
+model SiteSettings {
+  id                String   @id @default("main")
+  siteName          String   @default("eticaretus")
+  logoUrl           String?
+  logoLightUrl      String?
+  logoDarkUrl       String?
+  faviconUrl        String?
+  phone             String?
+  email             String?
+  address           String?
+  whatsappNumber    String   @default("905016165900")
+  whatsappMessage   String   @default("Merhaba, eticaretus.com.tr üzerinden bilgi almak istiyorum.")
+  whatsappAvatarUrl String?
+  instagramUrl      String?
+  linkedinUrl       String?
+  facebookUrl       String?
+  gtmId             String?
+  ga4Id             String?
+  metaPixelId       String?
+  clarityId         String?
+  gscVerification   String?
+  updatedAt         DateTime @updatedAt
+}
+
+// Ana sayfaya özel, tekrarlanmayan içerik blokları (hero, hakkımızda önizleme, CTA).
+model HomeContent {
+  id                String   @id @default("main")
+  heroBadge         String   @default("IdeaSoft Resmi İş Ortağı")
+  heroTitle         String   @default("İşletmenize Uygun E-Ticaret Altyapısını Birlikte Seçelim")
+  heroSubtitle       String  @default("eticaretus yalnızca altyapı satmaz; doğru altyapı seçimi, kurulum ve danışmanlık sürecinde yanınızda olur.")
+  heroImageUrl      String?
+  aboutTitle        String   @default("Sizin İçin Buradayız")
+  aboutText         String   @default("Hangi paketin işletmeniz için uygun olduğundan yayına alınmasına kadar tüm süreçlerde size rehberlik ediyoruz.")
+  aboutImageUrl     String?
+  ctaTitle          String   @default("Hemen Başlayın!")
+  ctaText           String   @default("E-ticaret hayalinizi ertelemeyin. Size özel çözümler için şimdi bizimle iletişime geçin.")
+  ctaImageUrl       String?
+  updatedAt         DateTime @updatedAt
+}
+
+// status: "active" | "coming_soon" | "hidden"
+model Provider {
+  id                 String    @id @default(cuid())
+  slug               String    @unique
+  name               String
+  logoUrl            String?
+  shortDescription   String
+  description        String
+  advantages         String // JSON string[] — panelden satır satır düzenlenir
+  suitableFor        String?
+  status             String    @default("active")
+  order              Int       @default(0)
+  seoTitle           String?
+  seoDescription     String?
+  ogImageUrl         String?
+  canonicalUrl       String?
+  noindex            Boolean   @default(false)
+  createdAt          DateTime  @default(now())
+  updatedAt          DateTime  @updatedAt
+  packages           Package[]
+}
+
+model Package {
+  id               String           @id @default(cuid())
+  providerId       String
+  provider         Provider         @relation(fields: [providerId], references: [id], onDelete: Cascade)
+  slug             String
+  name             String
+  shortDescription String?
+  price            Float?
+  oldPrice         Float?
+  billingNote      String? // örn: "/ay + KDV"
+  campaignLabel    String?
+  featured         Boolean          @default(false)
+  order            Int              @default(0)
+  active           Boolean          @default(true)
+  seoTitle         String?
+  seoDescription   String?
+  createdAt        DateTime         @default(now())
+  updatedAt        DateTime         @updatedAt
+  packageFeatures  PackageFeature[]
+
+  @@unique([providerId, slug])
+}
+
+model FeatureCategory {
+  id       String    @id @default(cuid())
+  name     String
+  order    Int       @default(0)
+  features Feature[]
+}
+
+model Feature {
+  id              String            @id @default(cuid())
+  categoryId      String
+  category        FeatureCategory   @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+  name            String
+  order           Int               @default(0)
+  packageFeatures PackageFeature[]
+}
+
+model PackageFeature {
+  id        String   @id @default(cuid())
+  packageId String
+  package   Package  @relation(fields: [packageId], references: [id], onDelete: Cascade)
+  featureId String
+  feature   Feature  @relation(fields: [featureId], references: [id], onDelete: Cascade)
+  included  Boolean  @default(true)
+  value     String? // boş ise sadece included ikonu gösterilir, doluysa metin (örn. "10 GB")
+
+  @@unique([packageId, featureId])
+}
+
+model Service {
+  id                String   @id @default(cuid())
+  slug              String   @unique
+  name              String
+  shortDescription  String
+  description       String
+  icon              String? // lucide icon adı
+  order             Int      @default(0)
+  active            Boolean  @default(true)
+  seoTitle          String?
+  seoDescription    String?
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+}
+
+model WhyUsPoint {
+  id          String @id @default(cuid())
+  title       String
+  description String
+  icon        String?
+  order       Int    @default(0)
+  active      Boolean @default(true)
+}
+
+model ProcessStep {
+  id          String  @id @default(cuid())
+  stepNumber  Int
+  title       String
+  description String
+  order       Int     @default(0)
+  active      Boolean @default(true)
+}
+
+// slug: "hakkimizda" | "kvkk" | "gizlilik-politikasi" | "cerez-politikasi" ...
+model Page {
+  id             String   @id @default(cuid())
+  slug           String   @unique
+  title          String
+  content        String
+  imageUrl       String?
+  seoTitle       String?
+  seoDescription String?
+  ogImageUrl     String?
+  noindex        Boolean  @default(false)
+  published      Boolean  @default(true)
+  updatedAt      DateTime @updatedAt
+}
+
+model BlogPost {
+  id             String    @id @default(cuid())
+  slug           String    @unique
+  title          String
+  excerpt        String
+  coverImageUrl  String?
+  content        String
+  category       String?
+  published      Boolean   @default(false)
+  seoTitle       String?
+  seoDescription String?
+  publishedAt    DateTime?
+  createdAt      DateTime  @default(now())
+  updatedAt      DateTime  @updatedAt
+}
+
+model Faq {
+  id       String  @id @default(cuid())
+  question String
+  answer   String
+  category String?
+  order    Int     @default(0)
+  active   Boolean @default(true)
+}
+
+// status: "new" | "contacted" | "offered" | "closed"
+model Lead {
+  id          String   @id @default(cuid())
+  name        String
+  company     String?
+  phone       String
+  email       String?
+  provider    String?
+  packageName String?
+  message     String?
+  sourcePage  String?
+  utmSource   String?
+  utmMedium   String?
+  utmCampaign String?
+  status      String   @default("new")
+  createdAt   DateTime @default(now())
+}
+
+// type: "permanent" (301) | "temporary" (302)
+model Redirect {
+  id        String   @id @default(cuid())
+  fromPath  String   @unique
+  toPath    String
+  type      String   @default("permanent")
+  active    Boolean  @default(true)
+  createdAt DateTime @default(now())
+}
+
+// sourceType: "ideasoft_reference" | "eticaretus_reference"
+model ReferenceLogo {
+  id         String  @id @default(cuid())
+  brandName  String
+  logoUrl    String?
+  link       String?
+  altText    String
+  order      Int     @default(0)
+  active     Boolean @default(true)
+  sourceType String  @default("ideasoft_reference")
+  sourceUrl  String?
+}
+
+// sourceType: "ideasoft" | "eticaretus"
+model Testimonial {
+  id         String  @id @default(cuid())
+  personName String
+  role       String?
+  brandName  String?
+  domain     String?
+  quote      String
+  avatarUrl  String?
+  sourceType String  @default("ideasoft")
+  sourceUrl  String?
+  rating     Int?
+  order      Int     @default(0)
+  active     Boolean @default(true)
+}
