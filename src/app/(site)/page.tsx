@@ -7,6 +7,8 @@ import { ProcessSteps } from "@/components/home/ProcessSteps";
 import { TestimonialCarousel } from "@/components/home/TestimonialCarousel";
 import { FaqAccordion } from "@/components/home/FaqAccordion";
 import { FinalCta } from "@/components/home/FinalCta";
+import { ServicesPreview } from "@/components/home/ServicesPreview";
+import { LatestPosts } from "@/components/home/LatestPosts";
 import { getHomeContent, getSiteSettings } from "@/lib/settings";
 import { getHomePageData } from "@/lib/home-data";
 
@@ -21,6 +23,8 @@ export default async function HomePage() {
     testimonials,
     processSteps,
     faqs,
+    services,
+    latestPosts,
     featuredProvider,
     featuredPackages,
   } = data;
@@ -74,6 +78,8 @@ export default async function HomePage() {
         </section>
       )}
 
+      {services.length > 0 && <ServicesPreview services={services} />}
+
       <AboutCta title={home.aboutTitle} text={home.aboutText} imageUrl={home.aboutImageUrl} />
 
       {processSteps.length > 0 && (
@@ -105,8 +111,10 @@ export default async function HomePage() {
         </section>
       )}
 
+      {latestPosts.length > 0 && <LatestPosts posts={latestPosts} />}
+
       {faqs.length > 0 && (
-        <section className="bg-white py-20">
+        <section className="bg-surface py-20">
           <div className="container-page max-w-2xl">
             <div className="text-center">
               <p className="text-xs font-bold uppercase tracking-widest text-brand">Sıkça Sorulan Sorular</p>

@@ -1,6 +1,7 @@
 import { PrismaClient } from "../src/generated/prisma/client";
 import { PrismaBetterSqlite3 } from "@prisma/adapter-better-sqlite3";
 import bcrypt from "bcryptjs";
+import blogPosts from "./blog-posts.json";
 
 const adapter = new PrismaBetterSqlite3({ url: process.env.DATABASE_URL ?? "file:./dev.db" });
 const prisma = new PrismaClient({ adapter });
@@ -550,6 +551,15 @@ async function main() {
       create: { ...service, description: service.shortDescription },
     });
   }
+  // --- Rehber yazıları (slug'a göre upsert; panelden yapılan düzenlemeleri ezmez) ---
+  for (const post of blogPosts) {
+    await prisma.blogPost.upsert({
+      where: { slug: post.slug },
+      update: {},
+      create: { ...post, published: true, publishedAt: new Date(post.publishedAt) },
+    });
+  }
+
   for (const faq of FAQS) {
     await prisma.faq.upsert({ where: { id: `seed-faq-${faq.order}` }, update: faq, create: { id: `seed-faq-${faq.order}`, ...faq } });
   }

@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import { notFound } from "next/navigation";
+import Link from "next/link";
+import { ArrowLeft } from "lucide-react";
+import { RichText } from "@/components/site/RichText";
 import { getBlogPostBySlug } from "@/lib/queries";
 
 export async function generateMetadata({ params }: PageProps<"/rehber/[slug]">): Promise<Metadata> {
@@ -31,7 +34,25 @@ export default async function BlogDetailPage({ params }: PageProps<"/rehber/[slu
             <Image src={post.coverImageUrl} alt={post.title} fill className="object-cover" />
           </div>
         )}
-        <div className="mt-8 whitespace-pre-line text-base leading-relaxed text-ink/80">{post.content}</div>
+        <div className="mt-8">
+          <RichText text={post.content} />
+        </div>
+        <div className="mt-12 flex flex-col gap-4 rounded-2xl bg-surface p-6 sm:flex-row sm:items-center sm:justify-between">
+          <div>
+            <p className="font-bold text-ink">Size uygun altyapıyı birlikte seçelim</p>
+            <p className="mt-1 text-sm text-muted">Ücretsiz danışmanlık için bize ulaşın.</p>
+          </div>
+          <Link
+            href="/iletisim"
+            className="inline-flex shrink-0 items-center justify-center rounded-full bg-brand px-6 py-3 text-sm font-semibold text-white transition hover:bg-brand-dark"
+          >
+            Ücretsiz Danışmanlık Al
+          </Link>
+        </div>
+        <Link href="/rehber" className="mt-8 inline-flex items-center text-sm font-semibold text-brand">
+          <ArrowLeft className="mr-1.5 h-4 w-4" />
+          Tüm yazılar
+        </Link>
       </div>
     </article>
   );

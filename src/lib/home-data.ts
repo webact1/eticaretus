@@ -2,7 +2,7 @@ import { prisma } from "@/lib/prisma";
 import { PREVIEW_FEATURE_NAMES } from "@/lib/constants";
 
 export async function getHomePageData() {
-  const [providers, whyUsPoints, referenceLogos, testimonials, processSteps, faqs] = await Promise.all([
+  const [providers, whyUsPoints, referenceLogos, testimonials, processSteps, faqs, services, latestPosts] = await Promise.all([
     prisma.provider.findMany({
       where: { status: { in: ["active", "coming_soon"] } },
       orderBy: { order: "asc" },
@@ -12,6 +12,8 @@ export async function getHomePageData() {
     prisma.testimonial.findMany({ where: { active: true }, orderBy: { order: "asc" } }),
     prisma.processStep.findMany({ where: { active: true }, orderBy: { order: "asc" } }),
     prisma.faq.findMany({ where: { active: true }, orderBy: { order: "asc" }, take: 5 }),
+    prisma.service.findMany({ where: { active: true }, orderBy: { order: "asc" }, take: 6 }),
+    prisma.blogPost.findMany({ where: { published: true }, orderBy: { publishedAt: "desc" }, take: 3 }),
   ]);
 
   const featuredProvider = providers.find((p) => p.status === "active");
@@ -40,6 +42,8 @@ export async function getHomePageData() {
     testimonials,
     processSteps,
     faqs,
+    services,
+    latestPosts,
     featuredProvider,
     featuredPackages,
   };
