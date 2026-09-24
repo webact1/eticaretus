@@ -23,10 +23,9 @@ export function WhatsAppWidget({ number, message, avatarUrl }: Props) {
 
   return (
     <>
-      {/* Desktop floating widget */}
-      <div className="fixed bottom-6 right-6 z-50 hidden flex-col items-end gap-3 lg:flex">
+      <div className="fixed bottom-4 right-4 z-50 flex flex-col items-end gap-3 sm:bottom-6 sm:right-6">
         <div
-          className={`w-80 origin-bottom-right overflow-hidden rounded-2xl border border-border bg-white shadow-2xl shadow-navy/10 transition-all duration-300 ${
+          className={`w-[min(20rem,calc(100vw-2rem))] origin-bottom-right overflow-hidden rounded-2xl border border-border bg-white shadow-2xl shadow-navy/10 transition-all duration-300 ${
             open ? "scale-100 opacity-100" : "pointer-events-none scale-95 opacity-0"
           }`}
         >
@@ -74,7 +73,7 @@ export function WhatsAppWidget({ number, message, avatarUrl }: Props) {
         <button
           onClick={() => setOpen((v) => !v)}
           aria-label="WhatsApp ile iletişime geç"
-          className={`group relative flex h-16 w-16 items-center justify-center rounded-full shadow-xl shadow-whatsapp/30 transition-transform duration-300 hover:scale-105 ${
+          className={`group relative flex h-14 w-14 items-center sm:h-16 sm:w-16 justify-center rounded-full shadow-xl shadow-whatsapp/30 transition-transform duration-300 hover:scale-105 ${
             avatarUrl && !open ? "bg-white p-0.5" : "bg-whatsapp text-white"
           } ${entered ? "scale-100 opacity-100" : "scale-75 opacity-0"}`}
         >
@@ -96,19 +95,6 @@ export function WhatsAppWidget({ number, message, avatarUrl }: Props) {
             <WhatsAppIcon className="h-8 w-8" />
           )}
         </button>
-      </div>
-
-      {/* Mobile sticky bar */}
-      <div className="fixed inset-x-0 bottom-0 z-50 border-t border-border bg-white/95 px-4 py-3 shadow-[0_-4px_20px_rgba(13,18,38,0.08)] backdrop-blur lg:hidden">
-        <a
-          href={href}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="flex items-center justify-center gap-2 rounded-xl bg-whatsapp py-3 text-sm font-semibold text-white shadow-lg shadow-whatsapp/30 transition active:scale-[0.98]"
-        >
-          <WhatsAppIcon className="h-5 w-5" />
-          WhatsApp&apos;tan Danış
-        </a>
       </div>
     </>
   );
