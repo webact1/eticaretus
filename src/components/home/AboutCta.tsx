@@ -2,6 +2,8 @@ import Link from "next/link";
 import Image from "next/image";
 import { ArrowRight, ArrowUpRight, Check } from "lucide-react";
 
+const DEFAULT_ABOUT_IMAGE = "/images/about-team.jpg";
+
 const checks = [
   "Yeni bir e-ticaret sitesi mi kuruyorsunuz?",
   "Mevcut mağazanızı büyütmek mi istiyorsunuz?",
@@ -24,31 +26,9 @@ export function AboutCta({
       </div>
       <div className="container-page relative grid gap-12 lg:grid-cols-2 lg:items-center">
         <div className="relative">
-          {imageUrl ? (
-            <div className="relative aspect-[5/4] w-full overflow-hidden rounded-2xl shadow-2xl">
-              <Image src={imageUrl} alt={title} fill className="object-cover" />
-            </div>
-          ) : (
-            <div className="relative aspect-[5/4] w-full overflow-hidden rounded-2xl border border-white/10 bg-navy-2 p-6 shadow-2xl">
-              <div className="flex h-full flex-col justify-between rounded-xl bg-white/5 p-5">
-                <div className="flex gap-2">
-                  <span className="h-2 w-2 rounded-full bg-red-400/70" />
-                  <span className="h-2 w-2 rounded-full bg-amber-300/70" />
-                  <span className="h-2 w-2 rounded-full bg-emerald-400/70" />
-                </div>
-                <div className="space-y-3">
-                  <div className="h-2.5 w-2/3 rounded-full bg-white/20" />
-                  <div className="h-2.5 w-1/2 rounded-full bg-white/10" />
-                  <div className="grid grid-cols-3 gap-2 pt-2">
-                    {Array.from({ length: 3 }).map((_, i) => (
-                      <div key={i} className="h-16 rounded-lg bg-white/10" />
-                    ))}
-                  </div>
-                </div>
-                <div className="h-9 w-32 rounded-full bg-brand" />
-              </div>
-            </div>
-          )}
+          <div className="relative aspect-[5/4] w-full overflow-hidden rounded-2xl shadow-2xl">
+            <Image src={imageUrl || DEFAULT_ABOUT_IMAGE} alt={title} fill className="object-cover" />
+          </div>
           <div className="glass-panel absolute -bottom-5 -right-5 flex items-center gap-2 rounded-xl px-4 py-3 shadow-xl">
             <span className="flex h-8 w-8 items-center justify-center rounded-full bg-brand-2/20 text-brand-2">
               <ArrowUpRight className="h-4 w-4" />

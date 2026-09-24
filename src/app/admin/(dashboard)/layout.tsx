@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
+import { DEFAULT_LOGO } from "@/lib/constants";
 import { requireAdminSession } from "@/lib/session";
 import { logout } from "@/app/admin/login/actions";
 import { AdminMobileNav } from "./AdminMobileNav";
@@ -29,11 +31,9 @@ export default async function AdminDashboardLayout({ children }: LayoutProps<"/a
   return (
     <div className="flex min-h-screen bg-surface">
       <aside className="hidden w-64 shrink-0 border-r border-border bg-white lg:block">
-        <div className="flex h-16 items-center gap-2.5 border-b border-border px-5">
-          <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-brand text-xs font-bold text-white">
-            E
-          </span>
-          <span className="text-sm font-bold text-ink">eticaretus Panel</span>
+        <div className="flex h-16 items-center justify-between gap-2 border-b border-border px-5">
+          <Image src={DEFAULT_LOGO} alt="eticaretus" width={120} height={27} className="h-7 w-auto" />
+          <span className="rounded-full bg-surface px-2 py-0.5 text-[11px] font-semibold text-muted">Panel</span>
         </div>
         <nav className="flex flex-col gap-0.5 p-3">
           {NAV.map((item) => (

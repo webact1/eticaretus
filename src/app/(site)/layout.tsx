@@ -24,6 +24,7 @@ export default async function SiteLayout({ children }: LayoutProps<"/">) {
       />
       <main className="flex-1 pb-16 lg:pb-0">{children}</main>
       <Footer
+        logoUrl={settings.logoUrl}
         phone={settings.phone}
         email={settings.email}
         address={settings.address}

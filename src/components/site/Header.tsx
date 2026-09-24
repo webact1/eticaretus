@@ -4,7 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
-import { MAIN_NAV, SITE_NAME } from "@/lib/constants";
+import { DEFAULT_LOGO, MAIN_NAV, SITE_NAME } from "@/lib/constants";
 import { buildWhatsAppUrl } from "@/lib/whatsapp";
 
 type Props = {
@@ -41,18 +41,15 @@ export function Header({ logoUrl, whatsappNumber, whatsappMessage }: Props) {
       }`}
     >
       <div className="container-page flex h-[4.5rem] items-center justify-between py-3">
-        <Link href="/" className="flex items-center gap-2.5">
-          {logoUrl ? (
-            <Image src={logoUrl} alt={SITE_NAME} width={36} height={36} className="rounded-lg" />
-          ) : (
-            <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-brand text-sm font-bold text-white">
-              E
-            </span>
-          )}
-          <span className="text-lg font-bold tracking-tight text-ink">
-            {SITE_NAME}
-            <span className="text-brand">.com.tr</span>
-          </span>
+        <Link href="/" className="flex items-center" aria-label={`${SITE_NAME} ana sayfa`}>
+          <Image
+            src={logoUrl || DEFAULT_LOGO}
+            alt={SITE_NAME}
+            width={158}
+            height={36}
+            priority
+            className="h-8 w-auto sm:h-9"
+          />
         </Link>
 
         <nav className="hidden items-center gap-1 xl:flex">

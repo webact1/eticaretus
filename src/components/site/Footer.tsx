@@ -1,9 +1,11 @@
 import Link from "next/link";
+import Image from "next/image";
 import { Mail, MapPin, Phone } from "lucide-react";
-import { SITE_NAME } from "@/lib/constants";
+import { DEFAULT_LOGO, SITE_NAME } from "@/lib/constants";
 import { buildWhatsAppUrl } from "@/lib/whatsapp";
 
 type Props = {
+  logoUrl?: string | null;
   phone?: string | null;
   email?: string | null;
   address?: string | null;
@@ -36,6 +38,7 @@ const columns = [
 ];
 
 export function Footer({
+  logoUrl,
   phone,
   email,
   address,
@@ -57,14 +60,8 @@ export function Footer({
     <footer className="border-t border-border bg-white">
       <div className="container-page grid gap-10 py-14 lg:grid-cols-[1.4fr_1fr_1fr_1.2fr]">
         <div>
-          <Link href="/" className="flex items-center gap-2.5">
-            <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-brand text-sm font-bold text-white">
-              E
-            </span>
-            <span className="text-lg font-bold tracking-tight text-ink">
-              {SITE_NAME}
-              <span className="text-brand">.com.tr</span>
-            </span>
+          <Link href="/" className="inline-flex items-center" aria-label={`${SITE_NAME} ana sayfa`}>
+            <Image src={logoUrl || DEFAULT_LOGO} alt={SITE_NAME} width={158} height={36} className="h-9 w-auto" />
           </Link>
           <p className="mt-4 max-w-sm text-sm leading-relaxed text-muted">
             İşletmenize uygun e-ticaret altyapısını birlikte seçiyor; kurulum, danışmanlık ve

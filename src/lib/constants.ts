@@ -66,3 +66,4 @@ export const FEATURE_CATEGORY_DESCRIPTIONS: Record<string, string> = {
 
 export const SITE_NAME = "eticaretus";
 export const SITE_DOMAIN = "eticaretus.com.tr";
+export const DEFAULT_LOGO = "/images/logo.png";
