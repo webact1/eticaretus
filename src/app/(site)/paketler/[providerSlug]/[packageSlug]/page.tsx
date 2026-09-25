@@ -6,6 +6,8 @@ import { getPackageBySlug } from "@/lib/queries";
 import { getSiteSettings } from "@/lib/settings";
 import { buildWhatsAppUrl } from "@/lib/whatsapp";
 import { FEATURE_CATEGORY_DESCRIPTIONS } from "@/lib/constants";
+import { BreadcrumbJsonLd, JsonLd } from "@/components/site/JsonLd";
+import { SITE_URL, absoluteUrl } from "@/lib/seo";
 
 function formatPrice(price?: number | null) {
   if (price == null) return "Teklif Al";
@@ -45,8 +47,39 @@ export default async function PackageDetailPage({
     grouped.get(catId)!.items.push(pf);
   }
 
+  const pagePath = `/paketler/${provider.slug}/${pkg.slug}`;
+  const productJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    name: `${provider.name} ${pkg.name}`,
+    description: pkg.shortDescription ?? `${provider.name} ${pkg.name} e-ticaret paketi`,
+    image: absoluteUrl("/opengraph-image.png"),
+    sku: `${provider.slug}-${pkg.slug}`,
+    brand: { "@type": "Brand", name: provider.name },
+    url: absoluteUrl(pagePath),
+    ...(pkg.price != null
+      ? {
+          offers: {
+            "@type": "Offer",
+            url: absoluteUrl(pagePath),
+            price: pkg.price,
+            priceCurrency: "TRY",
+            availability: "https://schema.org/InStock",
+            seller: { "@id": `${SITE_URL}/#organization` },
+          },
+        }
+      : {}),
+  };
+
   return (
     <>
+      <JsonLd data={productJsonLd} />
+      <BreadcrumbJsonLd
+        items={[
+          { name: "Paketler", path: "/paketler" },
+          { name: `${provider.name} ${pkg.name}`, path: pagePath },
+        ]}
+      />
       <section className="border-b border-border bg-surface py-14">
         <div className="container-page">
           <p className="text-xs font-bold uppercase tracking-widest text-brand">

@@ -4,6 +4,8 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
 import { RichText } from "@/components/site/RichText";
+import { BreadcrumbJsonLd, JsonLd } from "@/components/site/JsonLd";
+import { SITE_URL, absoluteUrl } from "@/lib/seo";
 import { getBlogPostBySlug } from "@/lib/queries";
 
 export async function generateMetadata({ params }: PageProps<"/rehber/[slug]">): Promise<Metadata> {
@@ -13,7 +15,18 @@ export async function generateMetadata({ params }: PageProps<"/rehber/[slug]">):
   return {
     title: post.seoTitle ?? post.title,
     description: post.seoDescription ?? post.excerpt,
-    openGraph: post.coverImageUrl ? { images: [post.coverImageUrl] } : undefined,
+    openGraph: {
+      type: "article",
+      title: post.seoTitle ?? post.title,
+      description: post.seoDescription ?? post.excerpt,
+      publishedTime: post.publishedAt?.toISOString(),
+      modifiedTime: post.updatedAt.toISOString(),
+      ...(post.coverImageUrl ? { images: [post.coverImageUrl] } : {}),
+    },
+    twitter: {
+      card: "summary_large_image",
+      ...(post.coverImageUrl ? { images: [post.coverImageUrl] } : {}),
+    },
   };
 }
 
@@ -22,8 +35,32 @@ export default async function BlogDetailPage({ params }: PageProps<"/rehber/[slu
   const post = await getBlogPostBySlug(slug);
   if (!post) notFound();
 
+  const pagePath = `/rehber/${post.slug}`;
+  const published = (post.publishedAt ?? post.createdAt).toISOString();
+
   return (
     <article className="bg-white py-16">
+      <JsonLd
+        data={{
+          "@context": "https://schema.org",
+          "@type": "BlogPosting",
+          headline: post.title,
+          description: post.excerpt,
+          image: absoluteUrl(post.coverImageUrl ?? "/opengraph-image.png"),
+          datePublished: published,
+          dateModified: post.updatedAt.toISOString(),
+          inLanguage: "tr-TR",
+          mainEntityOfPage: absoluteUrl(pagePath),
+          author: { "@id": `${SITE_URL}/#organization` },
+          publisher: { "@id": `${SITE_URL}/#organization` },
+        }}
+      />
+      <BreadcrumbJsonLd
+        items={[
+          { name: "Rehber", path: "/rehber" },
+          { name: post.title, path: pagePath },
+        ]}
+      />
       <div className="container-page max-w-2xl">
         {post.category && (
           <span className="text-xs font-bold uppercase tracking-wide text-brand">{post.category}</span>

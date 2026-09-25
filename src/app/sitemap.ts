@@ -1,9 +1,10 @@
 import type { MetadataRoute } from "next";
 import { prisma } from "@/lib/prisma";
+import { SITE_URL } from "@/lib/seo";
 
 export const dynamic = "force-dynamic";
 
-const BASE_URL = "https://eticaretus.com.tr";
+const BASE_URL = SITE_URL;
 
 const staticPaths = [
   "",
@@ -29,7 +30,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   const entries: MetadataRoute.Sitemap = staticPaths.map((path) => ({
     url: `${BASE_URL}${path}`,
-    lastModified: new Date(),
+    changeFrequency: path === "" ? "weekly" : "monthly",
+    priority: path === "" ? 1 : path === "/paketler" ? 0.9 : 0.7,
   }));
 
   for (const pkg of packages) {

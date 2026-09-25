@@ -5,6 +5,8 @@ import { DynamicIcon } from "@/components/site/DynamicIcon";
 import { getServiceBySlug } from "@/lib/queries";
 import { getSiteSettings } from "@/lib/settings";
 import { buildWhatsAppUrl } from "@/lib/whatsapp";
+import { BreadcrumbJsonLd, JsonLd } from "@/components/site/JsonLd";
+import { SITE_URL, absoluteUrl } from "@/lib/seo";
 
 export async function generateMetadata({
   params,
@@ -29,8 +31,28 @@ export default async function ServiceDetailPage({ params }: PageProps<"/hizmetle
     `Merhaba, eticaretus.com.tr üzerinden ${service.name} hizmetiniz hakkında bilgi almak istiyorum.`,
   );
 
+  const pagePath = `/hizmetler/${service.slug}`;
+
   return (
     <section className="bg-white py-16">
+      <JsonLd
+        data={{
+          "@context": "https://schema.org",
+          "@type": "Service",
+          name: service.name,
+          description: service.shortDescription,
+          url: absoluteUrl(pagePath),
+          serviceType: service.name,
+          areaServed: { "@type": "Country", name: "Türkiye" },
+          provider: { "@id": `${SITE_URL}/#organization` },
+        }}
+      />
+      <BreadcrumbJsonLd
+        items={[
+          { name: "Hizmetler", path: "/hizmetler" },
+          { name: service.name, path: pagePath },
+        ]}
+      />
       <div className="container-page max-w-3xl">
         <span className="flex h-14 w-14 items-center justify-center rounded-2xl bg-brand/10 text-brand">
           <DynamicIcon iconName={service.icon} className="h-7 w-7" />

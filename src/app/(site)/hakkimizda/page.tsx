@@ -9,7 +9,11 @@ export const dynamic = "force-dynamic";
 export async function generateMetadata(): Promise<Metadata> {
   const page = await getPageBySlug("hakkimizda");
   if (!page) return {};
-  return { title: page.seoTitle ?? page.title, description: page.seoDescription ?? undefined };
+  return {
+    title: page.seoTitle ?? page.title,
+    description: page.seoDescription ?? undefined,
+    ...(page.noindex ? { robots: { index: false, follow: true } } : {}),
+  };
 }
 
 export default async function AboutPage() {
