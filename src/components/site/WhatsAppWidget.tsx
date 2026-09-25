@@ -23,10 +23,10 @@ export function WhatsAppWidget({ number, message, avatarUrl }: Props) {
 
   return (
     <>
-      <div className="fixed bottom-4 right-4 z-50 flex flex-col items-end gap-3 sm:bottom-6 sm:right-6">
+      <div className="pointer-events-none fixed bottom-4 right-4 z-50 flex flex-col items-end gap-3 sm:bottom-6 sm:right-6">
         <div
           className={`w-[min(20rem,calc(100vw-2rem))] origin-bottom-right overflow-hidden rounded-2xl border border-border bg-white shadow-2xl shadow-navy/10 transition-all duration-300 ${
-            open ? "scale-100 opacity-100" : "pointer-events-none scale-95 opacity-0"
+            open ? "pointer-events-auto scale-100 opacity-100" : "pointer-events-none scale-95 opacity-0"
           }`}
         >
           <div className="flex items-center gap-3 bg-[#075e54] px-4 py-3.5">
@@ -73,7 +73,7 @@ export function WhatsAppWidget({ number, message, avatarUrl }: Props) {
         <button
           onClick={() => setOpen((v) => !v)}
           aria-label="WhatsApp ile iletişime geç"
-          className={`group relative flex h-14 w-14 items-center sm:h-16 sm:w-16 justify-center rounded-full shadow-xl shadow-whatsapp/30 transition-transform duration-300 hover:scale-105 ${
+          className={`group pointer-events-auto relative flex h-14 w-14 items-center sm:h-16 sm:w-16 justify-center rounded-full shadow-xl shadow-whatsapp/30 transition-transform duration-300 hover:scale-105 ${
             avatarUrl && !open ? "bg-white p-0.5" : "bg-whatsapp text-white"
           } ${entered ? "scale-100 opacity-100" : "scale-75 opacity-0"}`}
         >
