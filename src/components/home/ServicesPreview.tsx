@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
+import { LinkArrow } from "@/components/site/LinkArrow";
 import { DynamicIcon } from "@/components/site/DynamicIcon";
 
 type Service = { slug: string; name: string; shortDescription: string; icon?: string | null };
@@ -23,7 +23,7 @@ export function ServicesPreview({ services }: { services: Service[] }) {
             className="inline-flex shrink-0 items-center text-sm font-semibold text-brand transition hover:text-brand-dark"
           >
             Tüm hizmetleri gör
-            <ArrowRight className="ml-1.5 h-4 w-4" />
+            <LinkArrow />
           </Link>
         </div>
 

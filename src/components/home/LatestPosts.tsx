@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowRight, BookOpen } from "lucide-react";
+import { BookOpen } from "lucide-react";
+import { LinkArrow } from "@/components/site/LinkArrow";
 
 type Post = {
   slug: string;
@@ -29,7 +30,7 @@ export function LatestPosts({ posts }: { posts: Post[] }) {
             className="inline-flex shrink-0 items-center text-sm font-semibold text-brand transition hover:text-brand-dark"
           >
             Tüm yazılar
-            <ArrowRight className="ml-1.5 h-4 w-4" />
+            <LinkArrow />
           </Link>
         </div>
 
@@ -63,7 +64,7 @@ export function LatestPosts({ posts }: { posts: Post[] }) {
                 <p className="mt-2 line-clamp-3 text-sm leading-relaxed text-muted">{post.excerpt}</p>
                 <span className="mt-4 inline-flex items-center pt-1 text-sm font-semibold text-brand">
                   Devamını oku
-                  <ArrowRight className="ml-1.5 h-4 w-4 transition-transform group-hover:translate-x-1" />
+                  <LinkArrow className="ml-1.5 h-4 w-4 transition-transform group-hover:translate-x-1" />
                 </span>
               </div>
             </Link>

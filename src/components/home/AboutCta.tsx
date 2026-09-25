@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowRight, ArrowUpRight, Check } from "lucide-react";
+import { ArrowUpRight, Check } from "lucide-react";
+import { LinkArrow } from "@/components/site/LinkArrow";
 
 const DEFAULT_ABOUT_IMAGE = "/images/about-team.jpg";
 
@@ -62,7 +63,7 @@ export function AboutCta({
             className="mt-8 inline-flex items-center justify-center rounded-full bg-white px-6 py-3.5 text-sm font-semibold text-navy transition hover:bg-white/90"
           >
             Ücretsiz Danışmanlık Al
-            <ArrowRight className="ml-1.5 h-4 w-4" />
+            <LinkArrow />
           </Link>
         </div>
       </div>

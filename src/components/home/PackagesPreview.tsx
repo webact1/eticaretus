@@ -1,5 +1,6 @@
 import Link from "next/link";
-import { ArrowRight, Check, Minus } from "lucide-react";
+import { Check, Minus } from "lucide-react";
+import { LinkArrow } from "@/components/site/LinkArrow";
 
 type Feature = { name: string; included: boolean; value?: string | null };
 
@@ -117,14 +118,14 @@ export function PackagesPreview({
 
               <Link
                 href={`/paketler/${providerSlug}/${pkg.slug}`}
-                className={`mt-7 inline-flex items-center justify-center rounded-full px-5 py-3 text-sm font-semibold transition ${
+                className={`mt-7 inline-flex items-center justify-center rounded-full px-5 py-3 text-sm font-semibold transition active:scale-[0.97] ${
                   pkg.featured
                     ? "bg-white text-navy hover:bg-white/90"
                     : "bg-brand text-white hover:bg-brand-dark"
                 }`}
               >
                 Paket Detaylarını Gör
-                <ArrowRight className="ml-1.5 h-4 w-4" />
+                <LinkArrow />
               </Link>
             </div>
           ))}
@@ -136,7 +137,7 @@ export function PackagesPreview({
             className="inline-flex items-center text-sm font-semibold text-brand hover:text-brand-dark"
           >
             Tüm paketleri ve karşılaştırmayı gör
-            <ArrowRight className="ml-1.5 h-4 w-4" />
+            <LinkArrow />
           </Link>
         </div>
       </div>

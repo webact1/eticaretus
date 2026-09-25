@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowRight } from "lucide-react";
+import { LinkArrow } from "@/components/site/LinkArrow";
 import { DynamicIcon } from "@/components/site/DynamicIcon";
 import { getActiveServices } from "@/lib/queries";
 
@@ -55,7 +55,7 @@ export default async function ServicesPage() {
               <p className="mt-2 text-sm leading-relaxed text-muted">{s.shortDescription}</p>
               <span className="mt-4 inline-flex items-center text-sm font-semibold text-brand">
                 Detayları Gör
-                <ArrowRight className="ml-1.5 h-4 w-4" />
+                <LinkArrow />
               </span>
             </Link>
           ))}
