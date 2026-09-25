@@ -6,7 +6,7 @@ import { getServiceBySlug } from "@/lib/queries";
 import { getSiteSettings } from "@/lib/settings";
 import { buildWhatsAppUrl } from "@/lib/whatsapp";
 import { BreadcrumbJsonLd, JsonLd } from "@/components/site/JsonLd";
-import { SITE_URL, absoluteUrl } from "@/lib/seo";
+import { SITE_URL, absoluteUrl, cleanTitle } from "@/lib/seo";
 
 export async function generateMetadata({
   params,
@@ -15,7 +15,7 @@ export async function generateMetadata({
   const service = await getServiceBySlug(slug);
   if (!service) return {};
   return {
-    title: service.seoTitle ?? service.name,
+    title: cleanTitle(service.seoTitle) ?? service.name,
     description: service.seoDescription ?? service.shortDescription,
   };
 }

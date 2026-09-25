@@ -7,7 +7,7 @@ import { getSiteSettings } from "@/lib/settings";
 import { buildWhatsAppUrl } from "@/lib/whatsapp";
 import { FEATURE_CATEGORY_DESCRIPTIONS } from "@/lib/constants";
 import { BreadcrumbJsonLd, JsonLd } from "@/components/site/JsonLd";
-import { SITE_URL, absoluteUrl } from "@/lib/seo";
+import { SITE_URL, absoluteUrl, cleanTitle } from "@/lib/seo";
 
 function formatPrice(price?: number | null) {
   if (price == null) return "Teklif Al";
@@ -21,8 +21,12 @@ export async function generateMetadata({
   const data = await getPackageBySlug(providerSlug, packageSlug);
   if (!data) return {};
   return {
-    title: data.pkg.seoTitle ?? `${data.pkg.name} — ${data.provider.name}`,
-    description: data.pkg.seoDescription ?? data.pkg.shortDescription ?? undefined,
+    title: cleanTitle(data.pkg.seoTitle) ?? `${data.provider.name} ${data.pkg.name} Paketi`,
+    description:
+      data.pkg.seoDescription ??
+      `${data.provider.name} ${data.pkg.name} paketinin özellikleri, kapsamı ve fiyatı.${
+        data.pkg.shortDescription ? ` ${data.pkg.shortDescription}.` : ""
+      } Size uygun paketi birlikte seçelim.`,
   };
 }
 

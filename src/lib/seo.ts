@@ -16,3 +16,9 @@ export function validId(kind: keyof typeof ID_PATTERNS, value?: string | null) {
   const v = value?.trim();
   return v && ID_PATTERNS[kind].test(v) ? v : null;
 }
+
+// Panelden girilen SEO başlığı sonuna "| eticaretus" ekleyebilir; şablon zaten ekliyor, çift görünmesin.
+export function cleanTitle(title?: string | null) {
+  const t = title?.replace(/\s*[|–—-]\s*eticaretus(\.com\.tr)?\s*$/i, "").trim();
+  return t || undefined;
+}

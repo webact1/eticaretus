@@ -5,7 +5,7 @@ import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
 import { RichText } from "@/components/site/RichText";
 import { BreadcrumbJsonLd, JsonLd } from "@/components/site/JsonLd";
-import { SITE_URL, absoluteUrl } from "@/lib/seo";
+import { SITE_URL, absoluteUrl, cleanTitle } from "@/lib/seo";
 import { getBlogPostBySlug } from "@/lib/queries";
 
 export async function generateMetadata({ params }: PageProps<"/rehber/[slug]">): Promise<Metadata> {
@@ -13,11 +13,11 @@ export async function generateMetadata({ params }: PageProps<"/rehber/[slug]">):
   const post = await getBlogPostBySlug(slug);
   if (!post) return {};
   return {
-    title: post.seoTitle ?? post.title,
+    title: cleanTitle(post.seoTitle) ?? post.title,
     description: post.seoDescription ?? post.excerpt,
     openGraph: {
       type: "article",
-      title: post.seoTitle ?? post.title,
+      title: cleanTitle(post.seoTitle) ?? post.title,
       description: post.seoDescription ?? post.excerpt,
       publishedTime: post.publishedAt?.toISOString(),
       modifiedTime: post.updatedAt.toISOString(),

@@ -3,6 +3,7 @@ import Image from "next/image";
 import { notFound } from "next/navigation";
 import { PageHero } from "@/components/site/PageHero";
 import { getPageBySlug } from "@/lib/queries";
+import { cleanTitle } from "@/lib/seo";
 
 export const dynamic = "force-dynamic";
 
@@ -10,7 +11,7 @@ export async function generateMetadata(): Promise<Metadata> {
   const page = await getPageBySlug("hakkimizda");
   if (!page) return {};
   return {
-    title: page.seoTitle ?? page.title,
+    title: cleanTitle(page.seoTitle) ?? page.title,
     description: page.seoDescription ?? undefined,
     ...(page.noindex ? { robots: { index: false, follow: true } } : {}),
   };
