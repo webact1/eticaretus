@@ -1,3 +1,4 @@
+import { SeoFields } from "@/components/admin/seo-fields";
 import { AdminCard, AdminPageHeader, CheckboxField, Field, SelectField, SubmitButton, TextareaField } from "@/components/admin/fields";
 import { prisma } from "@/lib/prisma";
 import { createPackage } from "../actions";
@@ -33,9 +34,8 @@ export default async function NewPackagePage() {
           </div>
 
           <h3 className="mt-6 mb-3 text-sm font-bold text-ink">SEO</h3>
-          <div className="grid gap-4 sm:grid-cols-2">
-            <Field label="SEO Başlık" name="seoTitle" />
-            <Field label="SEO Açıklama" name="seoDescription" />
+          <div>
+            <SeoFields />
           </div>
 
           <div className="mt-6">

@@ -1,3 +1,4 @@
+import { SeoFields } from "@/components/admin/seo-fields";
 import { AdminCard, Field, SelectField, SubmitButton, TextareaField, CheckboxField } from "@/components/admin/fields";
 import { PROVIDER_STATUS, PROVIDER_STATUS_LABELS } from "@/lib/constants";
 
@@ -59,9 +60,8 @@ export function ProviderForm({
         </div>
 
         <h3 className="mt-6 mb-3 text-sm font-bold text-ink">SEO</h3>
-        <div className="grid gap-4 sm:grid-cols-2">
-          <Field label="SEO Başlık" name="seoTitle" defaultValue={provider?.seoTitle} />
-          <Field label="SEO Açıklama" name="seoDescription" defaultValue={provider?.seoDescription} />
+        <div>
+          <SeoFields title={provider?.seoTitle} description={provider?.seoDescription} />
         </div>
         <div className="mt-3">
           <CheckboxField label="Arama motorlarında gizle (noindex)" name="noindex" defaultChecked={provider?.noindex} />

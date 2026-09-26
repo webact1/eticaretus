@@ -2,6 +2,7 @@ import { PrismaClient } from "../src/generated/prisma/client";
 import { PrismaBetterSqlite3 } from "@prisma/adapter-better-sqlite3";
 import bcrypt from "bcryptjs";
 import blogPosts from "./blog-posts.json";
+import seoDefaults from "./seo-defaults.json";
 
 const adapter = new PrismaBetterSqlite3({ url: process.env.DATABASE_URL ?? "file:./dev.db" });
 const prisma = new PrismaClient({ adapter });
@@ -763,6 +764,25 @@ async function main() {
       noindex: true,
     },
   });
+
+  // --- SEO başlık/açıklaması boş olanlar (panelde elle girilenlere dokunulmaz; bkz. scripts/fill-seo.mjs) ---
+  const seoEmpty = { OR: [{ seoTitle: null }, { seoTitle: "" }, { seoDescription: null }, { seoDescription: "" }] };
+  const seoFill = async (
+    find: (slug: string) => Promise<{ id: string; seoTitle: string | null; seoDescription: string | null } | null>,
+    save: (id: string, data: { seoTitle: string; seoDescription: string }) => Promise<unknown>,
+    entries: Record<string, { seoTitle: string; seoDescription: string }>,
+  ) => {
+    for (const [slug, d] of Object.entries(entries)) {
+      const row = await find(slug);
+      if (!row) continue;
+      await save(row.id, { seoTitle: row.seoTitle?.trim() || d.seoTitle, seoDescription: row.seoDescription?.trim() || d.seoDescription });
+    }
+  };
+  await seoFill((slug) => prisma.provider.findFirst({ where: { slug, ...seoEmpty } }), (id, data) => prisma.provider.update({ where: { id }, data }), seoDefaults.Provider);
+  await seoFill((slug) => prisma.package.findFirst({ where: { slug, ...seoEmpty } }), (id, data) => prisma.package.update({ where: { id }, data }), seoDefaults.Package);
+  await seoFill((slug) => prisma.service.findFirst({ where: { slug, ...seoEmpty } }), (id, data) => prisma.service.update({ where: { id }, data }), seoDefaults.Service);
+  await seoFill((slug) => prisma.page.findFirst({ where: { slug, ...seoEmpty } }), (id, data) => prisma.page.update({ where: { id }, data }), seoDefaults.Page);
+  await seoFill((slug) => prisma.blogPost.findFirst({ where: { slug, ...seoEmpty } }), (id, data) => prisma.blogPost.update({ where: { id }, data }), seoDefaults.BlogPost);
 
   console.log("✔ Seed tamamlandı.");
 }

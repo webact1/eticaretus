@@ -1,0 +1,108 @@
+{
+  "Provider": {
+    "ideasoft": {
+      "seoTitle": "IdeaSoft E-Ticaret Altyapısı ve Paketleri",
+      "seoDescription": "IdeaSoft e-ticaret altyapısının Starter, Booster, Master ve Master+ paketlerini karşılaştırın; işletmenize uygun paketi ücretsiz danışmanlıkla seçin."
+    },
+    "ticimax": {
+      "seoTitle": "Ticimax E-Ticaret Altyapısı",
+      "seoDescription": "Ticimax e-ticaret altyapısı çözümleri çok yakında eticaretus'ta. Şimdilik IdeaSoft paketleri için ücretsiz danışmanlık almak üzere bize ulaşın."
+    },
+    "woocommerce": {
+      "seoTitle": "WooCommerce E-Ticaret Altyapısı",
+      "seoDescription": "WooCommerce e-ticaret çözümleri çok yakında eticaretus'ta. Şimdilik IdeaSoft paketleri için ücretsiz danışmanlık almak üzere bize ulaşın."
+    }
+  },
+  "Package": {
+    "starter": {
+      "seoTitle": "IdeaSoft Starter Paketi: Özellikler ve Fiyat",
+      "seoDescription": "IdeaSoft Starter e-ticaret paketi: 500 ürüne kadar, 70+ tema seçeneği, temel ödeme entegrasyonları ve AI destekli kurulum. Yeni başlayanlar için."
+    },
+    "booster": {
+      "seoTitle": "IdeaSoft Booster Paketi: Özellikler ve Fiyat",
+      "seoDescription": "IdeaSoft Booster: sınırsız ürün, Trendyol ve Hepsiburada entegrasyonu, Flex Lite tema ve tüm ödeme sistemleri. Satışını büyütmek isteyenler için."
+    },
+    "master": {
+      "seoTitle": "IdeaSoft Master Paketi: Özellikler ve Fiyat",
+      "seoDescription": "En çok tercih edilen IdeaSoft Master: Trendyol, Hepsiburada, N11, Amazon ve TEMU entegrasyonu, gelişmiş SEO yönetimi ve reklam desteği."
+    },
+    "master-plus": {
+      "seoTitle": "IdeaSoft Master+ Paketi: Özellikler ve Fiyat",
+      "seoDescription": "IdeaSoft Master+: sınırsız pazaryeri entegrasyonu, müşteri mobil uygulaması, gelişmiş SEO ve yüksek reklam desteğiyle tam kapsamlı e-ticaret."
+    }
+  },
+  "Service": {
+    "e-ticaret-danismanligi": {
+      "seoTitle": "E-Ticaret Danışmanlığı ve Altyapı Seçimi",
+      "seoDescription": "İşletmenize uygun e-ticaret altyapısını ve büyüme stratejisini birlikte belirleyelim: IdeaSoft paket seçimi, kurulum planı ve ücretsiz ön görüşme."
+    },
+    "e-ticaret-sitesi-kurulumu": {
+      "seoTitle": "E-Ticaret Sitesi Kurulumu ve Yayına Alma",
+      "seoDescription": "IdeaSoft altyapısında e-ticaret sitenizi kuruyor; ürün, ödeme, kargo ve yasal sayfa ayarlarını tamamlayıp mağazanızı sorunsuz yayına alıyoruz."
+    },
+    "tema-arayuz-duzenlemeleri": {
+      "seoTitle": "E-Ticaret Tema ve Arayüz Düzenlemeleri",
+      "seoDescription": "E-ticaret sitenizin temasını markanıza göre özelleştiriyor; mobil uyumlu, dönüşüm odaklı arayüz düzenlemeleriyle alışveriş deneyimini iyileştiriyoruz."
+    },
+    "seo": {
+      "seoTitle": "E-Ticaret SEO Hizmeti",
+      "seoDescription": "E-ticaret siteniz için teknik SEO, kategori ve ürün sayfası optimizasyonu, meta açıklamalar ve içerik çalışmalarıyla organik trafiğinizi artırıyoruz."
+    },
+    "geo": {
+      "seoTitle": "GEO: Yapay Zekâ Aramalarında Görünürlük",
+      "seoDescription": "ChatGPT, Gemini ve Google yapay zekâ özetleri gibi yapay zekâ destekli aramalarda markanızın ve ürünlerinizin önerilme olasılığını artırıyoruz."
+    },
+    "google-kurulumlari": {
+      "seoTitle": "Google Analytics ve Search Console Kurulumu",
+      "seoDescription": "Google Analytics 4, Search Console ve Tag Manager kurulumlarını yapıyor; satış, sepet ve dönüşüm ölçümünü e-ticaret sitenize eksiksiz bağlıyoruz."
+    },
+    "pazaryeri-entegrasyonlari": {
+      "seoTitle": "Pazaryeri Entegrasyonu: Trendyol, Hepsiburada",
+      "seoDescription": "Trendyol, Hepsiburada, N11 ve Amazon gibi pazaryerlerini e-ticaret sitenize bağlıyor; stok, fiyat ve siparişleri tek panelden yönetmenizi sağlıyoruz."
+    },
+    "odeme-sistemleri": {
+      "seoTitle": "E-Ticaret Ödeme Sistemleri Entegrasyonu",
+      "seoDescription": "Sanal POS, ödeme kuruluşları ve taksit seçeneklerini mağazanıza güvenli şekilde entegre ediyor; işletmenize uygun maliyetli ödeme altyapısını kuruyoruz."
+    },
+    "kargo-entegrasyonlari": {
+      "seoTitle": "Kargo Entegrasyonu ve Otomatik Gönderim",
+      "seoDescription": "Anlaşmalı kargo firmalarını e-ticaret sitenize bağlıyor; kargo etiketi, takip numarası ve müşteri bilgilendirmelerini otomatik hale getiriyoruz."
+    },
+    "reklam-ve-buyume-hizmetleri": {
+      "seoTitle": "E-Ticaret Reklam Yönetimi ve Büyüme",
+      "seoDescription": "Google Ads ve Meta reklamlarıyla e-ticaret sitenizin satışlarını büyütüyor; reklam bütçenizi ölçülebilir dönüşüm hedefleriyle yönetiyoruz."
+    }
+  },
+  "Page": {
+    "hakkimizda": {
+      "seoTitle": "Hakkımızda",
+      "seoDescription": "eticaretus, işletmelere doğru e-ticaret altyapısını seçme, kurma ve büyütme süreçlerinde danışmanlık veren IdeaSoft iş ortağıdır."
+    },
+    "kvkk": {
+      "seoTitle": "KVKK Aydınlatma Metni",
+      "seoDescription": "eticaretus KVKK aydınlatma metni: kişisel verilerinizin işlenmesi, saklanması, aktarılması ve bu kapsamdaki haklarınız hakkında bilgilendirme."
+    },
+    "gizlilik-politikasi": {
+      "seoTitle": "Gizlilik Politikası",
+      "seoDescription": "eticaretus gizlilik politikası: ziyaretçi ve müşteri verilerinin nasıl toplandığı, hangi amaçlarla kullanıldığı ve nasıl korunduğu."
+    },
+    "cerez-politikasi": {
+      "seoTitle": "Çerez Politikası",
+      "seoDescription": "eticaretus çerez politikası: sitede kullanılan çerez türleri, kullanım amaçları ve çerez tercihlerinizi nasıl yönetebileceğiniz."
+    }
+  },
+  "BlogPost": {
+    "e-ticaret-altyapisi-secerken-7-kriter": {
+      "seoTitle": "E-Ticaret Altyapısı Nasıl Seçilir? 7 Kriter",
+      "seoDescription": "E-ticaret altyapısı seçerken tema, SEO, ödeme, pazaryeri entegrasyonu, destek ve toplam maliyet gibi 7 kriteri değerlendirin."
+    },
+    "ideasoft-paketleri-nasil-secilir": {
+      "seoTitle": "IdeaSoft Paketleri: Hangi Paket Size Uygun?",
+      "seoDescription": "IdeaSoft Starter, Booster, Master ve Master+ paketlerinin farkları; pazaryeri, tema, SEO ve reklam desteğine göre hangi işletmeye uygun olduğu."
+    },
+    "e-ticaret-sitesi-yayin-oncesi-kontrol-listesi": {
+      "seoTitle": "E-Ticaret Sitesi Yayın Öncesi Kontrol Listesi",
+      "seoDescription": "E-ticaret sitesini yayına almadan önce ürün, ödeme, kargo, yasal sayfalar, SEO ve mobil testlerini kapsayan pratik kontrol listesi."
+    }
+  }
+}

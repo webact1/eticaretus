@@ -1,3 +1,4 @@
+import { SeoFields } from "@/components/admin/seo-fields";
 import { notFound } from "next/navigation";
 import { AdminCard, AdminPageHeader, CheckboxField, Field, ImageField, SubmitButton, TextareaField } from "@/components/admin/fields";
 import { prisma } from "@/lib/prisma";
@@ -34,9 +35,8 @@ export default async function EditPagePage({
           </div>
 
           <h3 className="mt-6 mb-3 text-sm font-bold text-ink">SEO</h3>
-          <div className="grid gap-4 sm:grid-cols-2">
-            <Field label="SEO Başlık" name="seoTitle" defaultValue={page.seoTitle} />
-            <Field label="SEO Açıklama" name="seoDescription" defaultValue={page.seoDescription} />
+          <div>
+            <SeoFields title={page.seoTitle} description={page.seoDescription} />
           </div>
           <div className="mt-3">
             <CheckboxField label="Arama motorlarında gizle (noindex)" name="noindex" defaultChecked={page.noindex} />

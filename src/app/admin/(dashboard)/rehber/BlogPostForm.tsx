@@ -1,3 +1,4 @@
+import { SeoFields } from "@/components/admin/seo-fields";
 import { AdminCard, CheckboxField, Field, ImageField, SubmitButton, TextareaField } from "@/components/admin/fields";
 
 type BlogPostData = {
@@ -36,9 +37,8 @@ export function BlogPostForm({ post, action }: { post?: BlogPostData; action: (f
         </div>
 
         <h3 className="mt-6 mb-3 text-sm font-bold text-ink">SEO</h3>
-        <div className="grid gap-4 sm:grid-cols-2">
-          <Field label="SEO Başlık" name="seoTitle" defaultValue={post?.seoTitle} />
-          <Field label="SEO Açıklama" name="seoDescription" defaultValue={post?.seoDescription} />
+        <div>
+          <SeoFields title={post?.seoTitle} description={post?.seoDescription} />
         </div>
 
         <div className="mt-6">

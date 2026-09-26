@@ -1,3 +1,4 @@
+import { SeoFields } from "@/components/admin/seo-fields";
 import { AdminCard, CheckboxField, Field, SubmitButton, TextareaField } from "@/components/admin/fields";
 
 type ServiceData = {
@@ -39,9 +40,8 @@ export function ServiceForm({ service, action }: { service?: ServiceData; action
         </div>
 
         <h3 className="mt-6 mb-3 text-sm font-bold text-ink">SEO</h3>
-        <div className="grid gap-4 sm:grid-cols-2">
-          <Field label="SEO Başlık" name="seoTitle" defaultValue={service?.seoTitle} />
-          <Field label="SEO Açıklama" name="seoDescription" defaultValue={service?.seoDescription} />
+        <div>
+          <SeoFields title={service?.seoTitle} description={service?.seoDescription} />
         </div>
 
         <div className="mt-6">
