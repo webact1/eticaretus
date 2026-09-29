@@ -11,6 +11,10 @@
     "woocommerce": {
       "seoTitle": "WooCommerce E-Ticaret Altyapısı",
       "seoDescription": "WooCommerce e-ticaret çözümleri çok yakında eticaretus'ta. Şimdilik IdeaSoft paketleri için ücretsiz danışmanlık almak üzere bize ulaşın."
+    },
+    "ikas": {
+      "seoTitle": "ikas E-Ticaret Altyapısı ve Paketleri",
+      "seoDescription": "ikas Lift, Scale, Scale Plus ve Premium paketlerini karşılaştırın; hazır sanal POS, anlaşmalı kargo ve pazaryeri entegrasyonlarıyla size özel fiyat alın."
     }
   },
   "Package": {
@@ -29,16 +33,32 @@
     "master-plus": {
       "seoTitle": "IdeaSoft Master+ Paketi: Özellikler ve Fiyat",
       "seoDescription": "IdeaSoft Master+: sınırsız pazaryeri entegrasyonu, müşteri mobil uygulaması, gelişmiş SEO ve yüksek reklam desteğiyle tam kapsamlı e-ticaret."
+    },
+    "lift": {
+      "seoTitle": "ikas Lift Paketi: Özellikler ve Fiyat",
+      "seoDescription": "ikas Lift paketi: 500 ürün, sınırsız trafik, hazır sanal POS, anlaşmalı kargo ve yapay zekâ destekli ürün içerikleri. Size özel fiyat alın."
+    },
+    "scale": {
+      "seoTitle": "ikas Scale Paketi: Özellikler ve Fiyat",
+      "seoDescription": "En çok tercih edilen ikas Scale: sınırsız ürün, Trendyol, Hepsiburada, N11, Amazon ve Etsy entegrasyonu, e-ihracat ve sepet hatırlatma."
+    },
+    "scale-plus": {
+      "seoTitle": "ikas Scale Plus Paketi: Özellikler ve Fiyat",
+      "seoDescription": "ikas Scale Plus: 26 pazaryeri entegrasyonu, ERP entegrasyonları, mobil uygulama, B2B satış, yapay zekâ asistanı ve 7/24 öncelikli destek."
+    },
+    "premium": {
+      "seoTitle": "ikas Premium Paketi: Özellikler ve Fiyat",
+      "seoDescription": "ikas Premium: bireysel müşteri temsilcisi, Growth Manager büyüme desteği, özel tema tasarımı ve native mobil uygulamayla büyük markalara çözüm."
     }
   },
   "Service": {
     "e-ticaret-danismanligi": {
       "seoTitle": "E-Ticaret Danışmanlığı ve Altyapı Seçimi",
-      "seoDescription": "İşletmenize uygun e-ticaret altyapısını ve büyüme stratejisini birlikte belirleyelim: IdeaSoft paket seçimi, kurulum planı ve ücretsiz ön görüşme."
+      "seoDescription": "İşletmenize uygun e-ticaret altyapısını ve büyüme stratejisini birlikte belirleyelim: IdeaSoft ve ikas paket seçimi, kurulum planı ve ücretsiz ön görüşme."
     },
     "e-ticaret-sitesi-kurulumu": {
       "seoTitle": "E-Ticaret Sitesi Kurulumu ve Yayına Alma",
-      "seoDescription": "IdeaSoft altyapısında e-ticaret sitenizi kuruyor; ürün, ödeme, kargo ve yasal sayfa ayarlarını tamamlayıp mağazanızı sorunsuz yayına alıyoruz."
+      "seoDescription": "IdeaSoft veya ikas altyapısında e-ticaret sitenizi kuruyor; ürün, ödeme, kargo ve yasal sayfa ayarlarını tamamlayıp mağazanızı sorunsuz yayına alıyoruz."
     },
     "tema-arayuz-duzenlemeleri": {
       "seoTitle": "E-Ticaret Tema ve Arayüz Düzenlemeleri",
@@ -76,7 +96,7 @@
   "Page": {
     "hakkimizda": {
       "seoTitle": "Hakkımızda",
-      "seoDescription": "eticaretus, işletmelere doğru e-ticaret altyapısını seçme, kurma ve büyütme süreçlerinde danışmanlık veren IdeaSoft iş ortağıdır."
+      "seoDescription": "eticaretus, işletmelere doğru e-ticaret altyapısını seçme, kurma ve büyütme süreçlerinde danışmanlık veren IdeaSoft ve ikas iş ortağıdır."
     },
     "kvkk": {
       "seoTitle": "KVKK Aydınlatma Metni",

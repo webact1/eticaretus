@@ -31,7 +31,7 @@ function buildOrganizationJsonLd(settings: Awaited<ReturnType<typeof getSiteSett
         url: SITE_URL,
         logo: { "@type": "ImageObject", url: absoluteUrl("/images/logo.png"), width: 900, height: 205 },
         image: absoluteUrl("/opengraph-image.png"),
-        description: "IdeaSoft e-ticaret altyapısı danışmanlığı, kurulum ve destek hizmetleri.",
+        description: "IdeaSoft ve ikas e-ticaret altyapısı iş ortağı: paket seçimi, kurulum, danışmanlık ve destek hizmetleri.",
         ...(settings.email ? { email: settings.email } : {}),
         ...(settings.address
           ? { address: { "@type": "PostalAddress", streetAddress: settings.address, addressCountry: "TR" } }

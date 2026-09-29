@@ -30,7 +30,8 @@ const columns = [
   {
     title: "Çözümler",
     links: [
-      { label: "IdeaSoft Paketleri", href: "/paketler" },
+      { label: "IdeaSoft Paketleri", href: "/paketler/ideasoft" },
+      { label: "ikas Paketleri", href: "/paketler/ikas" },
       { label: "Hizmetler", href: "/hizmetler" },
       { label: "Rehber", href: "/rehber" },
     ],

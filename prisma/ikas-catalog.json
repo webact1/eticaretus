@@ -1,0 +1,1275 @@
+{
+  "provider": {
+    "slug": "ikas",
+    "name": "ikas",
+    "logoUrl": "/images/partners/ikas.svg",
+    "order": 1,
+    "status": "active",
+    "shortDescription": "Hazır sanal POS, anlaşmalı kargo ve yapay zekâ destekli e-ticaret altyapısı",
+    "description": "ikas, 100.000'i aşkın kullanıcısıyla Türkiye'nin öne çıkan e-ticaret altyapılarından biridir. Hazır sanal POS, anlaşmalı kargo fiyatları, yapay zekâ ile ürün görseli ve açıklaması, pazaryeri ve e-ihracat entegrasyonları tek panelde. eticaretus olarak ikas'ın iş ortağıyız; paket seçiminden kuruluma, satış sonrası desteğe kadar yanınızdayız.",
+    "advantages": [
+      "Hazır sanal POS ve anlaşmalı kargo fiyatları",
+      "Yapay zekâ ile ürün görseli ve açıklaması",
+      "Pazaryeri ve e-ihracat entegrasyonları",
+      "Sınırsız trafik ve web alanı"
+    ],
+    "suitableFor": "Hızlı başlamak isteyen KOBİ'lerden yurt dışına satış yapan büyüyen markalara kadar her ölçekte işletme.",
+    "seoTitle": "ikas E-Ticaret Altyapısı ve Paketleri",
+    "seoDescription": "ikas Lift, Scale, Scale Plus ve Premium paketlerini karşılaştırın; hazır sanal POS, anlaşmalı kargo ve pazaryeri entegrasyonlarıyla size özel fiyat alın."
+  },
+  "packages": [
+    {
+      "slug": "lift",
+      "name": "Lift",
+      "shortDescription": "E-ticareti ciddiye alanlar için",
+      "featured": false,
+      "order": 0,
+      "seoTitle": "ikas Lift Paketi: Özellikler ve Fiyat",
+      "seoDescription": "ikas Lift paketi: 500 ürün, sınırsız trafik, hazır sanal POS, anlaşmalı kargo ve yapay zekâ destekli ürün içerikleri. Size özel fiyat alın."
+    },
+    {
+      "slug": "scale",
+      "name": "Scale",
+      "shortDescription": "Tüm dünyaya satış yapmak isteyenler için",
+      "featured": true,
+      "order": 1,
+      "seoTitle": "ikas Scale Paketi: Özellikler ve Fiyat",
+      "seoDescription": "En çok tercih edilen ikas Scale: sınırsız ürün, Trendyol, Hepsiburada, N11, Amazon ve Etsy entegrasyonu, e-ihracat ve sepet hatırlatma."
+    },
+    {
+      "slug": "scale-plus",
+      "name": "Scale Plus",
+      "shortDescription": "E-ticarette ihtiyacınız olan her şey",
+      "featured": false,
+      "order": 2,
+      "seoTitle": "ikas Scale Plus Paketi: Özellikler ve Fiyat",
+      "seoDescription": "ikas Scale Plus: 26 pazaryeri entegrasyonu, ERP entegrasyonları, mobil uygulama, B2B satış, yapay zekâ asistanı ve 7/24 öncelikli destek."
+    },
+    {
+      "slug": "premium",
+      "name": "Premium",
+      "shortDescription": "Büyük markalar için özel çözümler",
+      "featured": false,
+      "order": 3,
+      "seoTitle": "ikas Premium Paketi: Özellikler ve Fiyat",
+      "seoDescription": "ikas Premium: bireysel müşteri temsilcisi, Growth Manager büyüme desteği, özel tema tasarımı ve native mobil uygulamayla büyük markalara çözüm."
+    }
+  ],
+  "categories": [
+    {
+      "name": "Altyapı ve Ödeme",
+      "order": 100,
+      "features": [
+        {
+          "key": "sanalPos",
+          "name": "Hazır Sanal POS Oranı",
+          "order": 0,
+          "values": {
+            "lift": {
+              "included": true,
+              "value": "%0'dan başlayan oranlar"
+            },
+            "scale": {
+              "included": true,
+              "value": "%0'dan başlayan oranlar"
+            },
+            "scale-plus": {
+              "included": true,
+              "value": "%0'dan başlayan oranlar"
+            },
+            "premium": {
+              "included": true,
+              "value": "%0'dan başlayan oranlar"
+            }
+          }
+        },
+        {
+          "key": "kendiPos",
+          "name": "Kendi Sanal POS'unu Kullanma",
+          "order": 1,
+          "values": {
+            "lift": {
+              "included": true,
+              "value": null
+            },
+            "scale": {
+              "included": true,
+              "value": null
+            },
+            "scale-plus": {
+              "included": true,
+              "value": null
+            },
+            "premium": {
+              "included": true,
+              "value": null
+            }
+          }
+        },
+        {
+          "key": "bankaPos",
+          "name": "Banka Sanal POS'u Bağlayabilme",
+          "order": 2,
+          "values": {
+            "lift": {
+              "included": false,
+              "value": null
+            },
+            "scale": {
+              "included": false,
+              "value": null
+            },
+            "scale-plus": {
+              "included": true,
+              "value": "+%0,60 hizmet bedeli"
+            },
+            "premium": {
+              "included": true,
+              "value": "+%0,60 hizmet bedeli"
+            }
+          }
+        },
+        {
+          "key": "gecisDestegi",
+          "name": "Altyapı Geçiş Desteği",
+          "order": 3,
+          "values": {
+            "lift": {
+              "included": true,
+              "value": null
+            },
+            "scale": {
+              "included": true,
+              "value": null
+            },
+            "scale-plus": {
+              "included": true,
+              "value": null
+            },
+            "premium": {
+              "included": true,
+              "value": null
+            }
+          }
+        },
+        {
+          "key": "urunTrafik",
+          "name": "Ürün Listeleme, Trafik ve Web Alanı",
+          "order": 4,
+          "values": {
+            "lift": {
+              "included": true,
+              "value": "500 ürün, sınırsız trafik"
+            },
+            "scale": {
+              "included": true,
+              "value": "Sınırsız"
+            },
+            "scale-plus": {
+              "included": true,
+              "value": "Sınırsız"
+            },
+            "premium": {
+              "included": true,
+              "value": "Sınırsız"
+            }
+          }
+        },
+        {
+          "key": "ssl",
+          "name": "SSL Sertifikası",
+          "order": 5,
+          "values": {
+            "lift": {
+              "included": true,
+              "value": null
+            },
+            "scale": {
+              "included": true,
+              "value": null
+            },
+            "scale-plus": {
+              "included": true,
+              "value": null
+            },
+            "premium": {
+              "included": true,
+              "value": null
+            }
+          }
+        },
+        {
+          "key": "indirimliKargo",
+          "name": "İndirimli Kargo Fiyatları",
+          "order": 6,
+          "values": {
+            "lift": {
+              "included": true,
+              "value": "Anlaşmalı kargo fiyatları"
+            },
+            "scale": {
+              "included": true,
+              "value": "Anlaşmalı kargo fiyatları"
+            },
+            "scale-plus": {
+              "included": true,
+              "value": "Anlaşmalı kargo fiyatları"
+            },
+            "premium": {
+              "included": true,
+              "value": "Anlaşmalı kargo fiyatları"
+            }
+          }
+        },
+        {
+          "key": "tekSayfaOdeme",
+          "name": "Tek Sayfada Ödeme",
+          "order": 7,
+          "values": {
+            "lift": {
+              "included": true,
+              "value": null
+            },
+            "scale": {
+              "included": true,
+              "value": null
+            },
+            "scale-plus": {
+              "included": true,
+              "value": null
+            },
+            "premium": {
+              "included": true,
+              "value": null
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Yapay Zekâ Özellikleri",
+      "order": 101,
+      "features": [
+        {
+          "key": "aiGorsel",
+          "name": "Yapay Zekâ ile Ürün Görseli Oluşturma",
+          "order": 0,
+          "values": {
+            "lift": {
+              "included": true,
+              "value": null
+            },
+            "scale": {
+              "included": true,
+              "value": null
+            },
+            "scale-plus": {
+              "included": true,
+              "value": "Sınırsız"
+            },
+            "premium": {
+              "included": true,
+              "value": "Sınırsız"
+            }
+          }
+        },
+        {
+          "key": "aiModel",
+          "name": "Ürünleri Model Üzerinde Gösterme",
+          "order": 1,
+          "values": {
+            "lift": {
+              "included": true,
+              "value": null
+            },
+            "scale": {
+              "included": true,
+              "value": null
+            },
+            "scale-plus": {
+              "included": true,
+              "value": "Sınırsız"
+            },
+            "premium": {
+              "included": true,
+              "value": "Sınırsız"
+            }
+          }
+        },
+        {
+          "key": "aiAciklama",
+          "name": "Ürün Açıklaması Oluşturma ve İyileştirme",
+          "order": 2,
+          "values": {
+            "lift": {
+              "included": true,
+              "value": null
+            },
+            "scale": {
+              "included": true,
+              "value": null
+            },
+            "scale-plus": {
+              "included": true,
+              "value": "Sınırsız"
+            },
+            "premium": {
+              "included": true,
+              "value": "Sınırsız"
+            }
+          }
+        },
+        {
+          "key": "aiGorselDuzenleme",
+          "name": "Ürün Görseli Düzenleme",
+          "order": 3,
+          "values": {
+            "lift": {
+              "included": true,
+              "value": null
+            },
+            "scale": {
+              "included": true,
+              "value": null
+            },
+            "scale-plus": {
+              "included": true,
+              "value": "Sınırsız"
+            },
+            "premium": {
+              "included": true,
+              "value": "Sınırsız"
+            }
+          }
+        },
+        {
+          "key": "aiIsik",
+          "name": "Görsel Işık Düzenleme",
+          "order": 4,
+          "values": {
+            "lift": {
+              "included": true,
+              "value": null
+            },
+            "scale": {
+              "included": true,
+              "value": null
+            },
+            "scale-plus": {
+              "included": true,
+              "value": "Sınırsız"
+            },
+            "premium": {
+              "included": true,
+              "value": "Sınırsız"
+            }
+          }
+        },
+        {
+          "key": "aiAsistan",
+          "name": "Yapay Zekâ Asistanı",
+          "order": 5,
+          "values": {
+            "lift": {
+              "included": false,
+              "value": null
+            },
+            "scale": {
+              "included": false,
+              "value": null
+            },
+            "scale-plus": {
+              "included": true,
+              "value": null
+            },
+            "premium": {
+              "included": true,
+              "value": null
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Mağaza Yönetimi",
+      "order": 102,
+      "features": [
+        {
+          "key": "kullaniciSayisi",
+          "name": "Yönetici Kullanıcı Sayısı",
+          "order": 0,
+          "values": {
+            "lift": {
+              "included": true,
+              "value": "1"
+            },
+            "scale": {
+              "included": true,
+              "value": "5"
+            },
+            "scale-plus": {
+              "included": true,
+              "value": "15"
+            },
+            "premium": {
+              "included": true,
+              "value": "15"
+            }
+          }
+        },
+        {
+          "key": "pazaryeri",
+          "name": "Pazaryeri Entegrasyonları",
+          "order": 1,
+          "values": {
+            "lift": {
+              "included": false,
+              "value": null
+            },
+            "scale": {
+              "included": true,
+              "value": "Trendyol, Hepsiburada, N11, Amazon, Etsy"
+            },
+            "scale-plus": {
+              "included": true,
+              "value": "19 yurt içi + 7 yurt dışı pazaryeri"
+            },
+            "premium": {
+              "included": true,
+              "value": "19 yurt içi + 7 yurt dışı pazaryeri"
+            }
+          }
+        },
+        {
+          "key": "erp",
+          "name": "ERP Entegrasyonları",
+          "order": 2,
+          "values": {
+            "lift": {
+              "included": false,
+              "value": null
+            },
+            "scale": {
+              "included": false,
+              "value": null
+            },
+            "scale-plus": {
+              "included": true,
+              "value": "Logo, Mikro, Nebim V3, Netsis ve diğerleri"
+            },
+            "premium": {
+              "included": true,
+              "value": "Logo, Mikro, Nebim V3, Netsis ve diğerleri"
+            }
+          }
+        },
+        {
+          "key": "mobilUygulama",
+          "name": "Mobil Uygulama",
+          "order": 3,
+          "values": {
+            "lift": {
+              "included": false,
+              "value": null
+            },
+            "scale": {
+              "included": false,
+              "value": null
+            },
+            "scale-plus": {
+              "included": true,
+              "value": "Webview uygulama"
+            },
+            "premium": {
+              "included": true,
+              "value": "Native uygulama"
+            }
+          }
+        },
+        {
+          "key": "iadeYonetimi",
+          "name": "Gelişmiş İade Yönetimi",
+          "order": 4,
+          "values": {
+            "lift": {
+              "included": true,
+              "value": null
+            },
+            "scale": {
+              "included": true,
+              "value": null
+            },
+            "scale-plus": {
+              "included": true,
+              "value": null
+            },
+            "premium": {
+              "included": true,
+              "value": null
+            }
+          }
+        },
+        {
+          "key": "kargoEntegrasyon",
+          "name": "Kargo Entegrasyonları",
+          "order": 5,
+          "values": {
+            "lift": {
+              "included": true,
+              "value": null
+            },
+            "scale": {
+              "included": true,
+              "value": null
+            },
+            "scale-plus": {
+              "included": true,
+              "value": null
+            },
+            "premium": {
+              "included": true,
+              "value": null
+            }
+          }
+        },
+        {
+          "key": "dijitalUrun",
+          "name": "Dijital Ürün Satışı",
+          "order": 6,
+          "values": {
+            "lift": {
+              "included": true,
+              "value": null
+            },
+            "scale": {
+              "included": true,
+              "value": null
+            },
+            "scale-plus": {
+              "included": true,
+              "value": null
+            },
+            "premium": {
+              "included": true,
+              "value": null
+            }
+          }
+        },
+        {
+          "key": "blog",
+          "name": "Blog",
+          "order": 7,
+          "values": {
+            "lift": {
+              "included": true,
+              "value": null
+            },
+            "scale": {
+              "included": true,
+              "value": null
+            },
+            "scale-plus": {
+              "included": true,
+              "value": null
+            },
+            "premium": {
+              "included": true,
+              "value": null
+            }
+          }
+        },
+        {
+          "key": "fizikselMagaza",
+          "name": "Fiziksel Mağaza Satışı",
+          "order": 8,
+          "values": {
+            "lift": {
+              "included": true,
+              "value": "Opsiyonel"
+            },
+            "scale": {
+              "included": true,
+              "value": "Opsiyonel"
+            },
+            "scale-plus": {
+              "included": true,
+              "value": "Opsiyonel"
+            },
+            "premium": {
+              "included": true,
+              "value": "Opsiyonel"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Pazarlama ve Satış",
+      "order": 103,
+      "features": [
+        {
+          "key": "kisisellestirme",
+          "name": "Ürün Kişiselleştirme",
+          "order": 0,
+          "values": {
+            "lift": {
+              "included": true,
+              "value": null
+            },
+            "scale": {
+              "included": true,
+              "value": null
+            },
+            "scale-plus": {
+              "included": true,
+              "value": null
+            },
+            "premium": {
+              "included": true,
+              "value": null
+            }
+          }
+        },
+        {
+          "key": "dijitalPazarlama",
+          "name": "Dijital Pazarlama Özellikleri",
+          "order": 1,
+          "values": {
+            "lift": {
+              "included": true,
+              "value": null
+            },
+            "scale": {
+              "included": true,
+              "value": null
+            },
+            "scale-plus": {
+              "included": true,
+              "value": null
+            },
+            "premium": {
+              "included": true,
+              "value": null
+            }
+          }
+        },
+        {
+          "key": "kampanyalar",
+          "name": "Kampanyalar",
+          "order": 2,
+          "values": {
+            "lift": {
+              "included": true,
+              "value": null
+            },
+            "scale": {
+              "included": true,
+              "value": "Gelişmiş"
+            },
+            "scale-plus": {
+              "included": true,
+              "value": "Gelişmiş"
+            },
+            "premium": {
+              "included": true,
+              "value": "Gelişmiş"
+            }
+          }
+        },
+        {
+          "key": "sepetHatirlatma",
+          "name": "Otomatik Sepet Hatırlatma Bildirimleri",
+          "order": 3,
+          "values": {
+            "lift": {
+              "included": false,
+              "value": null
+            },
+            "scale": {
+              "included": true,
+              "value": "Sınırsız + 3 akış"
+            },
+            "scale-plus": {
+              "included": true,
+              "value": "Sınırsız + 3 akış"
+            },
+            "premium": {
+              "included": true,
+              "value": "Sınırsız + 3 akış"
+            }
+          }
+        },
+        {
+          "key": "epostaPazarlama",
+          "name": "E-posta Pazarlama",
+          "order": 4,
+          "values": {
+            "lift": {
+              "included": true,
+              "value": "Aylık 1.000 e-posta ücretsiz"
+            },
+            "scale": {
+              "included": true,
+              "value": "Aylık 1.000 e-posta ücretsiz"
+            },
+            "scale-plus": {
+              "included": true,
+              "value": "Aylık 1.000 e-posta ücretsiz"
+            },
+            "premium": {
+              "included": true,
+              "value": "Aylık 1.000 e-posta ücretsiz"
+            }
+          }
+        },
+        {
+          "key": "smsHatirlatma",
+          "name": "SMS Hatırlatma",
+          "order": 5,
+          "values": {
+            "lift": {
+              "included": false,
+              "value": null
+            },
+            "scale": {
+              "included": true,
+              "value": null
+            },
+            "scale-plus": {
+              "included": true,
+              "value": null
+            },
+            "premium": {
+              "included": true,
+              "value": null
+            }
+          }
+        },
+        {
+          "key": "sepetKurgusu",
+          "name": "Otomatik Sepet Hatırlatma Kurgusu",
+          "order": 6,
+          "values": {
+            "lift": {
+              "included": false,
+              "value": null
+            },
+            "scale": {
+              "included": true,
+              "value": null
+            },
+            "scale-plus": {
+              "included": true,
+              "value": null
+            },
+            "premium": {
+              "included": true,
+              "value": null
+            }
+          }
+        },
+        {
+          "key": "whatsappHatirlatma",
+          "name": "WhatsApp ile Sepet Hatırlatma",
+          "order": 7,
+          "values": {
+            "lift": {
+              "included": false,
+              "value": null
+            },
+            "scale": {
+              "included": false,
+              "value": null
+            },
+            "scale-plus": {
+              "included": true,
+              "value": null
+            },
+            "premium": {
+              "included": true,
+              "value": null
+            }
+          }
+        },
+        {
+          "key": "caprazSatis",
+          "name": "Çapraz Satış",
+          "order": 8,
+          "values": {
+            "lift": {
+              "included": false,
+              "value": null
+            },
+            "scale": {
+              "included": true,
+              "value": null
+            },
+            "scale-plus": {
+              "included": true,
+              "value": null
+            },
+            "premium": {
+              "included": true,
+              "value": null
+            }
+          }
+        },
+        {
+          "key": "ileriCapraz",
+          "name": "İleri Seviye Çapraz Satış",
+          "order": 9,
+          "values": {
+            "lift": {
+              "included": false,
+              "value": null
+            },
+            "scale": {
+              "included": false,
+              "value": null
+            },
+            "scale-plus": {
+              "included": true,
+              "value": null
+            },
+            "premium": {
+              "included": true,
+              "value": null
+            }
+          }
+        },
+        {
+          "key": "katliIndirim",
+          "name": "Katlı İndirim",
+          "order": 10,
+          "values": {
+            "lift": {
+              "included": false,
+              "value": null
+            },
+            "scale": {
+              "included": true,
+              "value": null
+            },
+            "scale-plus": {
+              "included": true,
+              "value": null
+            },
+            "premium": {
+              "included": true,
+              "value": null
+            }
+          }
+        },
+        {
+          "key": "masterpass",
+          "name": "Masterpass",
+          "order": 11,
+          "values": {
+            "lift": {
+              "included": false,
+              "value": null
+            },
+            "scale": {
+              "included": true,
+              "value": null
+            },
+            "scale-plus": {
+              "included": true,
+              "value": null
+            },
+            "premium": {
+              "included": true,
+              "value": null
+            }
+          }
+        },
+        {
+          "key": "stokBildirimi",
+          "name": "Tekrar Stokta Bildirimi",
+          "order": 12,
+          "values": {
+            "lift": {
+              "included": false,
+              "value": null
+            },
+            "scale": {
+              "included": true,
+              "value": null
+            },
+            "scale-plus": {
+              "included": true,
+              "value": null
+            },
+            "premium": {
+              "included": true,
+              "value": null
+            }
+          }
+        },
+        {
+          "key": "sesliRobot",
+          "name": "Sesli Robot ile Müşteri Hizmetleri",
+          "order": 13,
+          "values": {
+            "lift": {
+              "included": false,
+              "value": null
+            },
+            "scale": {
+              "included": true,
+              "value": null
+            },
+            "scale-plus": {
+              "included": true,
+              "value": null
+            },
+            "premium": {
+              "included": true,
+              "value": null
+            }
+          }
+        },
+        {
+          "key": "softphone",
+          "name": "850'li Numara (Verimor Softphone)",
+          "order": 14,
+          "values": {
+            "lift": {
+              "included": true,
+              "value": null
+            },
+            "scale": {
+              "included": true,
+              "value": null
+            },
+            "scale-plus": {
+              "included": true,
+              "value": null
+            },
+            "premium": {
+              "included": true,
+              "value": null
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Stok ve Teslimat",
+      "order": 104,
+      "features": [
+        {
+          "key": "stokLokasyonu",
+          "name": "Stok Lokasyonu",
+          "order": 0,
+          "values": {
+            "lift": {
+              "included": false,
+              "value": null
+            },
+            "scale": {
+              "included": true,
+              "value": "6 Lokasyon"
+            },
+            "scale-plus": {
+              "included": true,
+              "value": "10 Lokasyon"
+            },
+            "premium": {
+              "included": true,
+              "value": "10 Lokasyon"
+            }
+          }
+        },
+        {
+          "key": "b2b",
+          "name": "B2B / Kurumsal Satış",
+          "order": 1,
+          "values": {
+            "lift": {
+              "included": false,
+              "value": null
+            },
+            "scale": {
+              "included": false,
+              "value": null
+            },
+            "scale-plus": {
+              "included": true,
+              "value": null
+            },
+            "premium": {
+              "included": true,
+              "value": null
+            }
+          }
+        },
+        {
+          "key": "magazadanTeslim",
+          "name": "Mağazadan Teslimat",
+          "order": 2,
+          "values": {
+            "lift": {
+              "included": false,
+              "value": null
+            },
+            "scale": {
+              "included": false,
+              "value": null
+            },
+            "scale-plus": {
+              "included": true,
+              "value": null
+            },
+            "premium": {
+              "included": true,
+              "value": null
+            }
+          }
+        },
+        {
+          "key": "bolgeTeslimat",
+          "name": "Bölge Bazlı Teslimat",
+          "order": 3,
+          "values": {
+            "lift": {
+              "included": true,
+              "value": null
+            },
+            "scale": {
+              "included": true,
+              "value": null
+            },
+            "scale-plus": {
+              "included": true,
+              "value": null
+            },
+            "premium": {
+              "included": true,
+              "value": null
+            }
+          }
+        },
+        {
+          "key": "hizliTeslimat",
+          "name": "Hızlı Teslimat",
+          "order": 4,
+          "values": {
+            "lift": {
+              "included": false,
+              "value": null
+            },
+            "scale": {
+              "included": true,
+              "value": null
+            },
+            "scale-plus": {
+              "included": true,
+              "value": null
+            },
+            "premium": {
+              "included": true,
+              "value": null
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "E-İhracat",
+      "order": 105,
+      "features": [
+        {
+          "key": "eIhracat",
+          "name": "E-İhracat",
+          "order": 0,
+          "values": {
+            "lift": {
+              "included": false,
+              "value": null
+            },
+            "scale": {
+              "included": true,
+              "value": null
+            },
+            "scale-plus": {
+              "included": true,
+              "value": null
+            },
+            "premium": {
+              "included": true,
+              "value": null
+            }
+          }
+        },
+        {
+          "key": "dilSecenegi",
+          "name": "Dil Seçeneği",
+          "order": 1,
+          "values": {
+            "lift": {
+              "included": false,
+              "value": null
+            },
+            "scale": {
+              "included": true,
+              "value": "Sınırsız"
+            },
+            "scale-plus": {
+              "included": true,
+              "value": "Sınırsız"
+            },
+            "premium": {
+              "included": true,
+              "value": "Sınırsız"
+            }
+          }
+        },
+        {
+          "key": "fiyatListesi",
+          "name": "Farklı Fiyat Listeleri",
+          "order": 2,
+          "values": {
+            "lift": {
+              "included": false,
+              "value": null
+            },
+            "scale": {
+              "included": true,
+              "value": null
+            },
+            "scale-plus": {
+              "included": true,
+              "value": "Sınırsız"
+            },
+            "premium": {
+              "included": true,
+              "value": "Sınırsız"
+            }
+          }
+        },
+        {
+          "key": "dinamikFiyat",
+          "name": "Dinamik Fiyatlandırma",
+          "order": 3,
+          "values": {
+            "lift": {
+              "included": false,
+              "value": null
+            },
+            "scale": {
+              "included": true,
+              "value": null
+            },
+            "scale-plus": {
+              "included": true,
+              "value": null
+            },
+            "premium": {
+              "included": true,
+              "value": null
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Destek ve Hizmetler",
+      "order": 106,
+      "features": [
+        {
+          "key": "musteriDestegi",
+          "name": "Müşteri Desteği",
+          "order": 0,
+          "values": {
+            "lift": {
+              "included": true,
+              "value": "7/24 Ticket Desteği"
+            },
+            "scale": {
+              "included": true,
+              "value": "7/24 Telefon, Mail ve Ticket Desteği"
+            },
+            "scale-plus": {
+              "included": true,
+              "value": "7/24 Öncelikli Destek"
+            },
+            "premium": {
+              "included": true,
+              "value": "7/24 Öncelikli Destek"
+            }
+          }
+        },
+        {
+          "key": "musteriTemsilcisi",
+          "name": "Bireysel Müşteri Temsilcisi",
+          "order": 1,
+          "values": {
+            "lift": {
+              "included": false,
+              "value": null
+            },
+            "scale": {
+              "included": false,
+              "value": null
+            },
+            "scale-plus": {
+              "included": false,
+              "value": null
+            },
+            "premium": {
+              "included": true,
+              "value": null
+            }
+          }
+        },
+        {
+          "key": "growthManager",
+          "name": "Growth Manager ile Büyüme Desteği",
+          "order": 2,
+          "values": {
+            "lift": {
+              "included": false,
+              "value": null
+            },
+            "scale": {
+              "included": false,
+              "value": null
+            },
+            "scale-plus": {
+              "included": false,
+              "value": null
+            },
+            "premium": {
+              "included": true,
+              "value": null
+            }
+          }
+        },
+        {
+          "key": "ozelTema",
+          "name": "Özel Tema Tasarımı ve Kodlama",
+          "order": 3,
+          "values": {
+            "lift": {
+              "included": false,
+              "value": null
+            },
+            "scale": {
+              "included": false,
+              "value": null
+            },
+            "scale-plus": {
+              "included": false,
+              "value": null
+            },
+            "premium": {
+              "included": true,
+              "value": null
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

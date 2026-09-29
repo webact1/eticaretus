@@ -23,7 +23,7 @@ const staticPaths = [
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const [packages, services, posts] = await Promise.all([
-    prisma.package.findMany({ where: { active: true }, include: { provider: true } }),
+    prisma.package.findMany({ where: { active: true, provider: { status: "active" } }, include: { provider: true } }),
     prisma.service.findMany({ where: { active: true } }),
     prisma.blogPost.findMany({ where: { published: true } }),
   ]);
@@ -34,6 +34,9 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: path === "" ? 1 : path === "/paketler" ? 0.9 : 0.7,
   }));
 
+  for (const slug of new Set(packages.map((p) => p.provider.slug))) {
+    entries.push({ url: `${BASE_URL}/paketler/${slug}`, changeFrequency: "monthly", priority: 0.8 });
+  }
   for (const pkg of packages) {
     entries.push({ url: `${BASE_URL}/paketler/${pkg.provider.slug}/${pkg.slug}`, lastModified: pkg.updatedAt });
   }

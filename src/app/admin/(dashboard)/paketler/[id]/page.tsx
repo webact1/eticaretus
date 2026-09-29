@@ -41,9 +41,9 @@ export default async function EditPackagePage({
             <Field label="Paket Adı" name="name" defaultValue={pkg.name} required />
             <Field label="Slug" name="slug" defaultValue={pkg.slug} required />
             <Field label="Sıra" name="order" type="number" defaultValue={pkg.order} />
-            <Field label="Fiyat (₺)" name="price" type="number" defaultValue={pkg.price} />
-            <Field label="Eski Fiyat (₺)" name="oldPrice" type="number" defaultValue={pkg.oldPrice} />
-            <Field label="Fatura Notu" name="billingNote" defaultValue={pkg.billingNote} />
+            <Field label="Fiyat (₺) — sitede gösterilmez" name="price" type="number" defaultValue={pkg.price} />
+            <Field label="Eski Fiyat (₺) — sitede gösterilmez" name="oldPrice" type="number" defaultValue={pkg.oldPrice} />
+            <Field label="Fatura Notu — sitede gösterilmez" name="billingNote" defaultValue={pkg.billingNote} />
             <Field label="Kampanya Etiketi" name="campaignLabel" defaultValue={pkg.campaignLabel} />
           </div>
           <div className="mt-4">

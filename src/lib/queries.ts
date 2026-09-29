@@ -1,4 +1,5 @@
 import { prisma } from "@/lib/prisma";
+import { previewFeatureNames } from "@/lib/constants";
 
 export async function getVisibleProviders() {
   return prisma.provider.findMany({
@@ -37,7 +38,82 @@ export async function getPackageComparison(providerId: string) {
     }),
   ]);
 
-  return { categories, packages };
+  // Özellik kataloğu tüm sağlayıcılar için ortak tabloda: yalnız bu sağlayıcının paketlerinde tanımlı özellikler/kategoriler gösterilir.
+  const used = new Set(packages.flatMap((p) => p.packageFeatures.map((pf) => pf.featureId)));
+  const scoped = categories
+    .map((c) => ({ ...c, features: c.features.filter((f) => used.has(f.id)) }))
+    .filter((c) => c.features.length > 0);
+
+  return { categories: scoped, packages };
+}
+
+export type ProviderPackageCard = {
+  slug: string;
+  name: string;
+  shortDescription: string | null;
+  campaignLabel: string | null;
+  featured: boolean;
+  features: Array<{ name: string; included: boolean; value: string | null }>;
+};
+
+export type ProviderWithPackages = {
+  slug: string;
+  name: string;
+  logoUrl: string | null;
+  shortDescription: string;
+  description: string;
+  suitableFor: string | null;
+  advantages: string[];
+  packages: ProviderPackageCard[];
+};
+
+/** Aktif sağlayıcılar ve paket kartları (anasayfa ve Paketler sayfası). Fiyat alanları bilerek dışarıda: fiyat müşteriye özel verilir. */
+export async function getProvidersWithPackages(): Promise<ProviderWithPackages[]> {
+  const providers = await prisma.provider.findMany({
+    where: { status: "active" },
+    orderBy: { order: "asc" },
+    include: {
+      packages: {
+        where: { active: true },
+        orderBy: { order: "asc" },
+        include: { packageFeatures: { include: { feature: { select: { name: true } } } } },
+      },
+    },
+  });
+  return providers
+    .filter((p) => p.packages.length > 0)
+    .map((p) => {
+      const names = previewFeatureNames(p.slug);
+      return {
+        slug: p.slug,
+        name: p.name,
+        logoUrl: p.logoUrl,
+        shortDescription: p.shortDescription,
+        description: p.description,
+        suitableFor: p.suitableFor,
+        advantages: parseAdvantages(p.advantages),
+        packages: p.packages.map((pkg) => ({
+          slug: pkg.slug,
+          name: pkg.name,
+          shortDescription: pkg.shortDescription,
+          campaignLabel: pkg.campaignLabel,
+          featured: pkg.featured,
+          features: names
+            .map((name) => pkg.packageFeatures.find((pf) => pf.feature.name === name))
+            .filter((pf): pf is NonNullable<typeof pf> => Boolean(pf))
+            .map((pf) => ({ name: pf.feature.name, included: pf.included, value: pf.value })),
+        })),
+      };
+    });
+}
+
+function parseAdvantages(raw: string): string[] {
+  try {
+    const v = JSON.parse(raw || "[]");
+    return Array.isArray(v) ? v.filter((x): x is string => typeof x === "string") : [];
+  } catch {
+    return [];
+  }
 }
 
 export async function getPackageBySlug(providerSlug: string, packageSlug: string) {

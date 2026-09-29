@@ -17,21 +17,13 @@ export const dynamic = "force-dynamic";
 export default async function HomePage() {
   const [home, settings, data] = await Promise.all([getHomeContent(), getSiteSettings(), getHomePageData()]);
 
-  const {
-    whyUsPoints,
-    referenceLogos,
-    testimonials,
-    processSteps,
-    faqs,
-    services,
-    latestPosts,
-    featuredProvider,
-    featuredPackages,
-  } = data;
+  const { providers, whyUsPoints, referenceLogos, testimonials, processSteps, faqs, services, latestPosts } = data;
 
   return (
     <>
-      <Hero badge={home.heroBadge} title={home.heroTitle} subtitle={home.heroSubtitle} imageUrl={home.heroImageUrl} />
+      <Hero badge={home.heroBadge} title={home.heroTitle} subtitle={home.heroSubtitle} imageUrl={home.heroImageUrl}
+        partners={providers.map((p) => ({ slug: p.slug, name: p.name, logoUrl: p.logoUrl }))}
+      />
 
       {whyUsPoints.length > 0 && (
         <ValueProps
@@ -42,28 +34,7 @@ export default async function HomePage() {
         />
       )}
 
-      {featuredProvider && featuredPackages.length > 0 && (
-        <PackagesPreview
-          providerSlug={featuredProvider.slug}
-          providerName={featuredProvider.name}
-          providerDescription={featuredProvider.shortDescription}
-          packages={featuredPackages.map((pkg) => ({
-            slug: pkg.slug,
-            name: pkg.name,
-            shortDescription: pkg.shortDescription,
-            price: pkg.price,
-            oldPrice: pkg.oldPrice,
-            billingNote: pkg.billingNote,
-            campaignLabel: pkg.campaignLabel,
-            featured: pkg.featured,
-            features: pkg.packageFeatures.map((pf) => ({
-              name: pf.feature.name,
-              included: pf.included,
-              value: pf.value,
-            })),
-          }))}
-        />
-      )}
+      {providers.length > 0 && <PackagesPreview providers={providers} />}
 
       {referenceLogos.length > 0 && (
         <section className="border-y border-border bg-white py-14">

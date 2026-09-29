@@ -2,12 +2,14 @@ import Link from "next/link";
 import { Headset, Shield, Zap } from "lucide-react";
 import { LinkArrow } from "@/components/site/LinkArrow";
 import { StoreDeviceMockup } from "./StoreDeviceMockup";
+import { PartnerLogo } from "@/components/site/PartnerLogo";
 
 type Props = {
   badge: string;
   title: string;
   subtitle: string;
   imageUrl?: string | null;
+  partners?: Array<{ slug: string; name: string; logoUrl: string | null }>;
 };
 
 const trustItems = [
@@ -16,7 +18,7 @@ const trustItems = [
   { icon: Zap, label: "Hızlı Kurulum" },
 ];
 
-export function Hero({ badge, title, subtitle, imageUrl }: Props) {
+export function Hero({ badge, title, subtitle, imageUrl, partners = [] }: Props) {
   return (
     <section className="relative overflow-hidden bg-white">
       <div className="pointer-events-none absolute inset-0 overflow-hidden">
@@ -51,7 +53,17 @@ export function Hero({ badge, title, subtitle, imageUrl }: Props) {
               Ücretsiz Danışmanlık Al
             </Link>
           </div>
-          <div className="mt-10 flex flex-wrap gap-x-8 gap-y-3">
+          {partners.length > 0 && (
+            <div className="mt-9 flex flex-wrap items-center gap-x-6 gap-y-3">
+              <span className="text-xs font-semibold uppercase tracking-wider text-muted">Resmi iş ortağıyız</span>
+              {partners.map((p) => (
+                <Link key={p.slug} href={`/paketler/${p.slug}`} aria-label={`${p.name} paketleri`} className="transition hover:opacity-80">
+                  <PartnerLogo slug={p.slug} name={p.name} logoUrl={p.logoUrl} className="h-6 w-auto sm:h-7" />
+                </Link>
+              ))}
+            </div>
+          )}
+          <div className="mt-8 flex flex-wrap gap-x-8 gap-y-3">
             {trustItems.map((item) => (
               <div key={item.label} className="flex items-center gap-2 text-sm font-medium text-ink/70">
                 <item.icon className="h-4 w-4 text-brand" aria-hidden />

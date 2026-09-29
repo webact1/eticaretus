@@ -1,127 +1,151 @@
 import type { Metadata } from "next";
-import { Check } from "lucide-react";
+import Link from "next/link";
+import { BadgePercent, MessageCircle } from "lucide-react";
 import { PageHero } from "@/components/site/PageHero";
-import { PackagesPreview } from "@/components/home/PackagesPreview";
 import { LogoCarousel } from "@/components/home/LogoCarousel";
-import { PackageComparisonTable } from "@/components/site/PackageComparisonTable";
 import { CampaignBanner } from "@/components/site/CampaignBanner";
+import { PackageCards } from "@/components/site/PackageCards";
+import { ProviderIntro } from "@/components/site/ProviderIntro";
+import { LinkArrow } from "@/components/site/LinkArrow";
 import { prisma } from "@/lib/prisma";
-import { getPackageComparison } from "@/lib/queries";
+import { getProvidersWithPackages } from "@/lib/queries";
 import { getSiteSettings } from "@/lib/settings";
 import { isCampaignActive } from "@/lib/campaign";
-import { PREVIEW_FEATURE_NAMES } from "@/lib/constants";
+import { buildWhatsAppUrl } from "@/lib/whatsapp";
 
 export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
-  title: "Paketler",
-  description: "IdeaSoft Starter, Booster, Master ve Master+ paketlerini karşılaştırın, işletmenize uygun paketi seçin.",
+  title: "E-Ticaret Paketleri: IdeaSoft ve ikas",
+  description: "IdeaSoft ve ikas e-ticaret paketlerini karşılaştırın; iş ortağı olarak işletmenize özel indirimli fiyat sunuyoruz. Size uygun altyapıyı birlikte seçelim.",
 };
 
 export default async function PackagesPage() {
-  const provider = await prisma.provider.findFirst({ where: { status: "active" }, orderBy: { order: "asc" } });
-
-  if (!provider) {
-    return (
-      <PageHero
-        eyebrow="Paketler"
-        title="Paketler Hazırlanıyor"
-        subtitle="Paket bilgilerimiz kısa süre içinde burada olacak."
-      />
-    );
-  }
-
-  const [{ categories, packages }, referenceLogos, settings] = await Promise.all([
-    getPackageComparison(provider.id),
+  const [providers, referenceLogos, settings] = await Promise.all([
+    getProvidersWithPackages(),
     prisma.referenceLogo.findMany({ where: { active: true }, orderBy: { order: "asc" } }),
     getSiteSettings(),
   ]);
-  const featureById = new Map(categories.flatMap((c) => c.features.map((f) => [f.id, f] as const)));
-  const advantages: string[] = JSON.parse(provider.advantages || "[]");
+
+  if (providers.length === 0) {
+    return <PageHero eyebrow="Paketler" title="Paketler Hazırlanıyor" subtitle="Paket bilgilerimiz kısa süre içinde burada olacak." />;
+  }
+
   const showCampaign = isCampaignActive(settings);
+  const whatsappHref = buildWhatsAppUrl(settings.whatsappNumber, "Merhaba, eticaretus.com.tr üzerinden size özel paket fiyatı almak istiyorum.");
+  const names = providers.map((p) => p.name).join(" ve ");
 
   return (
     <>
       <PageHero
         eyebrow="Paketler"
-        title={`${provider.name} Paketlerini Karşılaştırın`}
-        subtitle="İhtiyacınıza ve hedeflerinize uygun paketi seçin, e-ticaret yolculuğunuza güçlü bir başlangıç yapın."
+        title="E-Ticaret Paketleri"
+        subtitle={`${names} iş ortağı olarak paketleri işletmenize özel indirimli fiyatlarla sunuyoruz. Paketleri karşılaştırın, size uygun olanı birlikte seçelim.`}
       />
 
       {showCampaign && (
-        <section className="bg-white py-10">
+        <section className="bg-white pt-10">
           <div className="container-page">
             <CampaignBanner text={settings.campaignText} endsAt={settings.campaignEndsAt!.toISOString()} />
           </div>
         </section>
       )}
 
-      <section className="border-b border-border bg-white py-14">
-        <div className="container-page grid gap-8 lg:grid-cols-[auto_1fr] lg:items-center">
-          <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-brand/10 text-xl font-bold text-brand">
-            {provider.name[0]}
+      {providers.length > 1 && (
+        <nav aria-label="Altyapılar" className="border-b border-border bg-white">
+          <div className="container-page flex flex-wrap gap-2 py-4">
+            {providers.map((p) => (
+              <a key={p.slug} href={`#${p.slug}`} className="rounded-full border border-border px-4 py-2 text-sm font-semibold text-ink transition hover:border-brand hover:text-brand">
+                {p.name} Paketleri
+              </a>
+            ))}
           </div>
-          <div>
-            <h2 className="text-lg font-bold text-ink">{provider.name}</h2>
-            <p className="mt-1.5 max-w-2xl text-sm leading-relaxed text-muted">{provider.description}</p>
-            {advantages.length > 0 && (
-              <div className="mt-4 flex flex-wrap gap-2">
-                {advantages.map((a) => (
-                  <span
-                    key={a}
-                    className="inline-flex items-center gap-1.5 rounded-full border border-border bg-surface px-3 py-1.5 text-xs font-medium text-ink/80"
-                  >
-                    <Check className="h-3.5 w-3.5 text-brand" />
-                    {a}
-                  </span>
-                ))}
-              </div>
-            )}
+        </nav>
+      )}
+
+      {providers.map((provider, i) => (
+        <section key={provider.slug} id={provider.slug} className={`scroll-mt-24 py-16 ${i % 2 === 0 ? "bg-white" : "bg-surface"}`}>
+          <div className="container-page">
+            <h2 className="text-2xl font-extrabold tracking-tight text-ink sm:text-3xl">{provider.name} Paketleri</h2>
+            <div className="mt-6">
+              <ProviderIntro slug={provider.slug} name={provider.name} logoUrl={provider.logoUrl} description={provider.description} advantages={provider.advantages} />
+            </div>
+            <div className="mt-12">
+              <PackageCards providerSlug={provider.slug} providerName={provider.name} packages={provider.packages} />
+            </div>
+            <div className="mt-10 text-center">
+              <Link
+                href={`/paketler/${provider.slug}`}
+                className="inline-flex items-center rounded-full border border-brand/30 px-5 py-2.5 text-sm font-semibold text-brand transition hover:border-brand hover:bg-brand/5"
+              >
+                {provider.name} paketlerinin tüm özelliklerini karşılaştır
+                <LinkArrow />
+              </Link>
+            </div>
+          </div>
+        </section>
+      ))}
+
+      {providers.length > 1 && (
+        <section className="border-t border-border bg-white py-16">
+          <div className="container-page">
+            <div className="mx-auto max-w-2xl text-center">
+              <h2 className="text-2xl font-extrabold tracking-tight text-ink sm:text-3xl">Hangi Altyapı Size Uygun?</h2>
+              <p className="mt-3 text-muted">İki altyapı da güçlü; doğru seçim ürün yapınıza, satış kanallarınıza ve hedeflerinize bağlı.</p>
+            </div>
+            <div className="mt-10 grid gap-5 md:grid-cols-2">
+              {providers.map((p) => (
+                <div key={p.slug} className="rounded-2xl border border-border bg-surface p-6">
+                  <p className="text-lg font-bold text-ink">{p.name}</p>
+                  <p className="mt-1 text-sm font-medium text-brand">{p.shortDescription}</p>
+                  {p.suitableFor && <p className="mt-3 text-sm leading-relaxed text-muted">{p.suitableFor}</p>}
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
+      <section className="bg-navy py-14 text-white">
+        <div className="container-page flex flex-col items-start gap-6 md:flex-row md:items-center md:justify-between">
+          <div className="flex items-start gap-4">
+            <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-white/10">
+              <BadgePercent className="h-6 w-6" aria-hidden />
+            </span>
+            <div>
+              <h2 className="text-xl font-bold sm:text-2xl">Size özel indirimli fiyat alın</h2>
+              <p className="mt-1.5 max-w-xl text-sm text-white/70">
+                İş ortağı olarak her işletmeye ihtiyacına göre özel fiyat sunuyoruz. Paketinizi söyleyin, aynı gün teklifinizi iletelim.
+              </p>
+            </div>
+          </div>
+          <div className="flex w-full flex-col gap-3 sm:w-auto sm:flex-row">
+            <a
+              href={whatsappHref}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center gap-2 rounded-full bg-whatsapp px-6 py-3 text-sm font-semibold text-white transition hover:bg-whatsapp-dark"
+            >
+              <MessageCircle className="h-4 w-4" aria-hidden />
+              WhatsApp&apos;tan Fiyat Al
+            </a>
+            <Link href="/iletisim" className="inline-flex items-center justify-center rounded-full bg-white px-6 py-3 text-sm font-semibold text-navy transition hover:bg-white/90">
+              Teklif Formu
+            </Link>
           </div>
         </div>
       </section>
 
-      <PackagesPreview
-        providerSlug={provider.slug}
-        providerName={provider.name}
-        showIntro={false}
-        packages={packages.map((pkg) => ({
-          slug: pkg.slug,
-          name: pkg.name,
-          shortDescription: pkg.shortDescription,
-          price: pkg.price,
-          oldPrice: pkg.oldPrice,
-          billingNote: pkg.billingNote,
-          campaignLabel: pkg.campaignLabel,
-          featured: pkg.featured,
-          features: PREVIEW_FEATURE_NAMES.map((name) => {
-            const pf = pkg.packageFeatures.find((f) => featureById.get(f.featureId)?.name === name);
-            return pf ? { name, included: pf.included, value: pf.value } : null;
-          }).filter((f): f is NonNullable<typeof f> => Boolean(f)),
-        }))}
-      />
-
       {referenceLogos.length > 0 && (
-        <section className="border-y border-border bg-white py-14">
+        <section className="border-b border-border bg-white py-14">
           <div className="container-page">
-            <p className="text-center text-sm font-semibold text-muted">
-              IdeaSoft Altyapısını Tercih Eden Markalardan Bazıları
-            </p>
+            <p className="text-center text-sm font-semibold text-muted">IdeaSoft Altyapısını Tercih Eden Markalardan Bazıları</p>
           </div>
           <div className="mt-8">
             <LogoCarousel logos={referenceLogos} />
           </div>
         </section>
       )}
-
-      <section className="bg-surface py-16">
-        <div className="container-page">
-          <h2 className="text-2xl font-extrabold tracking-tight text-ink">Detaylı Özellik Karşılaştırması</h2>
-          <div className="mt-8">
-            <PackageComparisonTable categories={categories} packages={packages} />
-          </div>
-        </div>
-      </section>
     </>
   );
 }

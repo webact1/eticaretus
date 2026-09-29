@@ -16,7 +16,7 @@ export const metadata: Metadata = {
     template: "%s | eticaretus",
   },
   description:
-    "eticaretus, IdeaSoft e-ticaret altyapısında işletmenize uygun paketi seçmenizi, kurulum ve danışmanlık süreçlerinde yanınızda olur.",
+    "eticaretus, IdeaSoft ve ikas iş ortağı olarak işletmenize uygun e-ticaret paketini size özel fiyatla sunar; kurulum ve danışmanlıkta yanınızdadır.",
   applicationName: "eticaretus",
   alternates: { canonical: "./" },
   openGraph: {

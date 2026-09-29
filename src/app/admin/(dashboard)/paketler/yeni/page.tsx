@@ -20,10 +20,10 @@ export default async function NewPackagePage() {
             <Field label="Paket Adı" name="name" required />
             <Field label="Slug" name="slug" required placeholder="starter" />
             <Field label="Sıra" name="order" type="number" defaultValue={0} />
-            <Field label="Fiyat (₺)" name="price" type="number" />
-            <Field label="Eski Fiyat (₺)" name="oldPrice" type="number" />
-            <Field label="Fatura Notu" name="billingNote" placeholder="/yıl" />
-            <Field label="Kampanya Etiketi" name="campaignLabel" placeholder="%20 İndirim" />
+            <Field label="Fiyat (₺) — sitede gösterilmez" name="price" type="number" />
+            <Field label="Eski Fiyat (₺) — sitede gösterilmez" name="oldPrice" type="number" />
+            <Field label="Fatura Notu — sitede gösterilmez" name="billingNote" placeholder="/yıl" />
+            <Field label="Kampanya Etiketi" name="campaignLabel" placeholder="Ör. En Popüler" />
           </div>
           <div className="mt-4">
             <TextareaField label="Kısa Açıklama" name="shortDescription" rows={2} />

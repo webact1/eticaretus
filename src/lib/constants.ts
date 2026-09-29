@@ -42,14 +42,30 @@ export const MAIN_NAV = [
 // Paket kartı önizlemesinde (ana sayfa + /paketler üst kartlar) gösterilecek
 // öne çıkan, ayırt edici özellikler — tam karşılaştırma tablosundaki 50
 // özelliğin tamamı yerine pazarlama açısından en anlamlı olanlar seçildi.
-export const PREVIEW_FEATURE_NAMES = [
-  "Pazaryeri Entegrasyonları",
-  "Ürün Ekleme Hakkı",
-  "Profesyonel Tema & Tasarım",
-  "Kargo Bakiyesi Hediyesi",
-  "ideasoft AdPilot Reklam Desteği",
-  "7/24 Teknik Destek",
-] as const;
+// Paket kartlarında gösterilen, pazarlama açısından en anlamlı özellikler (sağlayıcıya göre; sıralama bu listeye göre).
+export const PREVIEW_FEATURE_NAMES_BY_PROVIDER: Record<string, readonly string[]> = {
+  ideasoft: [
+    "Pazaryeri Entegrasyonları",
+    "Ürün Ekleme Hakkı",
+    "Profesyonel Tema & Tasarım",
+    "Kargo Bakiyesi Hediyesi",
+    "ideasoft AdPilot Reklam Desteği",
+    "7/24 Teknik Destek",
+  ],
+  ikas: [
+    "Pazaryeri Entegrasyonları",
+    "Ürün Listeleme, Trafik ve Web Alanı",
+    "Yönetici Kullanıcı Sayısı",
+    "Otomatik Sepet Hatırlatma Bildirimleri",
+    "E-İhracat",
+    "Müşteri Desteği",
+  ],
+};
+
+/** Kart önizlemesi için özellik adları; tanımsız sağlayıcıda boş liste (kart yalnız başlık ve açıklamayla çıkar). */
+export function previewFeatureNames(providerSlug: string): readonly string[] {
+  return PREVIEW_FEATURE_NAMES_BY_PROVIDER[providerSlug] ?? [];
+}
 
 // Karşılaştırma tablosunda ve paket detay sayfasında her kategori başlığının
 // altında gösterilen kısa açıklama — özellikler yalın liste değil, bağlamıyla
@@ -62,6 +78,13 @@ export const FEATURE_CATEGORY_DESCRIPTIONS: Record<string, string> = {
   "Kullanıcı Deneyimini Güçlendirin": "Müşterilerinizin alışveriş deneyimini güçlendiren modüller ve destek kanalları.",
   "Güçlü Mağaza Altyapısı": "Mağazanızın teknik kapasitesini ve güvenliğini belirleyen altyapı özellikleri.",
   "Uzman Desteği": "Kurulum, danışmanlık ve teknik destek süreçlerinde yanınızda olduğumuz alanlar.",
+  "Altyapı ve Ödeme": "Hazır sanal POS, anlaşmalı kargo ve güvenli ödeme adımlarıyla satışa hızlı başlamanızı sağlayan temel altyapı.",
+  "Yapay Zekâ Özellikleri": "Ürün görseli, model üzerinde gösterim ve ürün açıklamalarını yapay zekâ ile hazırlamanızı sağlayan araçlar.",
+  "Mağaza Yönetimi": "Kullanıcı sayısı, pazaryeri ve ERP entegrasyonları ile günlük mağaza operasyonunu kolaylaştıran özellikler.",
+  "Pazarlama ve Satış": "Kampanya, sepet hatırlatma ve çapraz satış araçlarıyla dönüşüm oranınızı artıran özellikler.",
+  "Stok ve Teslimat": "Çoklu stok lokasyonu, B2B satış ve teslimat seçenekleriyle lojistiği yönetmenizi sağlayan özellikler.",
+  "E-İhracat": "Farklı dil, para birimi ve fiyat listeleriyle yurt dışına satış yapmanızı sağlayan özellikler.",
+  "Destek ve Hizmetler": "Destek kanalları ve büyük markalara sunulan özel hizmetler.",
 };
 
 export const SITE_NAME = "eticaretus";

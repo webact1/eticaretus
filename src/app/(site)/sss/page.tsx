@@ -7,7 +7,7 @@ export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
   title: "Sıkça Sorulan Sorular",
-  description: "IdeaSoft paketleri, kurulum süreci, pazaryeri entegrasyonları ve destek hizmeti hakkında sıkça sorulan sorular.",
+  description: "IdeaSoft ve ikas paketleri, size özel fiyat, kurulum süreci, pazaryeri entegrasyonları ve destek hakkında sıkça sorulan sorular.",
 };
 
 export default async function FaqPage() {

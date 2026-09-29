@@ -1,3 +1,4 @@
+import { execFileSync } from "node:child_process";
 import { PrismaClient } from "../src/generated/prisma/client";
 import { PrismaBetterSqlite3 } from "@prisma/adapter-better-sqlite3";
 import bcrypt from "bcryptjs";
@@ -21,7 +22,7 @@ const IDEASOFT_PACKAGES = [
     price: 39900,
     oldPrice: 49875,
     billingNote: "/yıl (3.325₺/ay)",
-    campaignLabel: "%20 İndirim",
+    campaignLabel: null,
     featured: false,
     order: 0,
     values: {
@@ -90,7 +91,7 @@ const IDEASOFT_PACKAGES = [
     price: 69900,
     oldPrice: 87375,
     billingNote: "/yıl (5.825₺/ay)",
-    campaignLabel: "%20 İndirim",
+    campaignLabel: null,
     featured: false,
     order: 1,
     values: {
@@ -159,7 +160,7 @@ const IDEASOFT_PACKAGES = [
     price: 99900,
     oldPrice: 124875,
     billingNote: "/yıl (8.325₺/ay)",
-    campaignLabel: "%20 İndirim · En Popüler",
+    campaignLabel: null,
     featured: true,
     order: 2,
     values: {
@@ -228,7 +229,7 @@ const IDEASOFT_PACKAGES = [
     price: 134900,
     oldPrice: 168625,
     billingNote: "/yıl (11.242₺/ay)",
-    campaignLabel: "%20 İndirim · 70.000₺ Değerinde Hediye",
+    campaignLabel: null,
     featured: false,
     order: 3,
     values: {
@@ -652,7 +653,8 @@ async function main() {
   // Onceki calismalardan kalan eski kategori/ozellik anahtarlarinin (key rename
   // sonrasi) hayalet satir olarak kalmamasi icin baştan temizleniyor; kaskad
   // silme PackageFeature satirlarini da temizler, asagida yeniden olusturuluyor.
-  await prisma.featureCategory.deleteMany({});
+  // Yalnız IdeaSoft katalog kategorileri (seed-cat-*) yeniden kurulur; ikas kategorilerine (ikas-cat-*) dokunulmaz.
+  await prisma.featureCategory.deleteMany({ where: { id: { startsWith: "seed-cat-" } } });
   const featureIdByKey = new Map<string, string>();
   for (const category of FEATURE_CATEGORIES) {
     const cat = await prisma.featureCategory.upsert({
@@ -783,6 +785,10 @@ async function main() {
   await seoFill((slug) => prisma.service.findFirst({ where: { slug, ...seoEmpty } }), (id, data) => prisma.service.update({ where: { id }, data }), seoDefaults.Service);
   await seoFill((slug) => prisma.page.findFirst({ where: { slug, ...seoEmpty } }), (id, data) => prisma.page.update({ where: { id }, data }), seoDefaults.Page);
   await seoFill((slug) => prisma.blogPost.findFirst({ where: { slug, ...seoEmpty } }), (id, data) => prisma.blogPost.update({ where: { id }, data }), seoDefaults.BlogPost);
+
+  // --- ikas iş ortaklığı: sağlayıcı, paketler, logolar, metin güncellemeleri (canlıda da aynı script çalıştırılır) ---
+  const dbFile = (process.env.DATABASE_URL ?? "file:./dev.db").replace(/^file:/, "");
+  execFileSync(process.execPath, ["scripts/sync-ikas.mjs", dbFile, "prisma/ikas-catalog.json"], { stdio: "inherit" });
 
   console.log("✔ Seed tamamlandı.");
 }
