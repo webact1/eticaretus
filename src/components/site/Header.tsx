@@ -4,7 +4,8 @@ import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
-import { DEFAULT_LOGO, MAIN_NAV, SITE_NAME } from "@/lib/constants";
+import { ArrowRight, ChevronDown } from "lucide-react";
+import { DEFAULT_LOGO, MAIN_NAV, PACKAGE_MENU, SITE_NAME } from "@/lib/constants";
 import { buildWhatsAppUrl } from "@/lib/whatsapp";
 
 type Props = {
@@ -55,6 +56,7 @@ export function Header({ logoUrl, whatsappNumber, whatsappMessage }: Props) {
         <nav className="hidden items-center gap-1 xl:flex">
           {MAIN_NAV.map((item) => {
             const active = pathname === item.href || (item.href !== "/" && pathname.startsWith(item.href));
+            if (item.href === "/paketler") return <PackagesMenu key={item.href} label={item.label} active={active} pathname={pathname} />;
             return (
               <Link
                 key={item.href}
@@ -115,14 +117,30 @@ export function Header({ logoUrl, whatsappNumber, whatsappMessage }: Props) {
       >
         <nav className="container-page flex flex-col gap-1 py-3">
           {MAIN_NAV.map((item) => (
-            <Link
-              key={item.href}
-              href={item.href}
-              onClick={() => setMenuOpen(false)}
-              className="rounded-lg px-3 py-3 text-base font-medium text-ink transition hover:bg-surface"
-            >
-              {item.label}
-            </Link>
+            <div key={item.href}>
+              <Link
+                href={item.href}
+                onClick={() => setMenuOpen(false)}
+                className="block rounded-lg px-3 py-3 text-base font-medium text-ink transition hover:bg-surface"
+              >
+                {item.label}
+              </Link>
+              {item.href === "/paketler" && (
+                <div className="mb-1 ml-3 grid grid-cols-2 gap-2 border-l border-border pl-3">
+                  {PACKAGE_MENU.map((p) => (
+                    <Link
+                      key={p.href}
+                      href={p.href}
+                      onClick={() => setMenuOpen(false)}
+                      className="flex h-12 items-center justify-center rounded-xl border border-border px-3 transition hover:border-brand"
+                      aria-label={p.label}
+                    >
+                      <Image src={p.logo} alt="" width={p.logoWidth} height={p.logoHeight} className="h-5 w-auto" unoptimized />
+                    </Link>
+                  ))}
+                </div>
+              )}
+            </div>
           ))}
           <a
             href={whatsappHref}
@@ -136,6 +154,77 @@ export function Header({ logoUrl, whatsappNumber, whatsappMessage }: Props) {
         </nav>
       </div>
     </header>
+  );
+}
+
+/**
+ * "E-Ticaret Paketleri": tıklanınca tüm paketler sayfası; üzerine gelince (ya da klavyeyle odaklanınca) IdeaSoft ve ikas
+ * paket sayfalarını logolarıyla gösteren açılır panel.
+ */
+function PackagesMenu({ label, active, pathname }: { label: string; active: boolean; pathname: string }) {
+  // Seçeneğe tıklanınca kapanır; fare çıkıp yeniden gelene ya da yeniden odaklanana kadar kapalı kalır.
+  const [visible, setOpen] = useState(false);
+
+  return (
+    <div
+      className="relative"
+      onMouseEnter={() => setOpen(true)}
+      onMouseLeave={() => setOpen(false)}
+      onFocus={() => setOpen(true)}
+      onBlur={(e) => {
+        if (!e.currentTarget.contains(e.relatedTarget as Node | null)) setOpen(false);
+      }}
+      onKeyDown={(e) => {
+        if (e.key === "Escape") setOpen(false);
+      }}
+    >
+      <Link
+        href="/paketler"
+        aria-haspopup="true"
+        aria-expanded={visible}
+        className={`inline-flex items-center gap-1 rounded-full px-3.5 py-2 text-sm font-medium transition-colors ${
+          active ? "text-brand" : "text-ink/80 hover:text-brand"
+        }`}
+      >
+        {label}
+        <ChevronDown className={`h-3.5 w-3.5 transition-transform ${visible ? "rotate-180" : ""}`} aria-hidden />
+      </Link>
+
+      <div
+        className={`absolute left-1/2 top-full z-50 w-[27rem] -translate-x-1/2 pt-2 transition duration-150 ${
+          visible ? "visible translate-y-0 opacity-100" : "invisible -translate-y-1 opacity-0"
+        }`}
+      >
+        <div className="rounded-2xl border border-border bg-white p-2 shadow-xl shadow-navy/10">
+          <div className="grid grid-cols-2 gap-2">
+            {PACKAGE_MENU.map((p) => (
+              <Link
+                key={p.href}
+                href={p.href}
+                onClick={() => setOpen(false)}
+                className={`group flex flex-col gap-3 rounded-xl border p-4 transition hover:border-brand/40 hover:bg-brand/5 ${
+                  pathname.startsWith(p.href) ? "border-brand/40 bg-brand/5" : "border-transparent"
+                }`}
+              >
+                <Image src={p.logo} alt="" width={p.logoWidth} height={p.logoHeight} className="h-6 w-auto self-start" unoptimized />
+                <span>
+                  <span className="block text-sm font-semibold text-ink group-hover:text-brand">{p.label}</span>
+                  <span className="mt-0.5 block text-xs text-muted">{p.sub}</span>
+                </span>
+              </Link>
+            ))}
+          </div>
+          <Link
+            href="/paketler"
+            onClick={() => setOpen(false)}
+            className="mt-2 flex items-center justify-between rounded-xl bg-surface px-4 py-2.5 text-sm font-semibold text-ink transition hover:text-brand"
+          >
+            Tüm paketleri birlikte gör
+            <ArrowRight className="h-4 w-4" aria-hidden />
+          </Link>
+        </div>
+      </div>
+    </div>
   );
 }
 

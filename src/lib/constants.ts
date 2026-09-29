@@ -29,9 +29,15 @@ export const PROVIDER_STATUS_LABELS: Record<ProviderStatus, string> = {
   hidden: "Gizli",
 };
 
+// Menüde "E-Ticaret Paketleri" üzerine gelince açılan altyapı seçimi (her altyapının kendi paket sayfası).
+export const PACKAGE_MENU = [
+  { label: "IdeaSoft Paketleri", href: "/paketler/ideasoft", logo: "/images/partners/ideasoft.svg", logoWidth: 201, logoHeight: 44, sub: "Starter, Booster, Master, Master+" },
+  { label: "ikas Paketleri", href: "/paketler/ikas", logo: "/images/partners/ikas.svg", logoWidth: 98, logoHeight: 25, sub: "Lift, Scale, Scale Plus, Premium" },
+] as const;
+
 export const MAIN_NAV = [
   { label: "Ana Sayfa", href: "/" },
-  { label: "Paketler", href: "/paketler" },
+  { label: "E-Ticaret Paketleri", href: "/paketler" },
   { label: "Hizmetler", href: "/hizmetler" },
   { label: "Neden Biz?", href: "/neden-biz" },
   { label: "Hakkımızda", href: "/hakkimizda" },

@@ -55,7 +55,7 @@ export function Hero({ badge, title, subtitle, imageUrl, partners = [] }: Props)
           </div>
           {partners.length > 0 && (
             <div className="mt-9 flex flex-wrap items-center gap-x-6 gap-y-3">
-              <span className="text-xs font-semibold uppercase tracking-wider text-muted">Resmi iş ortağıyız</span>
+              <span className="w-full text-xs font-semibold uppercase tracking-wider text-muted sm:w-auto">Resmi iş ortağıyız</span>
               {partners.map((p) => (
                 <Link key={p.slug} href={`/paketler/${p.slug}`} aria-label={`${p.name} paketleri`} className="transition hover:opacity-80">
                   <PartnerLogo slug={p.slug} name={p.name} logoUrl={p.logoUrl} className="h-6 w-auto sm:h-7" />
