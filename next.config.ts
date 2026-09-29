@@ -1,6 +1,9 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  // Hostinger paylaşımlı sunucusunda Turbopack'in CSS (PostCSS) için açtığı ayrı Node süreci başlatılamıyor ve derleme düşüyor;
+  // derleme webpack ile yapılıyor (package.json "build") ve paralel işçi sayısı sunucu sınırlarına göre kısılıyor.
+  experimental: { cpus: 2 },
   async redirects() {
     return [
       // Şu an yalnızca IdeaSoft aktif olduğu için "E-Ticaret Çözümleri" sayfası
